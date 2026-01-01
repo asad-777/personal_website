@@ -1,15 +1,21 @@
 import localFont from 'next/font/local';
 import './globals.css';
 
-const secr = localFont({
-  src: '../fonts/secrcode.ttf',
-  variable: '--font-secret',
+const proFont = localFont({
+  src: '../fonts/goodtimes.otf',
+  variable: '--font-pro',
   display: 'swap',
 });
 
-const f25 = localFont({
-  src: '../fonts/F25_Bank_Printer.ttf',
-  variable: '--font-f25',
+const secondaryFont = localFont({
+  src: '../fonts/candlb.ttf',
+  variable: '--font-seco',
+  display: 'swap',
+});
+
+const mainFont = localFont({
+  src: '../fonts/candl.ttf',
+  variable: '--font-main',
   display: 'swap',
 });
 
@@ -20,7 +26,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="Portfolio" className={`${secr.variable} ${f25.variable}`}>
+    <html lang="en" data-theme="Portfolio-dark" className={`${mainFont.variable} ${secondaryFont.variable} ${proFont.variable}`}>
       <body className="antialiased">
         {children}
       </body>

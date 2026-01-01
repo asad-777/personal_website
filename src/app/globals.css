@@ -1,33 +1,45 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
 @plugin "daisyui" {
-   themes: Portfolio --default, Portfolio --prefersdark;
- }
+  themes: Portfolio-light --default, Portfolio-dark --prefersdark;
+}
+
 @plugin "daisyui/theme" {
-  name: "Portfolio";
+  name: "Portfolio-light";
   default: true;
-  prefersdark: true;
-  color-scheme: "dark";
-  --color-base-100: oklch(25% 0.09 281.288);
-  --color-base-200: oklch(35% 0.144 278.697);
-  --color-base-300: oklch(39% 0.195 277.366);
-  --color-base-content: oklch(93% 0.034 272.788);
-  --color-primary: oklch(0% 0 0);
-  --color-primary-content: oklch(100% 0 0);
-  --color-secondary: oklch(59% 0.145 163.225);
-  --color-secondary-content: oklch(97% 0.021 166.113);
-  --color-accent: oklch(54% 0.245 262.881);
-  --color-accent-content: oklch(97% 0.014 254.604);
-  --color-neutral: oklch(51% 0.262 276.966);
-  --color-neutral-content: oklch(96% 0.018 272.314);
-  --color-info: oklch(54% 0.245 262.881);
-  --color-info-content: oklch(97% 0.014 254.604);
-  --color-success: oklch(64% 0.2 131.684);
-  --color-success-content: oklch(98% 0.031 120.757);
-  --color-warning: oklch(68% 0.162 75.834);
-  --color-warning-content: oklch(98% 0.026 102.212);
-  --color-error: oklch(59% 0.249 0.584);
-  --color-error-content: oklch(97% 0.014 343.198);
+  prefersdark: false;
+  color-scheme: "light";
+
+  --color-base-100: #ffffff;
+  --color-base-200: #ededed;
+  --color-base-300: #dbdbdb;
+  --color-base-content: #1f2937;
+
+  --color-primary: #34d399;
+  --color-primary-content: #064e3b;
+
+  --color-secondary: #6366f1;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #fb923c;
+  --color-accent-content: #000000;
+
+  --color-neutral: #1f2937;
+  --color-neutral-content: #f9fafb;
+
+  --color-info: #38bdf8;
+  --color-info-content: #000000;
+
+  --color-success: #22c55e;
+  --color-success-content: #000000;
+
+  --color-warning: #facc15;
+  --color-warning-content: #000000;
+
+  --color-error: #f43f5e;
+  --color-error-content: #000000;
+
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
   --radius-box: 1rem;
@@ -35,15 +47,77 @@
   --size-field: 0.25rem;
   --border: 1px;
   --depth: 1;
-  --noise: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "Portfolio-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* Base surfaces */
+  --color-base-100: #0b0f14;
+  --color-base-200: #111827;
+  --color-base-300: #1f2937;
+  --color-base-content: #e5e7eb;
+
+  /* Brand colors (same hue logic as light) */
+  --color-primary: #34d399;
+  --color-primary-content: #022c22;
+
+  --color-secondary: #818cf8;
+  --color-secondary-content: #0f172a;
+
+  --color-accent: #fb923c;
+  --color-accent-content: #1f1307;
+
+  /* Neutral */
+  --color-neutral: #1f2937;
+  --color-neutral-content: #e5e7eb;
+
+  /* Semantic */
+  --color-info: #38bdf8;
+  --color-info-content: #02121d;
+
+  --color-success: #22c55e;
+  --color-success-content: #052e16;
+
+  --color-warning: #facc15;
+  --color-warning-content: #1f1a04;
+
+  --color-error: #f43f5e;
+  --color-error-content: #2a060f;
+
+  /* Shape & depth */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 
 
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pro), sans-serif;
+  font-weight: 800;
+}
+
+body {
+  font-family: var(--font-main), sans-serif;
+  font-size: 1.3em;
+}
+
 a,
 button {
-  font-family: var(--font-f25), sans-serif;
-}
-body {
-  font-family: var(--font-secret), sans-serif;
+  font-family: var(--font-seco), sans-serif;
+  font-weight: 800;
 }
