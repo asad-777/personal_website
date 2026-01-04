@@ -8,13 +8,13 @@ const proFont = localFont({
 });
 
 const secondaryFont = localFont({
-  src: '../fonts/candlb.ttf',
+  src: '../fonts/paradroid.ttf',
   variable: '--font-seco',
   display: 'swap',
 });
 
 const mainFont = localFont({
-  src: '../fonts/candl.ttf',
+  src: '../fonts/paradroid.ttf',
   variable: '--font-main',
   display: 'swap',
 });

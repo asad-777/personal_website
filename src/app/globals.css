@@ -60,7 +60,7 @@
   --color-base-100: #0b0f14;
   --color-base-200: #111827;
   --color-base-300: #1f2937;
-  --color-base-content: #e5e7eb;
+  --color-base-content: #eee;
 
   /* Brand colors (same hue logic as light) */
   --color-primary: #34d399;
@@ -111,13 +111,14 @@ h6 {
   font-weight: 800;
 }
 
-body {
-  font-family: var(--font-main), sans-serif;
-  font-size: 1.3em;
-}
-
 a,
 button {
   font-family: var(--font-seco), sans-serif;
   font-weight: 800;
+
+}
+
+body {
+  font-family: var(--font-main), sans-serif;
+  font-size: 1.3em;
 }
