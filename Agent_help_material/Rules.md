@@ -2,7 +2,7 @@
 
 ## General
 
-- Never Run a Terminal Command By Yourself, Always ask me to run it for you and wait untill i tell you to proceede with your work
+- Never Run a Terminal Command By Yourself, Always ask me to run it for you and wait untill i tell you to proceede with your work unless its just creating a new file or a folder or deleting it
 - always before proceeding, create a progress_agent.md file in the folder Agent_help_material and store the progress there
 - always update the progress_agent.md file after every step
 

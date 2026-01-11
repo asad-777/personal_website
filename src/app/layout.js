@@ -1,34 +1,24 @@
-import localFont from 'next/font/local';
-import './globals.css';
+import { Inter, Outfit } from "next/font/google";
+import "./globals.css";
+import { cn } from "../lib/utils";
 
-const proFont = localFont({
-  src: '../fonts/goodtimes.otf',
-  variable: '--font-pro',
-  display: 'swap',
-});
-
-const secondaryFont = localFont({
-  src: '../fonts/paradroid.ttf',
-  variable: '--font-seco',
-  display: 'swap',
-});
-
-const mainFont = localFont({
-  src: '../fonts/paradroid.ttf',
-  variable: '--font-main',
-  display: 'swap',
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata = {
-  title: 'Asad Amir',
-  description: 'Portfolio site for Asad Amir',
+  title: "M.Asad Amir",
+  description: "A showcase of my work and skills.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}) {
   return (
-    <html lang="en" data-theme="Portfolio-dark" className={`${mainFont.variable} ${secondaryFont.variable} ${proFont.variable}`}>
-      <body className="antialiased">
-        {children}
+    <html lang="en" className="scroll-smooth" data-theme="Portfolio-dark">
+      <body className={cn(inter.variable, outfit.variable)}>
+        <main>
+            {children}
+        </main>
       </body>
     </html>
   );

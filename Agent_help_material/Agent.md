@@ -47,5 +47,5 @@ Refer to the `Project_plan.md` (or your progress_agent.md file) for the current 
 
 # Most Important Rules
 
-- Never Run a Terminal Command By Yourself, Always ask me to run it for you and wait untill i tell you to proceede with your work
+- Never Run a Terminal Command By Yourself, Always ask me to run it for you and wait untill i tell you to proceede with your work unless its creating a new file or folder or deleting it
 - Refer to Rules.md for more rules
