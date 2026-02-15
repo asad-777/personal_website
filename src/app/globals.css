@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 @plugin "daisyui" {
   themes: Portfolio-light --default, Portfolio-dark --prefersdark;
@@ -100,7 +103,6 @@
   --noise: 0;
 }
 
-
 h1,
 h2,
 h3,
@@ -121,4 +123,106 @@ button {
 body {
   font-family: var(--font-main), sans-serif;
   font-size: 1.3em;
+}
+/* Glassmorphism Navbar Styles */
+/* Glassmorphism Navbar Styles */
+.glass-nav {
+  /* Clear glass white - removed yellow tint */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px) saturate(100%);
+  -webkit-backdrop-filter: blur(12px) saturate(100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  /* Removed overflow:hidden to allow transform scale to not be clipped if needed, 
+     but user mentioned overlapping. We'll keep overflow visible for hover effects if they pop out,
+     or keep hidden if they are contained. 
+     Actually, "overlapping" might mean the text overlaps neighboring items on scale. 
+     We will address that in hero.jsx with spacing, but here we fix the glass style. */
+  overflow: visible; 
+}
+
+.glass-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(to left top, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+  z-index: 1;
+}
+
+.glass-nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+  z-index: 1;
+}
+
+/* Glow Pill Animation for Links */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Remove old pseudo-element underline */
+.nav-link::after {
+  display: none;
+}
+
+/* Retro Contact Button Styles */
+.retro-btn {
+  /* Light theme for dark background: White bg, Black text */
+  @apply bg-white text-black border-2 border-white font-bold px-4 py-2 text-sm uppercase tracking-wide rounded-lg;
+  box-shadow: 4px 4px 0px 0px #ffffff40; /* Semi-transparent white shadow or solid if preferred */
+  transition: all 0.2s ease;
+  font-family: var(--font-pro, sans-serif);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.retro-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #ffffff40;
+}
+
+.retro-btn .arrow {
+  display: inline-block;
+  opacity: 0;
+  max-width: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.retro-btn:hover .arrow {
+  opacity: 1;
+  max-width: 30px; /* Adjust based on arrow size */
+  transform: translateX(0);
+  margin-left: 8px;
 }
