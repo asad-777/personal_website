@@ -5,8 +5,8 @@ import { cn } from "../lib/utils";
 
 
 export const metadata = {
-  title: "M.Asad Amir",
-  description: "A showcase of my work and skills.",
+  title: "Asad Amir",
+  description: "A showcase of my work and skills. My personal portfolio page",
 };
 
 const goodTimes = localFont({
@@ -29,6 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth" data-theme="Portfolio-dark">
+      <head>
+        <meta name="google-site-verification" content="P2-zTB2CZK9jhHpma5PWMzgzXNuN5YSbdQ6cyfQB8MU" />
+      </head>
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
         <main>
             {children}
