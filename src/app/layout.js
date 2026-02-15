@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 import { cn } from "../lib/utils";
 
 
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
         <main>
             {children}
+          <Analytics/>
         </main>
       </body>
     </html>
