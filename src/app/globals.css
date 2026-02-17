@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 @plugin "daisyui" {
   themes: Portfolio-light --default, Portfolio-dark --prefersdark;
 }
@@ -51,6 +49,9 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+
+  --color-hero-text-1: #1f2937;
+  --color-hero-text-2: #4b5563;
 }
 
 @plugin "daisyui/theme" {
@@ -60,7 +61,7 @@
   color-scheme: "dark";
 
   /* Base surfaces */
-  --color-base-100: #0b0f14;
+  --color-base-100: #000;
   --color-base-200: #111827;
   --color-base-300: #1f2937;
   --color-base-content: #eee;
@@ -101,6 +102,9 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+
+  --color-hero-text-1: #bbbbbb;
+  --color-hero-text-2: #eeeeee;
 }
 
 h1,
@@ -142,6 +146,8 @@ body {
   overflow: visible; 
 }
 
+
+
 .glass-nav::before {
   content: '';
   position: absolute;
@@ -180,8 +186,8 @@ body {
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background-color: color-mix(in srgb, var(--color-base-content), transparent 90%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-base-content), transparent 80%);
   transform: scale(1.05);
 }
 
@@ -225,4 +231,9 @@ html {
   max-width: 30px; /* Adjust based on arrow size */
   transform: translateX(0);
   margin-left: 8px;
+}
+
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }

@@ -150,7 +150,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
         baseUv,
         mouseUv,
         interactive
-      ) * 0.2;
+      ) * 0.24;
     }
   }
 
@@ -187,11 +187,13 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
         baseUv,
         mouseUv,
         interactive
-      ) * 0.1;
+      ) * 0.12;
     }
   }
 
-  fragColor = vec4(col, 1.0);
+  // Calculate alpha based on brightness of the lines
+  float alpha = length(col);
+  fragColor = vec4(col, alpha);
 }
 
 void main() {
@@ -227,6 +229,8 @@ function hexToVec3(hex) {
   return new Vector3(r / 255, g / 255, b / 255);
 }
 
+const DEFAULT_BOTTOM_WAVE_POSITION = { x: 2.0, y: -0.7, rotate: -1 };
+
 export default function FloatingLines({
   linesGradient,
   enabledWaves = ['top', 'middle', 'bottom'],
@@ -234,7 +238,7 @@ export default function FloatingLines({
   lineDistance = [5],
   topWavePosition,
   middleWavePosition,
-  bottomWavePosition = { x: 2.0, y: -0.7, rotate: -1 },
+  bottomWavePosition = DEFAULT_BOTTOM_WAVE_POSITION,
   animationSpeed = 1,
   interactive = true,
   bendRadius = 5.0,
@@ -282,7 +286,7 @@ export default function FloatingLines({
     const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     camera.position.z = 1;
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: false });
+    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
@@ -343,7 +347,7 @@ export default function FloatingLines({
       lineGradientCount: { value: 0 }
     };
 
-    if (linesGradient && linesGradient.length > 0) {
+    if (linesGradient?.length > 0) {
       const stops = linesGradient.slice(0, MAX_GRADIENT_STOPS);
       uniforms.lineGradientCount.value = stops.length;
 
