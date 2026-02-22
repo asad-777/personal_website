@@ -40,7 +40,7 @@ export default function Hero() {
 
                     {/* Desktop nav pill */}
                     <GlassSurface 
-                        className="hidden md:flex fixed! top-12 left-8 z-50 px-6" 
+                        className="hidden xl:flex fixed! top-12 left-8 z-50 px-6" 
                         width="fit-content" 
                         height={56} 
                         borderRadius={9999}
@@ -113,7 +113,7 @@ export default function Hero() {
                         </GlassSurface>
 
                         {/* Mobile hamburger — opens the drawer */}
-                        <label htmlFor="mobile-drawer" className="md:hidden cursor-pointer hover:scale-110 transition-transform">
+                        <label htmlFor="mobile-drawer" className="xl:hidden cursor-pointer hover:scale-110 transition-transform">
                             <GlassSurface 
                                 width={56} 
                                 height={56} 
@@ -171,9 +171,9 @@ export default function Hero() {
             </div>
 
             {/* Mobile drawer sidebar */}
-            <div className="drawer-side z-[70]">
+            <div className="drawer-side z-70">
                 <label htmlFor="mobile-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <div className="menu bg-base-100/95 backdrop-blur-xl min-h-full w-72 p-6 pt-24 flex flex-col gap-2">
+                <div className="menu bg-base-100/95 backdrop-blur-xl min-h-full w-1/2 min-w-72 p-6 pt-24 flex flex-col gap-2">
                     {/* Close button */}
                     <label htmlFor="mobile-drawer" className="absolute top-6 right-6 cursor-pointer">
                         <GlassSurface 
@@ -188,13 +188,13 @@ export default function Hero() {
                     </label>
 
                     {/* Nav links */}
-                    <ul className="flex flex-col gap-1">
+                    <ul className="flex-1 flex flex-col justify-center items-center  gap-2">
                         {navItems.map((item) => (
-                            <li key={item}>
-                                <label htmlFor="mobile-drawer" className="w-full">
+                            <li key={item} className="w-full text-center">
+                                <label htmlFor="mobile-drawer" className="w-full justify-center cursor-pointer">
                                     <a 
                                         href={`#${item.toLowerCase().replace(' ', '-')}`} 
-                                        className="text-base-content font-semibold text-2xl py-4 hover:text-primary transition-colors block"
+                                        className="text-base-content font-bold text-2xl lg:text-4xl py-4 hover:text-primary transition-all duration-300 block text-center"
                                     >
                                         {item}
                                     </a>
@@ -208,7 +208,8 @@ export default function Hero() {
                         <label htmlFor="mobile-drawer" className="w-full">
                             <a
                                 href="#contactme"
-                                className="btn btn-primary btn-block text-lg font-bold"
+                                className="btn btn-primary py-6 btn-block text-lg font-bold"
+                                onClick={() => { document.getElementById('mobile-drawer').checked = false; }}
                             >
                                 Let&apos;s Connect
                             </a>
