@@ -7,12 +7,16 @@ const useDarkMode = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDark(mediaQuery.matches);
+    const check = () => {
+      const theme = document.documentElement.getAttribute('data-theme') || '';
+      setIsDark(theme.toLowerCase().includes('dark'));
+    };
 
-    const handler = e => setIsDark(e.matches);
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
+    check();
+
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
   }, []);
 
   return isDark;
@@ -26,14 +30,14 @@ const GlassSurface = ({
   borderWidth = 0.07,
   brightness = 50,
   opacity = 0.93,
-  blur = 4,
-  displace = 10,
-  backgroundOpacity = 10,
-  saturation = 3,
-  distortionScale = -20,
-  redOffset = 10,
-  greenOffset = 20,
-  blueOffset = 50,
+  blur = 11,
+  displace = 0,
+  backgroundOpacity = 0,
+  saturation = 1,
+  distortionScale = -180,
+  redOffset = 0,
+  greenOffset = 10,
+  blueOffset = 20,
   xChannel = 'R',
   yChannel = 'G',
   mixBlendMode = 'difference',
@@ -162,27 +166,16 @@ const GlassSurface = ({
       return false;
     }
 
-    const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-    const isFirefox = /Firefox/.test(navigator.userAgent);
-
-    if (isWebkit || isFirefox) {
-      return false;
-    }
-
-    const div = document.createElement('div');
-    div.style.backdropFilter = `url(#${filterId})`;
-
-    return div.style.backdropFilter !== '';
+    // Only Chromium supports backdrop-filter: url(#svgFilter).
+    // The detached-div test returns '' on Chrome when the filter isn't in DOM yet,
+    // and CSS.supports('backdrop-filter', 'url(#x)') also incorrectly returns false.
+    // Direct browser detection is the only reliable approach.
+    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    return isChrome;
   };
 
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const supportsBackdropFilter = () => {
-    if (typeof window === 'undefined' || !mounted) return false;
+    if (typeof window === 'undefined') return false;
     return CSS.supports('backdrop-filter', 'blur(10px)');
   };
 
@@ -279,80 +272,79 @@ const GlassSurface = ({
     <div
       ref={containerRef}
       className={`${glassSurfaceClasses} ${focusVisibleClasses} ${className}`}
-      style={getContainerStyles()}>
-      {mounted && (
-        <svg
-          className="w-full h-full pointer-events-none absolute inset-0 opacity-0 -z-10"
-          xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter
-              id={filterId}
-              colorInterpolationFilters="sRGB"
-              x="0%"
-              y="0%"
+      style={getContainerStyles()}
+      suppressHydrationWarning>
+      <svg
+        className="w-full h-full pointer-events-none absolute inset-0 opacity-0 -z-10"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter
+            id={filterId}
+            colorInterpolationFilters="sRGB"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%">
+            <feImage
+              ref={feImageRef}
+              x="0"
+              y="0"
               width="100%"
-              height="100%">
-              <feImage
-                ref={feImageRef}
-                x="0"
-                y="0"
-                width="100%"
-                height="100%"
-                preserveAspectRatio="none"
-                result="map" />
-  
-              <feDisplacementMap
-                ref={redChannelRef}
-                in="SourceGraphic"
-                in2="map"
-                id="redchannel"
-                result="dispRed" />
-              <feColorMatrix
-                in="dispRed"
-                type="matrix"
-                values="1 0 0 0 0
-                        0 0 0 0 0
-                        0 0 0 0 0
-                        0 0 0 1 0"
-                result="red" />
-  
-              <feDisplacementMap
-                ref={greenChannelRef}
-                in="SourceGraphic"
-                in2="map"
-                id="greenchannel"
-                result="dispGreen" />
-              <feColorMatrix
-                in="dispGreen"
-                type="matrix"
-                values="0 0 0 0 0
-                        0 1 0 0 0
-                        0 0 0 0 0
-                        0 0 0 1 0"
-                result="green" />
-  
-              <feDisplacementMap
-                ref={blueChannelRef}
-                in="SourceGraphic"
-                in2="map"
-                id="bluechannel"
-                result="dispBlue" />
-              <feColorMatrix
-                in="dispBlue"
-                type="matrix"
-                values="0 0 0 0 0
-                        0 0 0 0 0
-                        0 0 1 0 0
-                        0 0 0 1 0"
-                result="blue" />
-  
-              <feBlend in="red" in2="green" mode="screen" result="rg" />
-              <feBlend in="rg" in2="blue" mode="screen" result="output" />
-              <feGaussianBlur ref={gaussianBlurRef} in="output" stdDeviation="0.7" />
-            </filter>
-          </defs>
-        </svg>
-      )}
+              height="100%"
+              preserveAspectRatio="none"
+              result="map" />
+
+            <feDisplacementMap
+              ref={redChannelRef}
+              in="SourceGraphic"
+              in2="map"
+              id="redchannel"
+              result="dispRed" />
+            <feColorMatrix
+              in="dispRed"
+              type="matrix"
+              values="1 0 0 0 0
+                      0 0 0 0 0
+                      0 0 0 0 0
+                      0 0 0 1 0"
+              result="red" />
+
+            <feDisplacementMap
+              ref={greenChannelRef}
+              in="SourceGraphic"
+              in2="map"
+              id="greenchannel"
+              result="dispGreen" />
+            <feColorMatrix
+              in="dispGreen"
+              type="matrix"
+              values="0 0 0 0 0
+                      0 1 0 0 0
+                      0 0 0 0 0
+                      0 0 0 1 0"
+              result="green" />
+
+            <feDisplacementMap
+              ref={blueChannelRef}
+              in="SourceGraphic"
+              in2="map"
+              id="bluechannel"
+              result="dispBlue" />
+            <feColorMatrix
+              in="dispBlue"
+              type="matrix"
+              values="0 0 0 0 0
+                      0 0 0 0 0
+                      0 0 1 0 0
+                      0 0 0 1 0"
+              result="blue" />
+
+            <feBlend in="red" in2="green" mode="screen" result="rg" />
+            <feBlend in="rg" in2="blue" mode="screen" result="output" />
+            <feGaussianBlur ref={gaussianBlurRef} in="output" stdDeviation="0.7" />
+          </filter>
+        </defs>
+      </svg>
       <div
         className="w-full h-full flex items-center justify-center p-2 rounded-[inherit] relative z-10">
         {children}
