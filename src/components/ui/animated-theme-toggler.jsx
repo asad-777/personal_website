@@ -15,7 +15,9 @@ export const AnimatedThemeToggler = ({
 
   useEffect(() => {
     const updateTheme = () => {
-      setIsDark(document.documentElement.getAttribute("data-theme") === "Portfolio-dark")
+      const saved = localStorage.getItem("theme")
+      const current = saved || document.documentElement.getAttribute("data-theme")
+      setIsDark(current === "Portfolio-dark")
     }
 
     updateTheme()
