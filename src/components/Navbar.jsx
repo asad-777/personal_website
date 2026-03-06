@@ -8,7 +8,7 @@ import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const navItems = ["Projects", "Hackathons", "About", "Open Source"];
+const navItems = ["About","Projects", "Hackathons", "Skill Set"];
 
 export default function Navbar({ children }) {
   const pathname = usePathname();
