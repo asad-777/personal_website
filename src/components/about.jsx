@@ -4,7 +4,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="relative w-full min-h-screen bg-base-100 flex items-center justify-center py-28 px-6 md:px-16 overflow-hidden"
+            className="relative w-full min-h-[50vh] bg-base-100 flex items-center justify-center py-20 px-6 md:px-16 overflow-hidden"
         >
             {/* Ambient glow */}
             <div
@@ -12,50 +12,33 @@ export default function About() {
                 aria-hidden="true"
                 style={{
                     background:
-                        'radial-gradient(ellipse 60% 55% at 85% 50%, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent)',
+                        'radial-gradient(ellipse 70% 60% at 50% 50%, color-mix(in srgb, var(--color-primary) 5%, transparent), transparent)',
                 }}
             />
 
-            <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-16 md:gap-20">
+            <div className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-6">
 
-                {/* ── Left: Text ─────────────────────────────────────────── */}
-                <div className="flex-1 flex flex-col gap-6 text-left">
+                <h2
+                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
+                    style={{ fontFamily: 'var(--font-pro)' }}
+                >
+                    About Me
+                </h2>
 
-                    {/* Big "About Me" heading */}
-                    <h2
-                        className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
-                        style={{ fontFamily: 'var(--font-pro)' }}
-                    >
-                        About Me
-                    </h2>
+                <div className="w-16 h-1 rounded-full bg-primary opacity-50" />
 
-                    {/* Smaller name */}
-                    <p
-                        className="text-xl md:text-2xl font-semibold text-primary"
-                        style={{ fontFamily: 'var(--font-seco)' }}
-                    >
-                        — Asad Amir
-                    </p>
+                {/* Para 1 — who */}
+                <p className="text-base-content/80 text-base md:text-lg leading-relaxed">
+                    A student developer who&apos;s shipped around 5 full-stack projects,
+                    competed in 5 hackathons, and walked away with 3 wins.
+                    Still learning, still building.
+                </p>
 
-                    {/* Paragraph 1 */}
-                    <p className="text-base-content/80 text-lg leading-relaxed max-w-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat.
-                    </p>
-
-                    {/* Paragraph 2 */}
-                    <p className="text-base-content/70 text-lg leading-relaxed max-w-lg">
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
-                </div>
-
-                {/* ── Right: Reserved space ──────────────────────────────── */}
-                <div className="flex-1" />
+                {/* Para 2 — what */}
+                <p className="text-base-content/70 text-base md:text-lg leading-relaxed">
+                    My work lives at the intersection of AI integrations, full-stack web apps,
+                    and the occasional side project that goes further than expected.
+                </p>
 
             </div>
         </section>
