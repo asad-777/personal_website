@@ -90,7 +90,7 @@ export default function Contact() {
                 }}
             />
 
-            <div className="relative z-10 w-full mx-auto flex flex-col md:flex-row gap-16 md:gap-20 items-start">
+            <div className="relative z-10 w-full mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
 
                 {/* ── Left: heading + social links ───────────────────────── */}
                 <div className="flex flex-col gap-8 md:w-80 shrink-0">
@@ -229,7 +229,7 @@ export default function Contact() {
                                     type="submit"
                                     icon={Send}
                                     disabled={status === "sending"}
-                                    className="w-full btn btn-primary text-primary-content text-base shadow-none rounded-xl disabled:opacity-60"
+                                    className="w-full btn-outline btn text-base-content text-base border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
                                 >
                                     {status === "sending" ? "Sending…" : "Send Message"}
                                 </InteractiveHoverButton>

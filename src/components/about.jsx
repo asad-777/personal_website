@@ -6,16 +6,6 @@ export default function About() {
             id="about"
             className="relative w-full min-h-[50vh] bg-base-100 flex items-center justify-center py-20 pt-40 px-6 md:px-16 overflow-hidden"
         >
-            {/* Ambient glow */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                aria-hidden="true"
-                style={{
-                    background:
-                        'radial-gradient(ellipse 70% 60% at 50% 50%, color-mix(in srgb, var(--color-primary) 5%, transparent), transparent)',
-                }}
-            />
-
             <div className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-6">
 
                 <h2
@@ -25,7 +15,7 @@ export default function About() {
                     About Me
                 </h2>
 
-                <div className="w-16 h-1 rounded-full bg-primary opacity-50" />
+                <div className="w-16 h-1 rounded-full bg-base-300 opacity-90" />
 
                 {/* Para 1 — who */}
                 <p className="text-base-content  md:text-lg leading-relaxed">

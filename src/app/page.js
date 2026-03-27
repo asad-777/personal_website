@@ -2,6 +2,7 @@ import Hero from "@/components/hero"
 import Navbar from "@/components/Navbar"
 import About from "@/components/about"
 import Contact from "@/components/contact"
+import Footer from "@/components/footer"
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
             <Hero />
             <About />
             <Contact />
+            <Footer />
         </>
     )
 }
