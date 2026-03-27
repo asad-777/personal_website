@@ -23,7 +23,7 @@ export default function Hero() {
                     mouseDamping={0.05}
                     lineDistance={37.5}
                     parallax={false}
-                    parallaxStrength={0.2}
+                    parallaxStrength={0.0}
                     middleWavePosition={{ x: 3, y: -0.6, rotate: 0.1 }}
                 />
             </div>
