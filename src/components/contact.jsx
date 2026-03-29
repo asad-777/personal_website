@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import GlassSurface from "@/components/GlassSurface";
 import { Send } from "lucide-react";
 
 // Brand-colored SVG icons
@@ -80,6 +79,40 @@ export default function Contact() {
             id="contactme"
             className="relative w-full min-h-[80vh] bg-base-100 flex items-center justify-center py-28 pt-40 px-6 md:px-16 overflow-hidden"
         >
+            <style dangerouslySetInnerHTML={{__html: `
+                .glass-card {
+                    position: relative;
+                    background: rgba(255, 255, 255, 0.05);
+                    backdrop-filter: blur(12px) saturate(120%);
+                    -webkit-backdrop-filter: blur(12px) saturate(120%);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3),
+                        inset 0px 0px 4px 1px rgba(255, 255, 255, 0.05);
+                    overflow: hidden;
+                }
+
+                /* Reflection highlights */
+                .glass-card::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    pointer-events: none;
+                    border-radius: inherit;
+                    background: linear-gradient(to left top, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%);
+                    z-index: 1;
+                }
+
+                .glass-card::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    pointer-events: none;
+                    border-radius: inherit;
+                    background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+                    z-index: 1;
+                }
+            `}} />
+
             {/* Ambient glow */}
             <div
                 className="absolute inset-0 pointer-events-none"
@@ -90,10 +123,10 @@ export default function Contact() {
                 }}
             />
 
-            <div className="relative z-10 w-full mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
+            <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
 
                 {/* ── Left: heading + social links ───────────────────────── */}
-                <div className="flex flex-col gap-8 w-full shrink-0">
+                <div className="flex flex-col gap-8 w-full lg:w-1/2">
                     <div className="flex flex-col gap-3">
                         <h2
                             className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
@@ -113,17 +146,10 @@ export default function Contact() {
                                 href={href}
                                 target={href.startsWith("http") ? "_blank" : undefined}
                                 rel="noopener noreferrer"
-                                className="hover:scale-[1.02] transition-transform"
+                                className="hover:scale-[1.02] transition-transform w-full"
                             >
-                                <GlassSurface
-                                    width="100%"
-                                    height={56}
-                                    borderRadius={14}
-                                    backgroundOpacity={0.05}
-                                    borderWidth={0.5}
-                                    className="w-full"
-                                >
-                                    <div className="flex items-center justify-center gap-4 px-5 w-full">
+                                <div className="glass-card w-full h-14" style={{ borderRadius: '14px' }}>
+                                    <div className="flex items-center justify-center gap-4 px-5 w-full h-full relative z-10">
                                         <Icon className="w-5 h-5 text-primary shrink-0" />
                                         <span
                                             className="text-base-content font-semibold text-base"
@@ -132,18 +158,15 @@ export default function Contact() {
                                             {label}
                                         </span>
                                     </div>
-                                </GlassSurface>
+                                </div>
                             </a>
                         ))}
                     </div>
                 </div>
 
                 {/* ── Right: form ─────────────────────────────────────────── */}
-                <div className="w-full">
-                    <div
-                        className="w-full rounded-3xl border border-base-content/10 p-6 md:p-8"
-                        style={{ background: 'color-mix(in srgb, var(--color-base-300) 15%, transparent)' }}
-                    >
+                <div className="w-full lg:w-1/2">
+                    <div className="glass-card w-full rounded-3xl p-6 md:p-8">
                         <form
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-3 w-full"
