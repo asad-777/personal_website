@@ -139,7 +139,7 @@ export default function Contact() {
                 </div>
 
                 {/* ── Right: form ─────────────────────────────────────────── */}
-                <div className="flex-1">
+                <div className="w-full">
                     <div
                         className="w-full rounded-3xl border border-base-content/10 p-6 md:p-8"
                         style={{ background: 'color-mix(in srgb, var(--color-base-300) 15%, transparent)' }}

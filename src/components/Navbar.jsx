@@ -167,7 +167,7 @@ export default function Navbar({ children }) {
           <ul className="flex-1 flex flex-col justify-center items-center gap-2">
             {/* Home link — only shown when not on home page */}
             {!isHome && (
-              <li className="w-full text-center">
+              <li className="w-full text-center" onClick={() => document.getElementById("mobile-drawer").checked = false}>
                 <label htmlFor="mobile-drawer" className="w-full justify-center cursor-pointer">
                   <Link
                     href="/"
@@ -184,6 +184,7 @@ export default function Navbar({ children }) {
                 <label htmlFor="mobile-drawer" className="w-full justify-center cursor-pointer">
                   <a
                     href={`#${item.toLowerCase().replace(" ", "-")}`}
+                    onClick={() => document.getElementById("mobile-drawer").checked = false}
                     className="text-base-content font-bold text-2xl lg:text-4xl py-4 hover:text-primary transition-all duration-300 block text-center"
                   >
                     {item}
