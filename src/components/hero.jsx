@@ -1,4 +1,5 @@
 "use client"
+import { useEffect, useRef, useState } from "react";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Download } from 'lucide-react';
 import FloatingLines from '@/components/FloatingLines';
@@ -9,23 +10,47 @@ const floatingLinesGradient = ["#34d399", "#6366f1", "#fb923c"];
 const floatingLinesWaves = ["top", "middle", "bottom"];
 
 export default function Hero() {
+    const heroRef = useRef(null);
+    const [active, setActive] = useState(true);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) {
+                    setActive(false);
+                } else {
+                    setActive(true);
+                }
+            },
+            { threshold: 0.01 }
+        );
+
+        if (heroRef.current) {
+            observer.observe(heroRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div className="relative w-full h-screen overflow-hidden font-sans bg-base-100">
+        <div ref={heroRef} className="relative w-full h-screen overflow-hidden font-sans bg-base-100">
             <div className="absolute inset-0 z-0">
-                <FloatingLines 
-                    linesGradient={floatingLinesGradient}
-                    animationSpeed={1}
-                    enabledWaves={floatingLinesWaves}
-                    interactive
-                    bendRadius={25.5}
-                    bendStrength={-0.5}
-                    lineCount={4}
-                    mouseDamping={0.05}
-                    lineDistance={37.5}
-                    parallax={false}
-                    parallaxStrength={0.0}
-                    middleWavePosition={{ x: 3, y: -0.6, rotate: 0.1 }}
-                />
+                {active && (
+                    <FloatingLines 
+                        linesGradient={floatingLinesGradient}
+                        animationSpeed={1}
+                        enabledWaves={floatingLinesWaves}
+                        interactive
+                        bendRadius={25.5}
+                        bendStrength={-0.5}
+                        lineCount={4}
+                        mouseDamping={0.05}
+                        lineDistance={37.5}
+                        parallax={false}
+                        parallaxStrength={0.0}
+                        middleWavePosition={{ x: 3, y: -0.6, rotate: 0.1 }}
+                    />
+                )}
             </div>
 
             {/* this here is the start of top hero background */}
