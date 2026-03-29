@@ -12,7 +12,7 @@ export default function Hero() {
     return (
         <div className="relative w-full h-screen overflow-hidden font-sans bg-base-100">
             <div className="absolute inset-0 z-0">
-                {/* <FloatingLines 
+                <FloatingLines 
                     linesGradient={floatingLinesGradient}
                     animationSpeed={1}
                     enabledWaves={floatingLinesWaves}
@@ -25,12 +25,12 @@ export default function Hero() {
                     parallax={false}
                     parallaxStrength={0.0}
                     middleWavePosition={{ x: 3, y: -0.6, rotate: 0.1 }}
-                /> */}
+                />
             </div>
 
             {/* this here is the start of top hero background */}
             
-            <div
+            {/* <div
             className="absolute inset-0 pointer-events-none opacity-[1]  dark:opacity-[0.1]"
             style={{
                 backgroundColor: "var(--color-primary)",
@@ -39,7 +39,7 @@ export default function Hero() {
                 backgroundRepeat: "repeat",
                 backgroundSize: "304px 304px",
             }}
-            />
+            /> */}
 
             {/* this here is the end of the top hero background */}
 

@@ -93,7 +93,7 @@ export default function Contact() {
             <div className="relative z-10 w-full mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
 
                 {/* ── Left: heading + social links ───────────────────────── */}
-                <div className="flex flex-col gap-8 md:w-80 shrink-0">
+                <div className="flex flex-col gap-8 w-full shrink-0">
                     <div className="flex flex-col gap-3">
                         <h2
                             className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
@@ -123,7 +123,7 @@ export default function Contact() {
                                     borderWidth={0.5}
                                     className="w-full"
                                 >
-                                    <div className="flex items-center gap-4 px-5 w-full">
+                                    <div className="flex items-center justify-center gap-4 px-5 w-full">
                                         <Icon className="w-5 h-5 text-primary shrink-0" />
                                         <span
                                             className="text-base-content font-semibold text-base"
