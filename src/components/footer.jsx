@@ -8,49 +8,58 @@ export default function Footer() {
     };
     
     return (
-        <footer className="relative w-full overflow-hidden pt-20 pb-12">
-            {/* Background with gradient and pattern */}
-            <div className="absolute inset-0 bg-gradient-to-b from-neutral/20 to-neutral/40 dark:from-neutral/30 dark:to-neutral/50"></div>
-            <div className="absolute inset-0 opacity-30 dark:opacity-20" style={{
+        <footer className="relative w-full bg-gradient-to-b from-base-100 via-base-100 to-base-200 dark:from-base-100 dark:via-base-100 dark:to-base-200 pt-20 pb-12 overflow-hidden">
+            {/* Subtle background pattern */}
+            <div className="absolute inset-0 opacity-40 dark:opacity-20" style={{
                 backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)",
-                backgroundSize: "40px 40px",
+                backgroundSize: "50px 50px",
             }}></div>
-            
-            <div className="relative z-10 mx-auto px-6 md:px-16 flex flex-col gap-8">
-                {/* Top Navigation */}
-                <div className="flex items-center justify-between flex-wrap gap-6">
-                    <h3 
-                        className="text-2xl font-bold text-base-content"
-                        style={{ fontFamily: "var(--font-pro)" }}
-                    >
-                        Asad Amir
-                    </h3>
-                    
-                    <div className="flex items-center gap-6">
-                        <a 
-                            href="/"
-                            className="text-base-content/70 hover:text-primary transition-colors duration-300 font-bold text-sm"
-                        >
-                            Home
-                        </a>
-                        <a 
-                            href="/projects"
-                            className="text-base-content/70 hover:text-primary transition-colors duration-300 font-bold text-sm"
-                        >
-                            Projects
-                        </a>
+
+            <div className="relative z-10 mx-auto px-6 md:px-16 flex flex-col gap-12">
+                {/* Main Content */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+                    {/* Left - Branding */}
+                    <div className="flex flex-col gap-6">
+                        <div>
+                            <h3 
+                                className="text-3xl font-bold text-base-content mb-3"
+                                style={{ fontFamily: "var(--font-pro)" }}
+                            >
+                                Asad Amir
+                            </h3>
+                            <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full"></div>
+                        </div>
+                    </div>
+
+                    {/* Right - Navigation */}
+                    <div className="flex flex-col gap-8">
+                        <div className="flex flex-wrap gap-3">
+                            <a 
+                                href="/"
+                                className="px-4 py-2 text-sm rounded-lg bg-base-300/30 hover:bg-primary hover:text-primary-content text-base-content/70 transition-all duration-300"
+                            >
+                                Home
+                            </a>
+                            <a 
+                                href="/projects"
+                                className="px-4 py-2 text-sm rounded-lg bg-base-300/30 hover:bg-primary hover:text-primary-content text-base-content/70 transition-all duration-300"
+                            >
+                                Projects
+                            </a>
+                        </div>
+                        
                         <button
                             onClick={scrollToTop}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg transition-all duration-300 group"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 w-fit group"
                             title="Back to top"
                         >
-                            <span className="text-xs uppercase tracking-wider">Back to top</span>
+                            <span className="text-sm uppercase tracking-wider">Back to top</span>
                             <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                         </button>
                     </div>
                 </div>
 
-                {/* Copyright */}
+                {/* Bottom Divider & Copyright */}
                 <div className="pt-8 border-t border-base-content/10">
                     <p className="text-xs text-base-content/50 text-center">
                         © {new Date().getFullYear()} Asad Amir. All rights reserved.
