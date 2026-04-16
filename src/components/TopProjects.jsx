@@ -6,7 +6,7 @@ import Image from "next/image";
 const topProjects = [
     {
         id: 1,
-        title: "AI Creative Suite",
+        title: "Demo Project",
         description: "A full-stack application that leverages generative AI models to help creators design, edit, and export visual assets rapidly.",
         technologies: ["Next.js", "Tailwind CSS", "OpenAI API", "PostgreSQL"],
         category: "Web App",
@@ -16,7 +16,7 @@ const topProjects = [
     },
     {
         id: 2,
-        title: "DevMetrics Dashboard",
+        title: "Demo Project",
         description: "A comprehensive developer analytics dashboard that tracks workflow efficiency, Git commit history, and CI/CD pipeline statistics.",
         technologies: ["React", "DaisyUI", "Chart.js", "Firebase"],
         category: "Analytics",
@@ -26,7 +26,7 @@ const topProjects = [
     },
     {
         id: 3,
-        title: "Neo Finance Tracker",
+        title: "Demo Project",
         description: "A secure, sleek personal finance manager to monitor expenses, calculate taxes, and visualize monthly budgets using cutting-edge UI components.",
         technologies: ["TypeScript", "Node.js", "MongoDB", "Express"],
         category: "Fintech",
@@ -36,7 +36,7 @@ const topProjects = [
     },
     {
         id: 4,
-        title: "CodeCollab Platform",
+        title: "Demo Project",
         description: "Real-time collaborative code editor supporting multiple languages with integrated terminal, live execution, and chat room features.",
         technologies: ["Socket.IO", "React", "Docker", "Redis"],
         category: "Tools",
@@ -153,9 +153,10 @@ export default function TopProjects() {
                                         className="hover:scale-[1.05] transition-transform"
                                         aria-label="View Source on GitHub"
                                     >
-                                        <div className="glass-card h-12 w-12 flex items-center justify-center cursor-pointer" style={{ borderRadius: '50%' }}>
-                                            <div className="relative z-10 flex items-center justify-center w-full h-full">
+                                        <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
+                                            <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                                 <Github size={20} className="text-base-content shrink-0" />
+                                                <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">GitHub</span>
                                             </div>
                                         </div>
                                     </a>
@@ -168,7 +169,7 @@ export default function TopProjects() {
                                         <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                             <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                                 <ExternalLink size={18} className="text-primary shrink-0" />
-                                                <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">Live Demo</span>
+                                                <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">Live</span>
                                             </div>
                                         </div>
                                     </a>

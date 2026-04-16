@@ -7,8 +7,9 @@ import GlassSurface from "@/components/GlassSurface";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
-const navItems = ["About","Projects", "Hackathons", "Skill Set"];
+const navItems = ["About", "Projects", "Services", "Experties"];
 
 export default function Navbar({ children }) {
   const pathname = usePathname();
@@ -30,19 +31,17 @@ export default function Navbar({ children }) {
           borderWidth={0.5}
         >
           <div className="flex items-center gap-8">
-            {/* Home icon — only shown when not on home page */}
-            {!isHome && (
-              <>
-                <Link
-                  href="/"
-                  className="text-base-content hover:text-primary transition-colors"
-                  aria-label="Home"
-                >
-                  <House className="w-5 h-5" />
-                </Link>
-                <span className="text-base-content text-xl select-none">•</span>
-              </>
-            )}
+            {/* Logo — always shown on extreme left */}
+            <>
+              <Link
+                href="/"
+                className="hover:scale-110 transition-transform flex items-center justify-center shrink-0"
+                aria-label="Home"
+              >
+                <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain" />
+              </Link>
+              <span className="text-base-content text-xl select-none">•</span>
+            </>
             {navItems.map((item, index, array) => (
               <div key={item} className="flex items-center gap-8">
                 <a
@@ -113,10 +112,10 @@ export default function Navbar({ children }) {
             borderRadius={9999}
             backgroundOpacity={0.05}
             borderWidth={0.5}
-            className="cursor-pointer hidden md:flex"
+            className="cursor-pointer hidden xl:flex"
           >
             <InteractiveHoverButton
-              className="bg-transparent border-none text-base-content hover:bg-primary hover:text-primary-content text-lg btn-wide hover:px-12 duration-300 transition-all ease-in-out btn shadow-none"
+              className="bg-primary border-none text-primary-content text-lg btn-wide hover:px-12 duration-300 transition-all ease-in-out btn shadow-none"
               onClick={() =>
                 document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" })
               }
