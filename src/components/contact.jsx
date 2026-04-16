@@ -114,14 +114,7 @@ export default function Contact() {
             `}} />
 
             {/* Ambient glow */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                aria-hidden="true"
-                style={{
-                    background:
-                        "radial-gradient(ellipse 60% 55% at 15% 50%, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent)",
-                }}
-            />
+
 
             <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
 
@@ -152,7 +145,7 @@ export default function Contact() {
                                     <div className="flex items-center justify-center gap-4 px-5 w-full h-full relative z-10">
                                         <Icon className="w-5 h-5 text-primary shrink-0" />
                                         <span
-                                            className="text-base-content font-semibold text-base"
+                                            className="text-base-content font-extrabold text-base"
                                             style={{ fontFamily: "var(--font-seco)" }}
                                         >
                                             {label}
@@ -252,7 +245,7 @@ export default function Contact() {
                                     type="submit"
                                     icon={Send}
                                     disabled={status === "sending"}
-                                    className="w-full btn-outline btn text-base-content text-base border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
+                                    className="w-full btn-outline btn text-base-content text-base font-extrabold border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
                                 >
                                     {status === "sending" ? "Sending…" : "Send Message"}
                                 </InteractiveHoverButton>

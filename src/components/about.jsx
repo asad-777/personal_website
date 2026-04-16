@@ -26,7 +26,7 @@ export default function About() {
 
                 {/* Para 2 — what */}
                 <p className="text-base-content  md:text-lg leading-relaxed">
-                    My work lives at the intersection of AI integrations, full-stack web apps,
+                    I am good at AI integrations, full-stack web apps,
                     and the occasional side project that goes further than expected.
                 </p>
 
