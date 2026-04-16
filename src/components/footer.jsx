@@ -26,7 +26,7 @@ export default function Footer() {
                             >
                                 Asad Amir
                             </h3>
-                            <div className="h-1 w-12 bg-linear-to-r from-primary to-accent rounded-full"></div>
+                            <div className="h-1 w-22 bg-linear-to-r from-primary to-accent rounded-full"></div>
                         </div>
                     </div>
 
@@ -52,7 +52,7 @@ export default function Footer() {
                             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 w-fit group"
                             title="Back to top"
                         >
-                            <span className="text-sm uppercase tracking-wider">Back to top</span>
+                            <span className="text-sm uppercase font-bold tracking-wider">Back to top</span>
                             <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                         </button>
                     </div>
@@ -60,7 +60,7 @@ export default function Footer() {
 
                 {/* Bottom Divider & Copyright */}
                 <div className="pt-8 border-t border-base-content/10">
-                    <p className="text-xs text-base-content/50 text-center">
+                    <p className="text-sm font-bold text-base-content/50 text-center">
                         © {new Date().getFullYear()} Asad Amir. All rights reserved.
                     </p>
                 </div>

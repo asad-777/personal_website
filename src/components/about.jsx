@@ -9,13 +9,13 @@ export default function About() {
             <div className="relative z-10 w-full max-w-2xl mx-auto px-8 flex flex-col items-center text-center gap-6">
 
                 <h2
-                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
+                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-base-content"
                     style={{ fontFamily: 'var(--font-pro)' }}
                 >
                     About Me
                 </h2>
 
-                <div className="w-16 h-1 rounded-full bg-base-300 opacity-90" />
+                <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-4" />
 
                 {/* Para 1 — who */}
                 <p className="text-base-content  md:text-lg   leading-relaxed">

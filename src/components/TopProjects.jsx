@@ -50,7 +50,7 @@ export default function TopProjects() {
     return (
         <section
             id="projects"
-            className="relative w-full min-h-[70vh] bg-base-100 py-20 px-6 md:px-16"
+            className="relative pt-36 w-full min-h-[70vh] bg-base-100 py-20 px-6 md:px-16"
         >
             <style dangerouslySetInnerHTML={{__html: `
                 .glass-card {
@@ -88,12 +88,12 @@ export default function TopProjects() {
                 {/* Header section */}
                 <div className="flex flex-col items-center text-center gap-4">
                     <h2 
-                        className="text-4xl md:text-5xl font-extrabold tracking-tight text-base-content"
+                        className="text-4xl md:text-5xl font-extrabold  tracking-tight text-base-content"
                         style={{ fontFamily: 'var(--font-pro)' }}
                     >
                         Top Projects
                     </h2>
-                    <div className="w-16 h-1 rounded-full bg-primary opacity-90 mb-6" />
+                    <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-6" />
                 </div>
 
                 {/* Projects Grid */}
