@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
 
 export default function GamePage() {
   const iframeRef = useRef(null);
@@ -149,6 +150,8 @@ export default function GamePage() {
         </div>
 
       </div>
+      <div className="py-12"></div>
+      <Footer/>
     </>
   );
 }

@@ -1,11 +1,34 @@
 "use client"
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function FooterBackground() {
+    const containerRef = useRef(null);
     const canvasRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { rootMargin: '200px' } // Load slightly before it scrolls into view
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!isVisible) return;
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -20,6 +43,47 @@ export default function FooterBackground() {
         };
         resizeCanvas();
 
+        let colors = {
+            base100: "0, 0, 0",
+            primary: "150, 100, 255",
+            secondary: "100, 200, 255",
+            baseContent: "100, 150, 200"
+        };
+
+        const updateColors = () => {
+            const extractColor = (cssVar) => {
+                const tempDiv = document.createElement("div");
+                tempDiv.style.display = "none";
+                tempDiv.style.color = `var(${cssVar})`;
+                document.body.appendChild(tempDiv);
+                
+                const computed = getComputedStyle(tempDiv).color;
+                document.body.removeChild(tempDiv);
+                
+                // Force conversion of any advanced format (oklch, p3) to basic rgb
+                const tmpCanvas = document.createElement('canvas');
+                tmpCanvas.width = 1;
+                tmpCanvas.height = 1;
+                const tCtx = tmpCanvas.getContext('2d', { willReadFrequently: true });
+                if (!tCtx) return "0, 0, 0";
+                
+                tCtx.fillStyle = computed;
+                tCtx.fillRect(0, 0, 1, 1);
+                const [r, g, b] = tCtx.getImageData(0, 0, 1, 1).data;
+                
+                return `${r}, ${g}, ${b}`;
+            };
+            
+            colors.base100 = extractColor("--color-base-100");
+            colors.primary = extractColor("--color-primary");
+            colors.secondary = extractColor("--color-secondary");
+            colors.baseContent = extractColor("--color-base-content");
+        };
+
+        updateColors();
+        const observer = new MutationObserver(updateColors);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
         let animationId;
         let particles = [];
         const particleCount = 80;
@@ -33,7 +97,6 @@ export default function FooterBackground() {
                 this.vy = (Math.random() - 0.5) * 1.5;
                 this.radius = Math.random() * 2 + 0.5;
                 this.opacity = Math.random() * 0.5 + 0.3;
-                this.hue = Math.random() * 60 + 200; // Blue to purple range
             }
 
             update() {
@@ -49,7 +112,7 @@ export default function FooterBackground() {
             }
 
             draw() {
-                ctx.fillStyle = `hsla(${this.hue}, 70%, 50%, ${this.opacity})`;
+                ctx.fillStyle = `rgba(${colors.primary}, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fill();
@@ -62,17 +125,12 @@ export default function FooterBackground() {
         }
 
         const animate = () => {
-            // Dark background with gradient
-            const gradient = ctx.createLinearGradient(0, 0, canvas.offsetWidth, canvas.offsetHeight);
-            gradient.addColorStop(0, 'rgba(15, 23, 42, 0.95)');
-            gradient.addColorStop(0.5, 'rgba(20, 30, 50, 0.95)');
-            gradient.addColorStop(1, 'rgba(10, 20, 35, 0.95)');
-
-            ctx.fillStyle = gradient;
+            // Background base color
+            ctx.fillStyle = `rgb(${colors.base100})`;
             ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
 
             // Draw grid lines
-            ctx.strokeStyle = 'rgba(100, 150, 200, 0.1)';
+            ctx.strokeStyle = `rgba(${colors.baseContent}, 0.1)`;
             ctx.lineWidth = 0.5;
             const gridSize = 40;
             
@@ -97,7 +155,7 @@ export default function FooterBackground() {
             });
 
             // Draw connections between nearby particles
-            ctx.strokeStyle = 'rgba(100, 150, 220, 0.15)';
+            ctx.strokeStyle = `rgba(${colors.primary}, 0.15)`;
             ctx.lineWidth = 0.5;
 
             for (let i = 0; i < particles.length; i++) {
@@ -117,24 +175,6 @@ export default function FooterBackground() {
                 }
             }
 
-            // Draw animated radial glow
-            time += 0.002;
-            const centerX = canvas.offsetWidth / 2;
-            const centerY = canvas.offsetHeight / 2;
-
-            for (let i = 0; i < 3; i++) {
-                const radius = 100 + Math.sin(time + i) * 50 + i * 80;
-                const gradient = ctx.createRadialGradient(centerX, centerY, radius - 30, centerX, centerY, radius + 30);
-                gradient.addColorStop(0, `rgba(100, 200, 255, ${0.1 * (1 - i / 3)})`);
-                gradient.addColorStop(0.5, `rgba(150, 100, 255, ${0.05 * (1 - i / 3)})`);
-                gradient.addColorStop(1, 'rgba(100, 200, 255, 0)');
-
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
             animationId = requestAnimationFrame(animate);
         };
 
@@ -145,14 +185,19 @@ export default function FooterBackground() {
         return () => {
             cancelAnimationFrame(animationId);
             window.removeEventListener('resize', resizeCanvas);
+            observer.disconnect();
         };
-    }, []);
+    }, [isVisible]);
 
     return (
-        <canvas
-            ref={canvasRef}
-            className="absolute inset-0 w-full h-full"
-            style={{ display: 'block' }}
-        />
+        <div ref={containerRef} className="absolute inset-0 w-full h-full pointer-events-none">
+            {isVisible && (
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 w-full h-full"
+                    style={{ display: 'block' }}
+                />
+            )}
+        </div>
     );
 }

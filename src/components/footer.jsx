@@ -2,6 +2,7 @@
 
 import { ArrowUp } from "lucide-react";
 import FooterBackground from "./footer-background";
+import Link from "next/link"
 
 export default function Footer() {
     const scrollToTop = () => {
@@ -15,7 +16,7 @@ export default function Footer() {
 
             <div className="relative z-10 mx-auto px-6 md:px-16 flex flex-col gap-12">
                 {/* Main Content */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+                <div className="flex lg:flex-cols gap-6 justify-between items-center px:6 lg:px-12">
                     {/* Left - Branding */}
                     <div className="flex flex-col gap-6">
                         <div>
@@ -25,22 +26,22 @@ export default function Footer() {
                             >
                                 Asad Amir
                             </h3>
-                            <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full"></div>
+                            <div className="h-1 w-12 bg-linear-to-r from-primary to-accent rounded-full"></div>
                         </div>
                     </div>
 
                     {/* Right - Navigation */}
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-wrap gap-3">
-                            <a 
+                            <Link
                                 href="/"
-                                className="px-4 py-2 text-sm rounded-lg bg-base-300/30 hover:bg-primary hover:text-primary-content text-base-content/70 transition-all duration-300"
+                                className="px-4 py-2 text-sm rounded-lg border-primary border-2 hover:bg-primary hover:text-primary-content text-base-content transition-all duration-300"
                             >
                                 Home
-                            </a>
+                            </Link>
                             <a 
                                 href="/projects"
-                                className="px-4 py-2 text-sm rounded-lg bg-base-300/30 hover:bg-primary hover:text-primary-content text-base-content/70 transition-all duration-300"
+                                className="px-4 py-2 text-sm rounded-lg border-primary border-2 hover:bg-primary hover:text-primary-content text-base-content transition-all duration-300"
                             >
                                 Projects
                             </a>
