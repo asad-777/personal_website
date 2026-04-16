@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowUp } from "lucide-react";
+import FooterBackground from "./footer-background";
 
 export default function Footer() {
     const scrollToTop = () => {
@@ -8,12 +9,9 @@ export default function Footer() {
     };
     
     return (
-        <footer className="relative w-full bg-gradient-to-b from-base-100 via-base-100 to-base-200 dark:from-base-100 dark:via-base-100 dark:to-base-200 pt-20 pb-12 overflow-hidden">
-            {/* Subtle background pattern */}
-            <div className="absolute inset-0 opacity-40 dark:opacity-20" style={{
-                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)",
-                backgroundSize: "50px 50px",
-            }}></div>
+        <footer className="relative w-full pt-20 pb-12 overflow-hidden">
+            {/* 3D Canvas Background */}
+            <FooterBackground />
 
             <div className="relative z-10 mx-auto px-6 md:px-16 flex flex-col gap-12">
                 {/* Main Content */}
