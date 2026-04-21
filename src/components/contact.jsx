@@ -110,14 +110,16 @@ export default function Contact() {
                                 className="hover:scale-[1.02] transition-transform w-full"
                             >
                                 <div className="glass-card w-full h-14" style={{ borderRadius: '14px' }}>
-                                    <div className="flex items-center justify-center gap-4 px-5 w-full h-full relative z-10">
-                                        <Icon className="w-5 h-5 text-primary shrink-0" />
-                                        <span
-                                            className="text-base-content font-extrabold text-base"
-                                            style={{ fontFamily: "var(--font-seco)" }}
-                                        >
-                                            {label}
-                                        </span>
+                                    <div className="flex items-center justify-center w-full h-full relative z-10">
+                                        <div className="flex items-center gap-4 w-32">
+                                            <Icon className="w-5 h-5 text-primary shrink-0" />
+                                            <span
+                                                className="text-base-content font-extrabold text-base text-left"
+                                                style={{ fontFamily: "var(--font-seco)" }}
+                                            >
+                                                {label}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -149,7 +151,7 @@ export default function Contact() {
                                     name="name"
                                     placeholder="John Doe"
                                     required
-                                    className="input w-full bg-base-200 border border-base-content/50 focus:border-primary focus:outline-none"
+                                    className="input w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none"
                                 />
                             </div>
 
@@ -163,7 +165,7 @@ export default function Contact() {
                                     name="email"
                                     placeholder="you@email.com"
                                     required
-                                    className="input w-full bg-base-200 border border-base-content/50 focus:border-primary focus:outline-none"
+                                    className="input w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none"
                                 />
                             </div>
 
@@ -177,7 +179,7 @@ export default function Contact() {
                                     name="subject"
                                     placeholder="Project idea, collaboration, etc."
                                     required
-                                    className="input w-full bg-base-200 border border-base-content/50 focus:border-primary focus:outline-none"
+                                    className="input w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none"
                                 />
                             </div>
 
@@ -191,7 +193,7 @@ export default function Contact() {
                                     placeholder="Tell me more about what you have in mind..."
                                     rows={3}
                                     required
-                                    className="textarea w-full bg-base-200 border border-base-content/50 focus:border-primary focus:outline-none resize-none"
+                                    className="textarea w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none resize-none"
                                 />
                             </div>
 
@@ -213,7 +215,7 @@ export default function Contact() {
                                     type="submit"
                                     icon={Send}
                                     disabled={status === "sending"}
-                                    className="w-full btn-outline btn text-base-content text-base font-extrabold border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
+                                    className="w-full  btn-solid btn text-base-content text-base font-extrabold border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
                                 >
                                     {status === "sending" ? "Sending…" : "Send Message"}
                                 </InteractiveHoverButton>

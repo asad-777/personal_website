@@ -1,5 +1,10 @@
-import { ExternalLink, Github } from "lucide-react";
+"use client"
+
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import GlassSurface from "@/components/GlassSurface";
 
 // OOP based project data structure
 // You can easily add, remove, or update projects here.
@@ -24,33 +29,14 @@ const topProjects = [
         github: "https://github.com/",
         liveDemo: "https://example.com/"
     },
-    {
-        id: 3,
-        title: "Demo Project",
-        description: "A secure, sleek personal finance manager to monitor expenses, calculate taxes, and visualize monthly budgets using cutting-edge UI components.",
-        technologies: ["TypeScript", "Node.js", "MongoDB", "Express"],
-        category: "Fintech",
-        thumbnail: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80",
-        github: "https://github.com/",
-        liveDemo: "https://example.com/"
-    },
-    {
-        id: 4,
-        title: "Demo Project",
-        description: "Real-time collaborative code editor supporting multiple languages with integrated terminal, live execution, and chat room features.",
-        technologies: ["Socket.IO", "React", "Docker", "Redis"],
-        category: "Tools",
-        thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
-        github: "https://github.com/",
-        liveDemo: "https://example.com/"
-    }
+
 ];
 
 export default function TopProjects() {
     return (
         <section
             id="projects"
-            className="relative pt-36 w-full min-h-[70vh] bg-base-100 py-20 px-6 md:px-16"
+            className="relative pt-12 w-full min-h-[70vh] bg-base-100 py-20 px-6 md:px-16"
         >
             <style dangerouslySetInnerHTML={{__html: `
                 .glass-card {
@@ -175,6 +161,26 @@ export default function TopProjects() {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* View All Projects Link */}
+                <div className="flex justify-center w-full mt-8">
+                    <Link href="/projects" className="group">
+                        <GlassSurface
+                            width="fit-content"
+                            height="fit-content"
+                            borderRadius={9999}
+                            backgroundOpacity={0.05}
+                            borderWidth={0.5}
+                            className="cursor-pointer"
+                        >
+                            <InteractiveHoverButton
+                                className="bg-primary border-none text-primary-content text-lg px-10 py-6 duration-300 transition-all ease-in-out btn shadow-none"
+                            >
+                                <span style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
+                            </InteractiveHoverButton>
+                        </GlassSurface>
+                    </Link>
                 </div>
             </div>
         </section>

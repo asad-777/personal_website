@@ -25,45 +25,75 @@ export default function Navbar({ children }) {
 
       {/* Page content slot */}
       <div className="drawer-content">
-        {/* Desktop nav pill */}
-        <GlassSurface
-          className="hidden xl:flex fixed! top-12 left-8 z-50 px-6"
-          width="fit-content"
-          height={56}
-          borderRadius={9999}
-          backgroundOpacity={0.05}
-          borderWidth={0.5}
-        >
-          <div className="flex items-center gap-8">
-            {/* Logo — always shown on extreme left */}
-            <>
-              <Link
-                href="/"
-                className="hover:scale-110 transition-transform flex items-center justify-center shrink-0"
-                aria-label="Home"
-              >
-                <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain" />
-              </Link>
-              <span className="text-base-content text-xl select-none">•</span>
-            </>
-            {navItems.map((item, index, array) => (
-              <div key={item.label} className="flex items-center gap-8">
+        {/* === LEFT SIDE NAVIGATION & MOBILE BUTTONS === */}
+        <div className="fixed top-12 left-6 md:left-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-left">
+          
+          {/* Desktop Nav Pill */}
+          <GlassSurface
+            className="hidden xl:flex px-6"
+            width="fit-content"
+            height={56}
+            borderRadius={9999}
+            backgroundOpacity={0.05}
+            borderWidth={0.5}
+          >
+            <div className="flex items-center gap-8 h-full relative">
+              {/* Logo — always shown on extreme left */}
+              <>
                 <Link
-                  href={item.href}
-                  className="text-base-content font-bold nav-link text-lg whitespace-nowrap"
+                  href="/"
+                  className="hover:scale-110 transition-transform flex items-center justify-center shrink-0"
+                  aria-label="Home"
                 >
-                  {item.label}
+                  <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain" />
                 </Link>
-                {index < array.length - 1 && (
-                  <span className="text-base-content text-xl select-none">•</span>
-                )}
-              </div>
-            ))}
-          </div>
-        </GlassSurface>
+                <span className="text-base-content text-xl select-none">•</span>
+              </>
+              {navItems.map((item, index, array) => (
+                <div key={item.label} className="flex items-center gap-8">
+                  <Link
+                    href={item.href}
+                    className="text-base-content font-bold nav-link text-lg whitespace-nowrap"
+                  >
+                    {item.label}
+                  </Link>
+                  {index < array.length - 1 && (
+                    <span className="text-base-content text-xl select-none">•</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </GlassSurface>
 
-        {/* Top-right buttons */}
-        <div className="fixed top-12 right-8 z-50 h-14 flex items-center gap-4 scale-90 md:scale-100 origin-top-right">
+          {/* Mobile hamburger — opens the drawer (Extreme Left on Mobile) */}
+          <label
+            htmlFor="mobile-drawer"
+            className="xl:hidden cursor-pointer hover:scale-110 transition-transform"
+          >
+            <GlassSurface
+              width={56}
+              height={56}
+              borderRadius={9999}
+              backgroundOpacity={0.05}
+              borderWidth={0.5}
+            >
+              <Menu className="w-7 h-7 text-base-content" />
+            </GlassSurface>
+          </label>
+
+          {/* Theme (Mobile Only here) */}
+          <div className="xl:hidden hover:scale-110 transition-transform cursor-pointer">
+            <GlassSurface
+              width={56}
+              height={56}
+              borderRadius={9999}
+              backgroundOpacity={0.05}
+              borderWidth={0.5}
+            >
+              <AnimatedThemeToggler className="w-full h-full flex items-center justify-center" />
+            </GlassSurface>
+          </div>
+
           <a
             href="https://github.com/yourusername"
             target="_blank"
@@ -97,8 +127,13 @@ export default function Navbar({ children }) {
               <FaLinkedin className="w-6 h-6 text-base-content" />
             </GlassSurface>
           </a>
+        </div>
 
-          <div className="hover:scale-110 transition-transform cursor-pointer">
+        {/* === RIGHT SIDE BUTTONS (DESKTOP) === */}
+        <div className="fixed top-12 right-6 md:right-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-right">
+          
+          {/* Theme (Desktop Only here) */}
+          <div className="hidden xl:block hover:scale-110 transition-transform cursor-pointer">
             <GlassSurface
               width={56}
               height={56}
@@ -131,22 +166,6 @@ export default function Navbar({ children }) {
               Let&apos;s Connect
             </InteractiveHoverButton>
           </GlassSurface>
-
-          {/* Mobile hamburger — opens the drawer */}
-          <label
-            htmlFor="mobile-drawer"
-            className="xl:hidden cursor-pointer hover:scale-110 transition-transform"
-          >
-            <GlassSurface
-              width={56}
-              height={56}
-              borderRadius={9999}
-              backgroundOpacity={0.05}
-              borderWidth={0.5}
-            >
-              <Menu className="w-7 h-7 text-base-content" />
-            </GlassSurface>
-          </label>
         </div>
 
         {/* Page children */}
