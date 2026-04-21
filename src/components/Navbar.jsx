@@ -9,7 +9,12 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-const navItems = ["About", "Projects", "Services", "Experties"];
+const navItems = [
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Services", href: "/#services" },
+  { label: "Expertise", href: "/#experties" }
+];
 
 export default function Navbar({ children }) {
   const pathname = usePathname();
@@ -43,13 +48,13 @@ export default function Navbar({ children }) {
               <span className="text-base-content text-xl select-none">•</span>
             </>
             {navItems.map((item, index, array) => (
-              <div key={item} className="flex items-center gap-8">
-                <a
-                  href={`#${item.toLowerCase().replace(" ", "-")}`}
+              <div key={item.label} className="flex items-center gap-8">
+                <Link
+                  href={item.href}
                   className="text-base-content font-bold nav-link text-lg whitespace-nowrap"
                 >
-                  {item}
-                </a>
+                  {item.label}
+                </Link>
                 {index < array.length - 1 && (
                   <span className="text-base-content text-xl select-none">•</span>
                 )}
@@ -116,9 +121,13 @@ export default function Navbar({ children }) {
           >
             <InteractiveHoverButton
               className="bg-primary border-none text-primary-content text-lg btn-wide hover:px-12 duration-300 transition-all ease-in-out btn shadow-none"
-              onClick={() =>
-                document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => {
+                  if (pathname === '/') {
+                      document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" })
+                  } else {
+                      window.location.href = "/#contactme";
+                  }
+              }}
             >
               Let&apos;s Connect
             </InteractiveHoverButton>
@@ -179,15 +188,15 @@ export default function Navbar({ children }) {
               </li>
             )}
             {navItems.map((item) => (
-              <li key={item} className="w-full text-center">
+              <li key={item.label} className="w-full text-center">
                 <label htmlFor="mobile-drawer" className="w-full justify-center cursor-pointer">
-                  <a
-                    href={`#${item.toLowerCase().replace(" ", "-")}`}
+                  <Link
+                    href={item.href}
                     onClick={() => document.getElementById("mobile-drawer").checked = false}
                     className="text-base-content font-bold text-2xl lg:text-4xl py-4 hover:text-primary transition-all duration-300 block text-center"
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </label>
               </li>
             ))}
@@ -196,15 +205,15 @@ export default function Navbar({ children }) {
           {/* Bottom section */}
           <div className="mt-auto pt-8 border-t border-base-content/10 flex flex-col gap-4">
             <label htmlFor="mobile-drawer" className="w-full">
-              <a
-                href="#contactme"
+              <Link
+                href="/#contactme"
                 className="btn btn-primary py-6 btn-block text-lg font-bold"
                 onClick={() => {
                   document.getElementById("mobile-drawer").checked = false;
                 }}
               >
                 Let&apos;s Connect
-              </a>
+              </Link>
             </label>
           </div>
         </div>
