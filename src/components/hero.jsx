@@ -53,21 +53,6 @@ export default function Hero() {
                 )}
             </div>
 
-            {/* this here is the start of top hero background */}
-            
-            {/* <div
-            className="absolute inset-0 pointer-events-none opacity-[1]  dark:opacity-[0.1]"
-            style={{
-                backgroundColor: "var(--color-primary)",
-                filter: 'grayscale(1) blur(2px)',
-                backgroundImage: "url('/circuit-board.svg')",
-                backgroundRepeat: "repeat",
-                backgroundSize: "304px 304px",
-            }}
-            /> */}
-
-            {/* this here is the end of the top hero background */}
-
             {/* Hero center content */}
             <div className="relative z-10 flex flex-col justify-center items-center h-full pointer-events-none px-4 md:px-24 pb-12">
                 <div className="w-full max-w-5xl flex flex-col gap-6 items-center text-center">
