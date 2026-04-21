@@ -58,9 +58,8 @@ export default function TopProjects() {
                     background: rgba(255, 255, 255, 0.05);
                     backdrop-filter: blur(12px) saturate(120%);
                     -webkit-backdrop-filter: blur(12px) saturate(120%);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3),
-                        inset 0px 0px 4px 1px rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(100, 100, 100, 0.1);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                     overflow: hidden;
                 }
 
@@ -112,7 +111,6 @@ export default function TopProjects() {
                                     unoptimized
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-linear-to-t from-base-300/80 to-transparent pointer-events-none" />
                                 <div className="absolute top-4 right-4 z-10">
                                     <span className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none font-bold">
                                         {project.category}

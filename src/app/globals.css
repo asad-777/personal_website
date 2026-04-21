@@ -137,7 +137,7 @@ body {
   backdrop-filter: blur(12px) saturate(100%);
   -webkit-backdrop-filter: blur(12px) saturate(100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   /* Removed overflow:hidden to allow transform scale to not be clipped if needed, 
      but user mentioned overlapping. We'll keep overflow visible for hover effects if they pop out,

@@ -43,8 +43,8 @@ export default function RootLayout({
       </head>
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
         <main>
-            {children}
-          <Analytics/>
+          {children}
+          <Analytics />
         </main>
       </body>
     </html>

@@ -12,7 +12,7 @@ export default function ProjectsPage() {
         <div className="min-h-screen flex flex-col bg-base-100 selection:bg-primary/30">
             <Navbar />
             
-            <main className="flex-grow pt-32 pb-20 px-6 md:px-16 w-full relative">
+            <main className="grow pt-32 pb-20 px-6 md:px-16 w-full relative">
                 <style dangerouslySetInnerHTML={{__html: `
                     .glass-card {
                         position: relative;
