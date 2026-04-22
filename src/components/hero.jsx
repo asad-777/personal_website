@@ -33,7 +33,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <div ref={heroRef} className="relative w-full h-screen overflow-hidden font-sans bg-base-100">
+        <div ref={heroRef} id="hero" className="relative w-full h-screen overflow-hidden font-sans bg-base-100">
             <div className="absolute inset-0 z-0">
                 {active && (
                     <FloatingLines 
@@ -69,7 +69,7 @@ export default function Hero() {
                             </GradientText>
                         </div>
                         <p className="text-base-content/90 text-xl md:text-2xl font-medium text-center whitespace-nowrap overflow-hidden text-ellipsis px-2">
-                            A self taught dev from <br className="md:hidden" /> <span className="inline-flex items-center text-base-content" style={{ fontFamily: 'var(--font-pro)' }}>Lahore, Pakistan</span>
+                            A student web-app developer.
                         </p>
                     </div>
                     

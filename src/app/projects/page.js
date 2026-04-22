@@ -48,7 +48,7 @@ export default function ProjectsPage() {
 
                 <div className="max-w-7xl mx-auto flex flex-col gap-12">
                     {/* Header section */}
-                    <div className="flex flex-col items-center text-center gap-4">
+                    <div className="flex flex-col mt-16 items-center text-center gap-4">
                         <h1 
                             className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-base-content"
                             style={{ fontFamily: 'var(--font-pro)' }}
