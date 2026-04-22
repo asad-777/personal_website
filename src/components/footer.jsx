@@ -32,7 +32,7 @@ export default function Footer() {
 
                     {/* Right - Navigation */}
                     <div className="flex flex-col gap-8">
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap  gap-3">
                             <Link
                                 href="/"
                                 className="px-4 py-2 text-sm rounded-lg border-primary border-2 hover:bg-primary hover:text-primary-content text-base-content transition-all duration-300"
@@ -49,7 +49,7 @@ export default function Footer() {
                         
                         <button
                             onClick={scrollToTop}
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 w-fit group"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 w-full group"
                             title="Back to top"
                         >
                             <span className="text-sm uppercase font-bold tracking-wider">Back to top</span>

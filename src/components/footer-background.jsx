@@ -129,24 +129,7 @@ export default function FooterBackground() {
             ctx.fillStyle = `rgb(${colors.base100})`;
             ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
 
-            // Draw grid lines
-            ctx.strokeStyle = `rgba(${colors.baseContent}, 0.1)`;
-            ctx.lineWidth = 0.5;
-            const gridSize = 40;
-            
-            for (let i = 0; i < canvas.offsetWidth; i += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(i, 0);
-                ctx.lineTo(i, canvas.offsetHeight);
-                ctx.stroke();
-            }
 
-            for (let i = 0; i < canvas.offsetHeight; i += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(0, i);
-                ctx.lineTo(canvas.offsetWidth, i);
-                ctx.stroke();
-            }
 
             // Update and draw particles
             particles.forEach((particle) => {
@@ -155,8 +138,8 @@ export default function FooterBackground() {
             });
 
             // Draw connections between nearby particles
-            ctx.strokeStyle = `rgba(${colors.primary}, 0.15)`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(${colors.primary}, 0.4)`;
+            ctx.lineWidth = 1.0;
 
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
