@@ -27,7 +27,7 @@ export default function Navbar({ children }) {
   return (
     <>
       {/* === LEFT SIDE NAVIGATION (DESKTOP) === */}
-      <div className="fixed top-12 left-6 md:left-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-left">
+      <div className="fixed top-12 left-6 md:left-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-left hide-dominoes">
         {/* Desktop Nav Pill — nav links only */}
         <GlassSurface
           className="hidden xl:flex px-6"
@@ -114,7 +114,7 @@ export default function Navbar({ children }) {
       </div>
 
       {/* === CENTER NAVIGATION (MOBILE) === */}
-      <div className="fixed top-12 w-[90vw] max-w-sm sm:max-w-md left-1/2 -translate-x-1/2 z-50 flex items-center justify-center xl:hidden scale-90 md:scale-100">
+      <div className="fixed top-12 w-[90vw] max-w-sm sm:max-w-md left-1/2 -translate-x-1/2 z-50 flex items-center justify-center xl:hidden scale-90 md:scale-100 hide-dominoes">
         <GlassSurface
           className="w-full"
           width="100%"
@@ -157,7 +157,7 @@ export default function Navbar({ children }) {
       </div>
 
       {/* === RIGHT SIDE BUTTONS (DESKTOP) === */}
-      <div className="fixed top-12 right-6 md:right-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-right">
+      <div className="fixed top-12 right-6 md:right-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-right hide-dominoes">
         <div className="hidden xl:block hover:scale-110 transition-transform cursor-pointer">
           <GlassSurface
             width={56}
@@ -207,7 +207,7 @@ export default function Navbar({ children }) {
 
       {/* Bottom sheet panel — translucent glass */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-[100] h-[65vh] bg-base-100/60 backdrop-blur-2xl rounded-t-[3rem] flex flex-col border-t border-base-content/15 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-in-out xl:hidden ${
+        className={`fixed bottom-0 left-0 right-0 z-[100] h-[65vh] bg-base-100/60 backdrop-blur-2xl rounded-t-[3rem] flex flex-col border-t border-base-content/15 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-in-out xl:hidden hide-dominoes ${
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >

@@ -86,7 +86,7 @@ export default function FooterBackground() {
 
         let animationId;
         let particles = [];
-        const particleCount = 80;
+        const particleCount = Math.floor(window.innerWidth / 25);
         let time = 0;
 
         class Particle {
