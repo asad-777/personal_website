@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import GlassSurface from "@/components/GlassSurface";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 // OOP based project data structure
 // You can easily add, remove, or update projects here.
@@ -72,22 +73,26 @@ export default function TopProjects() {
             <div className="max-w-6xl mx-auto flex flex-col gap-12">
                 {/* Header section */}
                 <div className="flex flex-col items-center text-center gap-4">
-                    <h2 
-                        className="text-4xl md:text-5xl font-extrabold  tracking-tight text-base-content"
-                        style={{ fontFamily: 'var(--font-pro)' }}
-                    >
-                        Top Projects
-                    </h2>
-                    <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-6" />
+                    <ScrollReveal delay={0.1}>
+                        <h2 
+                            className="text-4xl md:text-5xl font-extrabold  tracking-tight text-base-content"
+                            style={{ fontFamily: 'var(--font-pro)' }}
+                        >
+                            Top Projects
+                        </h2>
+                    </ScrollReveal>
+                    <ScrollReveal delay={0.2}>
+                        <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-6" />
+                    </ScrollReveal>
                 </div>
 
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    {topProjects.map((project) => (
-                        <div 
-                            key={project.id} 
-                            className="card w-full base-200 shadow-lg border border-base-content/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden bg-base-200/50 backdrop-blur-sm"
-                        >
+                    {topProjects.map((project, idx) => (
+                        <ScrollReveal key={project.id} delay={0.2 + idx * 0.1} className="h-full">
+                            <div 
+                                className="card w-full h-full base-200 shadow-lg border border-base-content/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden bg-base-200/50 backdrop-blur-sm"
+                            >
                             {/* Thumbnail Area */}
                             <figure className="relative h-56 w-full overflow-hidden bg-base-300">
                                 <Image
@@ -158,14 +163,15 @@ export default function TopProjects() {
                                         </div>
                                     </a>
                                 </div>
-                            </div>
-                        </div>
+                            </div></div>
+                        </ScrollReveal>
                     ))}
                 </div>
 
                 {/* View All Projects Link */}
-                <div className="flex justify-center w-full mt-8">
-                    <Link href="/projects" className="group">
+                <ScrollReveal delay={0.4}>
+                    <div className="flex justify-center w-full mt-8">
+                        <Link href="/projects" className="group">
                         <GlassSurface
                             width="fit-content"
                             height="fit-content"
@@ -181,7 +187,8 @@ export default function TopProjects() {
                             </InteractiveHoverButton>
                         </GlassSurface>
                     </Link>
-                </div>
+                    </div>
+                </ScrollReveal>
             </div>
         </section>
     );

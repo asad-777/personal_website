@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import { cn } from "../lib/utils";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 
 export const metadata = {
@@ -45,6 +46,7 @@ export default function RootLayout({
         <main>
           {children}
           <Analytics />
+          <SmoothCursor />
         </main>
       </body>
     </html>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /* ── helpers ──────────────────────────────────────── */
 function extractRgb(cssVar) {
@@ -38,9 +38,32 @@ const DOTS = {
 
 /* ── component ────────────────────────────────────── */
 export default function HeroBackground() {
+  const containerRef = useRef(null)
   const canvasRef = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting)
+      },
+      { rootMargin: '200px' }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     // ── shared mutable state ──────────
     const state = {
       mouse: { x: -9999, y: -9999 },
@@ -301,14 +324,16 @@ export default function HeroBackground() {
       clearInterval(exclusionInterval)
       themeObserver.disconnect()
     }
-  }, [])
+  }, [isVisible])
 
   return (
-    <div className="absolute inset-0">
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full pointer-events-none"
-      />
+    <div ref={containerRef} className="absolute inset-0">
+      {isVisible && (
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full pointer-events-none"
+        />
+      )}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Send } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 // Brand-colored SVG icons
 const GitHubIcon = () => (
@@ -89,21 +90,25 @@ export default function Contact() {
                 {/* ── Left: heading + social links ───────────────────────── */}
                 <div className="flex flex-col gap-8 w-full lg:w-1/2">
                     <div className="flex flex-col gap-3">
-                        <h2
-                            className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
-                            style={{ fontFamily: "var(--font-pro)" }}
-                        >
-                            Let&apos;s Connect
-                        </h2>
-                        <p className="text-base-content text-base leading-relaxed">
-                            Have a project in mind or just want to say hello? Drop a message or reach me on any of these.
-                        </p>
+                        <ScrollReveal delay={0.1}>
+                            <h2
+                                className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
+                                style={{ fontFamily: "var(--font-pro)" }}
+                            >
+                                Let&apos;s Connect
+                            </h2>
+                        </ScrollReveal>
+                        <ScrollReveal delay={0.2}>
+                            <p className="text-base-content text-base leading-relaxed">
+                                Have a project in mind or just want to say hello? Drop a message or reach me on any of these.
+                            </p>
+                        </ScrollReveal>
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        {socials.map(({ icon: Icon, label, href }) => (
-                            <a
-                                key={label}
+                        {socials.map(({ icon: Icon, label, href }, idx) => (
+                            <ScrollReveal key={label} delay={0.2 + idx * 0.1}>
+                                <a
                                 href={href}
                                 target={href.startsWith("http") ? "_blank" : undefined}
                                 rel="noopener noreferrer"
@@ -123,14 +128,16 @@ export default function Contact() {
                                     </div>
                                 </div>
                             </a>
+                            </ScrollReveal>
                         ))}
                     </div>
                 </div>
 
                 {/* ── Right: form ─────────────────────────────────────────── */}
                 <div className="w-full lg:w-1/2">
-                    <div className="glass-card w-full rounded-3xl p-6 md:p-8">
-                        <form
+                    <ScrollReveal delay={0.4}>
+                        <div className="glass-card w-full rounded-3xl p-6 md:p-8">
+                            <form
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-3 w-full"
                         >
@@ -221,7 +228,8 @@ export default function Contact() {
                                 </InteractiveHoverButton>
                             </div>
                         </form>
-                    </div>
+                        </div>
+                    </ScrollReveal>
                 </div>
             </div>
         </section>

@@ -44,7 +44,12 @@ const GlassSurface = ({
   className = '',
   style = {}
 }) => {
-  const uniqueId = useId().replace(/:/g, '-');
+  const [uniqueId, setUniqueId] = useState('ssr');
+  
+  useEffect(() => {
+    setUniqueId(Math.random().toString(36).slice(2, 11));
+  }, []);
+
   const filterId = `glass-filter-${uniqueId}`;
   const redGradId = `red-grad-${uniqueId}`;
   const blueGradId = `blue-grad-${uniqueId}`;
