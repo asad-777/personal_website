@@ -3,6 +3,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import { cn } from "../lib/utils";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
 
 
 export const metadata = {
@@ -32,7 +33,7 @@ export default function RootLayout({
   children,
 }) {
   return (
-    <html lang="en" className="scroll-smooth" data-theme="Portfolio-dark" suppressHydrationWarning>
+    <html lang="en" data-theme="Portfolio-dark" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="P2-zTB2CZK9jhHpma5PWMzgzXNuN5YSbdQ6cyfQB8MU" />
         {/* Inline script: apply saved theme before first paint to avoid flash */}
@@ -43,11 +44,13 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
-        <main>
-          {children}
-          <Analytics />
-          <SmoothCursor />
-        </main>
+        <SmoothScrolling>
+          <main>
+            {children}
+            <Analytics />
+            <SmoothCursor />
+          </main>
+        </SmoothScrolling>
       </body>
     </html>
   );

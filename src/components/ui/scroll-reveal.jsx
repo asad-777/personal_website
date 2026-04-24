@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 export function ScrollReveal({
   children,
   className,
-  yOffset = 40,
-  blur = "12px",
-  duration = 0.8,
+  yOffset = 30,
+  blur = "8px",
+  duration = 0.45,
   delay = 0,
   once = true,
-  amount = 0.15, // Percentage of element that must be in view to trigger
+  amount = 0.05, // Trigger almost immediately when entering view
 }) {
   return (
     <motion.div
