@@ -25,14 +25,14 @@ export default function Services() {
     return (
         <section
             id="services"
-            className="relative pt-48 w-full py-10 px-6 md:px-16 bg-base-100 flex items-center justify-center overflow-hidden"
+            className="relative pt-48 w-full py-10 px-6 md:px-16 bg-transparent flex items-center justify-center overflow-hidden"
         >
             <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col gap-10">
                 
                 <div className="flex flex-col items-center text-center gap-4">
                     <ScrollReveal delay={0.1}>
                         <h2
-                            className="text-4xl md:text-5xl font-extrabold leading-none tracking-tight text-base-content"
+                            className="text-4xl hide-dominoes md:text-5xl font-extrabold leading-none tracking-tight text-base-content"
                             style={{ fontFamily: 'var(--font-pro)' }}
                         >
                             Services & Technologies

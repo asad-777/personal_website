@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function ProjectsPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-base-100 selection:bg-primary/30">
+        <div className="min-h-screen flex flex-col  selection:bg-primary/30">
             <Navbar />
             
             <main className="grow pt-32 pb-20 px-6 md:px-16 w-full relative">
@@ -48,7 +48,7 @@ export default function ProjectsPage() {
 
                 <div className="max-w-7xl mx-auto flex flex-col gap-12">
                     {/* Header section */}
-                    <div className="flex flex-col mt-16 items-center text-center gap-4">
+                    <div className="flex flex-col mt-16 items-center w-fit mx-auto text-center gap-4 hide-dominoes">
                         <h1 
                             className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-base-content"
                             style={{ fontFamily: 'var(--font-pro)' }}

@@ -3,8 +3,7 @@
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import GlassSurface from "@/components/GlassSurface";
+
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 // OOP based project data structure
@@ -37,7 +36,7 @@ export default function TopProjects() {
     return (
         <section
             id="projects"
-            className="relative pt-12 w-full min-h-[70vh] bg-base-100 py-20 px-6 md:px-16"
+            className="relative pt-12 w-full min-h-[70vh] bg-transparent py-20 px-6 md:px-16"
         >
             <style dangerouslySetInnerHTML={{__html: `
                 .glass-card {
@@ -75,7 +74,7 @@ export default function TopProjects() {
                 <div className="flex flex-col items-center text-center gap-4">
                     <ScrollReveal delay={0.1}>
                         <h2 
-                            className="text-4xl md:text-5xl font-extrabold  tracking-tight text-base-content"
+                            className="text-4xl hide-dominoes md:text-5xl font-extrabold  tracking-tight text-base-content"
                             style={{ fontFamily: 'var(--font-pro)' }}
                         >
                             Top Projects
@@ -91,7 +90,7 @@ export default function TopProjects() {
                     {topProjects.map((project, idx) => (
                         <ScrollReveal key={project.id} delay={0.2 + idx * 0.1} className="h-full">
                             <div 
-                                className="card w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
+                                className="card hide-dominoes w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
                                 style={{ borderRadius: '24px' }}
                             >
                                 {/* Thumbnail Area */}
@@ -173,8 +172,8 @@ export default function TopProjects() {
                 {/* View All Projects Link */}
                 <ScrollReveal delay={0.4}>
                     <div className="flex justify-center w-full mt-8">
-                        <Link href="/projects" className="group w-full max-w-sm">
-                            <div className="glass-card h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
+                        <Link href="/projects" className="group hide-dominoes w-full max-w-sm">
+                            <div className="glass-card  h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                     <span className="text-base-content font-extrabold text-base whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
                                     <ArrowRight size={20} className="text-primary shrink-0" />

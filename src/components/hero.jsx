@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import HeroBackground from './HeroBackground'
 import { TypeAnimation } from 'react-type-animation'
 import { MapPin } from 'lucide-react'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
@@ -15,11 +14,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-base-100 pt-20"
+      className="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-transparent pt-20"
     >
-      {/* 1. Interactive Domino Canvas */}
-      <HeroBackground />
-
       {/* 2. Content */}
       <div className="relative z-30 container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         

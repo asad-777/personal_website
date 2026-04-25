@@ -4,19 +4,24 @@ import { useEffect, useRef, useState } from 'react'
 
 /* ── helpers ──────────────────────────────────────── */
 function extractRgb(cssVar) {
-  const div = document.createElement('div')
-  div.style.cssText = `display:none;color:var(${cssVar})`
-  document.body.appendChild(div)
-  const computed = getComputedStyle(div).color
-  document.body.removeChild(div)
+  try {
+    const div = document.createElement('div')
+    div.style.cssText = `display:none;color:var(${cssVar})`
+    document.body.appendChild(div)
+    const computed = getComputedStyle(div).color
+    document.body.removeChild(div)
 
-  const tmp = document.createElement('canvas')
-  tmp.width = tmp.height = 1
-  const ctx = tmp.getContext('2d', { willReadFrequently: true })
-  ctx.fillStyle = computed
-  ctx.fillRect(0, 0, 1, 1)
-  const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data
-  return { r, g, b }
+    const tmp = document.createElement('canvas')
+    tmp.width = tmp.height = 1
+    const ctx = tmp.getContext('2d', { willReadFrequently: true })
+    ctx.fillStyle = computed || '#fff'
+    ctx.fillRect(0, 0, 1, 1)
+    const data = ctx.getImageData(0, 0, 1, 1).data
+    return { r: data[0], g: data[1], b: data[2] }
+  } catch (e) {
+    console.warn(`Failed to extract ${cssVar}`, e)
+    return { r: 255, g: 255, b: 255 }
+  }
 }
 
 const DOT_RADIUS = 2.2;
@@ -37,39 +42,18 @@ const DOTS = {
 }
 
 /* ── component ────────────────────────────────────── */
-export default function HeroBackground() {
+export default function GlobalBackground() {
   const containerRef = useRef(null)
   const canvasRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting)
-      },
-      { rootMargin: '200px' }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!isVisible) return;
-
     // ── shared mutable state ──────────
     const state = {
       mouse: { x: -9999, y: -9999 },
       targetMouse: { x: -9999, y: -9999 },
       blocks: [],
       exclusionZones: [],
+      scrollOffset: 0,
       colors: {
         primary: { r: 52, g: 211, b: 153 },
         secondary: { r: 167, g: 139, b: 250 },
@@ -93,7 +77,7 @@ export default function HeroBackground() {
     const ctx = canvas.getContext('2d')
     let dpr = 1
 
-    const EXCLUSION_PADDING = 25 // Padding around the element
+    const EXCLUSION_PADDING = 25 
 
     const getExclusionZones = () => {
       const canvasEl = canvasRef.current
@@ -104,14 +88,16 @@ export default function HeroBackground() {
       const zones = []
       elements.forEach(el => {
         const rect = el.getBoundingClientRect()
+        // For fixed canvas, we use screen-relative coordinates
         zones.push({
-          left: (rect.left - canvasRect.left) - EXCLUSION_PADDING,
-          right: (rect.right - canvasRect.left) + EXCLUSION_PADDING,
-          top: (rect.top - canvasRect.top) - EXCLUSION_PADDING,
-          bottom: (rect.bottom - canvasRect.top) + EXCLUSION_PADDING
+          left: rect.left,
+          right: rect.right,
+          top: rect.top,
+          bottom: rect.bottom
         })
       })
       state.exclusionZones = zones
+      state.scrollOffset = window.scrollY
     }
     window.addEventListener('resize', getExclusionZones)
     window.addEventListener('scroll', getExclusionZones)
@@ -119,8 +105,9 @@ export default function HeroBackground() {
 
     const generateGrid = () => {
       const stride = CELL_SIZE + GAP
-      const cols = Math.ceil((canvas.width / dpr) / stride)
-      const rows = Math.ceil((canvas.height / dpr) / stride)
+      const cols = Math.ceil((window.innerWidth) / stride)
+      // Generate enough rows for a very long page (e.g. 10000px)
+      const rows = Math.ceil(10000 / stride)
       
       const grid = Array(cols).fill(0).map(() => Array(rows).fill(false))
       state.blocks = []
@@ -141,10 +128,8 @@ export default function HeroBackground() {
           let w = 1
           let h = 1
           
-          // randomly group blocks
           if (Math.random() < 0.25) {
             if (Math.random() < 0.5) {
-               // horizontal
                const len = Math.random() < 0.2 ? 3 : 2
                if (i + len - 1 < cols) {
                  let canFit = true
@@ -154,7 +139,6 @@ export default function HeroBackground() {
                  if (canFit) w = len
                }
             } else {
-               // vertical
                const len = Math.random() < 0.2 ? 3 : 2
                if (j + len - 1 < rows) {
                  let canFit = true
@@ -178,7 +162,7 @@ export default function HeroBackground() {
                cellsData.push({
                  offsetX: dx * stride,
                  offsetY: dy * stride,
-                 value: Math.floor(Math.random() * 9) + 1 // 1 through 9, no empty dominoes
+                 value: Math.floor(Math.random() * 9) + 1
                })
             }
           }
@@ -192,7 +176,7 @@ export default function HeroBackground() {
             cellsData,
             colorIndices: { border: p[0], dots: p[1] },
             isBrighter: Math.random() < 0.3,
-            currentOpacity: Math.random() // Initialize randomly so they fade in organically
+            currentOpacity: Math.random()
           })
         }
       }
@@ -201,8 +185,8 @@ export default function HeroBackground() {
 
     const resize = () => {
       dpr = window.devicePixelRatio || 1
-      canvas.width = canvas.offsetWidth * dpr
-      canvas.height = canvas.offsetHeight * dpr
+      canvas.width = window.innerWidth * dpr
+      canvas.height = window.innerHeight * dpr
       ctx.scale(dpr, dpr)
       generateGrid()
     }
@@ -210,11 +194,13 @@ export default function HeroBackground() {
     setTimeout(resize, 100)
 
     const onMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect()
-      state.targetMouse.x = e.clientX - rect.left
-      state.targetMouse.y = e.clientY - rect.top
+      state.targetMouse.x = e.clientX
+      state.targetMouse.y = e.clientY
     }
     window.addEventListener('mousemove', onMouseMove)
+    // Init mouse to center
+    state.targetMouse.x = window.innerWidth / 2
+    state.targetMouse.y = window.innerHeight / 2
 
     const drawRoundedRect = (x, y, w, h, r) => {
       ctx.beginPath()
@@ -242,13 +228,15 @@ export default function HeroBackground() {
       if (delta < interval) return
       lastTime = now - (delta % interval)
 
-      // Smoothly interpolate mouse position
+      // Always poll scroll for smoothness
+      state.scrollOffset = window.scrollY
+
       if (state.mouse.x === -9999) {
         state.mouse.x = state.targetMouse.x
         state.mouse.y = state.targetMouse.y
       } else {
-        state.mouse.x += (state.targetMouse.x - state.mouse.x) * 0.45
-        state.mouse.y += (state.targetMouse.y - state.mouse.y) * 0.45
+        state.mouse.x += (state.targetMouse.x - state.mouse.x) * 0.1
+        state.mouse.y += (state.targetMouse.y - state.mouse.y) * 0.1
       }
 
       ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr)
@@ -256,23 +244,32 @@ export default function HeroBackground() {
       const { x: mx, y: my } = state.mouse
       const { primary, secondary, accent } = state.colors
       const palette = [primary, secondary, accent]
+      const scrollY = state.scrollOffset
+      const PARALLAX_SPEED = 0.4
+      const isDesktop = window.innerWidth >= 1024
+
+      const vTop = -200
+      const vBottom = (canvas.height / dpr) + 200
 
       for (const block of state.blocks) {
-        // Exclusion Zone Check
+        // Apply parallax offset
+        const drawY = block.y - (scrollY * PARALLAX_SPEED)
+        
+        // Culling: Skip if block is not in viewport
+        if (drawY + block.pxHeight < vTop || drawY > vBottom) continue
+
         let targetOpacity = 1
         const cx = block.x + block.pxWidth / 2
-        const cy = block.y + block.pxHeight / 2
-        
-        let dist = 9999
-        if (mx > -9000) {
-          dist = Math.hypot(cx - mx, cy - my)
-        }
+        const cy = drawY + block.pxHeight / 2
         
         let hoverIntensity = 0
-        const RADIUS = 160
-        if (dist < RADIUS) {
-          hoverIntensity = 1 - (dist / RADIUS)
-          hoverIntensity = Math.pow(hoverIntensity, 1.4) // smooth falloff
+        if (isDesktop && mx > -9000) {
+          const dist = Math.hypot(cx - mx, cy - my)
+          const RADIUS = 160
+          if (dist < RADIUS) {
+            hoverIntensity = 1 - (dist / RADIUS)
+            hoverIntensity = Math.pow(hoverIntensity, 1.4)
+          }
         }
 
         for (const zone of state.exclusionZones) {
@@ -287,32 +284,26 @@ export default function HeroBackground() {
           }
         }
 
-        // Smooth opacity interpolation
         block.currentOpacity += (targetOpacity - block.currentOpacity) * 0.1
-
-        if (block.currentOpacity < 0.01) continue // Skip drawing completely if invisible
+        if (block.currentOpacity < 0.01) continue
 
         const borderC = palette[block.colorIndices.border]
         const dotsC = palette[block.colorIndices.dots]
-
         const brightnessMultiplier = block.isBrighter ? 1.3 : 1.0;
 
-        // Calculate dynamic hover opacity/thickness
         const borderOp = (0.1 + 0.8 * hoverIntensity) * block.currentOpacity * brightnessMultiplier
         const dotsOp = (0.2 + 0.8 * hoverIntensity) * block.currentOpacity * brightnessMultiplier
         const dynamicLineWidth = 1.0 + (1.0 * hoverIntensity)
 
-        // Render block with dynamic properties
         ctx.strokeStyle = `rgba(${borderC.r}, ${borderC.g}, ${borderC.b}, ${borderOp})`
         ctx.lineWidth = dynamicLineWidth
-        drawRoundedRect(block.x, block.y, block.pxWidth, block.pxHeight, 6)
+        drawRoundedRect(block.x, drawY, block.pxWidth, block.pxHeight, 6)
         ctx.stroke()
         
         ctx.fillStyle = `rgba(${dotsC.r}, ${dotsC.g}, ${dotsC.b}, ${dotsOp})`
-        
         for (const cell of block.cellsData) {
           const cellX = block.x + cell.offsetX
-          const cellY = block.y + cell.offsetY
+          const cellY = drawY + cell.offsetY
           const dotsPos = DOTS[cell.value]
           
           for (const [dx, dy] of dotsPos) {
@@ -335,16 +326,14 @@ export default function HeroBackground() {
       clearInterval(exclusionInterval)
       themeObserver.disconnect()
     }
-  }, [isVisible])
+  }, [])
 
   return (
-    <div ref={containerRef} className="absolute inset-0">
-      {isVisible && (
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full pointer-events-none"
-        />
-      )}
+    <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full"
+      />
     </div>
   )
 }

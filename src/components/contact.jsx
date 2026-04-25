@@ -44,15 +44,14 @@ const EmailIcon = () => (
     </svg>
 );
 
-const socials = [
-    { icon: GitHubIcon,    label: "GitHub",    href: "https://github.com/yourusername" },
-    { icon: LinkedInIcon,  label: "LinkedIn",  href: "https://linkedin.com/in/yourusername" },
-    { icon: InstagramIcon, label: "Instagram", href: "https://instagram.com/yourusername" },
-    { icon: EmailIcon,     label: "Email",     href: "mailto:you@email.com" },
-];
-
 export default function Contact() {
     const [status, setStatus] = useState("idle"); // idle | sending | success | error
+
+    const socials = [
+        { icon: GitHubIcon,    label: "GitHub",    href: "https://github.com/yourusername" },
+        { icon: LinkedInIcon,  label: "LinkedIn",  href: "https://linkedin.com/in/yourusername" },
+        { icon: EmailIcon,     label: "Gmail",     href: "mailto:you@email.com" },
+    ];
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -78,7 +77,7 @@ export default function Contact() {
     return (
         <section
             id="contactme"
-            className="relative w-full min-h-[80vh] bg-base-100 flex items-center justify-center py-28 pt-40 px-6 md:px-16 overflow-hidden"
+            className="relative w-full min-h-[80vh] bg-transparent flex items-center justify-center py-28 pt-40 px-6 md:px-16 overflow-hidden"
         >
          
 
@@ -92,20 +91,20 @@ export default function Contact() {
                     <div className="flex flex-col gap-3">
                         <ScrollReveal delay={0.1}>
                             <h2
-                                className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
+                                className="text-4xl w-fit md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
                                 style={{ fontFamily: "var(--font-pro)" }}
                             >
                                 Let&apos;s Connect
                             </h2>
                         </ScrollReveal>
                         <ScrollReveal delay={0.2}>
-                            <p className="text-base-content text-base leading-relaxed">
+                            <p className="text-base-content hide-dominoes text-base leading-relaxed">
                                 Have a project in mind or just want to say hello? Drop a message or reach me on any of these.
                             </p>
                         </ScrollReveal>
                     </div>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex hide-dominoes rounded-full p-6 flex-col gap-3">
                         {socials.map(({ icon: Icon, label, href }, idx) => (
                             <ScrollReveal key={label} delay={0.2 + idx * 0.1}>
                                 <a
@@ -114,7 +113,7 @@ export default function Contact() {
                                 rel="noopener noreferrer"
                                 className="hover:scale-[1.02] transition-transform w-full"
                             >
-                                <div className="glass-card w-full h-14" style={{ borderRadius: '14px' }}>
+                                <div className="glass-card  w-full h-14" style={{ borderRadius: '14px' }}>
                                     <div className="flex items-center justify-center w-full h-full relative z-10">
                                         <div className="flex items-center gap-4 w-32">
                                             <Icon className="w-5 h-5 text-primary shrink-0" />
@@ -136,7 +135,7 @@ export default function Contact() {
                 {/* ── Right: form ─────────────────────────────────────────── */}
                 <div className="w-full lg:w-1/2">
                     <ScrollReveal delay={0.4}>
-                        <div className="glass-card w-full rounded-3xl p-6 md:p-8">
+                        <div className="glass-card hide-dominoes w-full rounded-3xl p-6 md:p-8">
                             <form
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-3 w-full"

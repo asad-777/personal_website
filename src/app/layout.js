@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { cn } from "../lib/utils";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
+import GlobalBackground from "@/components/GlobalBackground";
 
 
 export const metadata = {
@@ -44,13 +45,16 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
-        <SmoothScrolling>
-          <main>
-            {children}
-            <Analytics />
-            <SmoothCursor />
-          </main>
-        </SmoothScrolling>
+        <GlobalBackground />
+        <div className="relative z-10">
+          <SmoothScrolling>
+            <main>
+              {children}
+              <Analytics />
+              <SmoothCursor />
+            </main>
+          </SmoothScrolling>
+        </div>
       </body>
     </html>
   );

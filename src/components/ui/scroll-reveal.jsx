@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,19 @@ export function ScrollReveal({
   once = false,
   amount = 0.05, // Trigger almost immediately when entering view
 }) {
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsEnabled(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
+  if (!isEnabled) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={cn("will-change-[opacity,transform,filter]", className)}
