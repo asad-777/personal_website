@@ -91,79 +91,81 @@ export default function TopProjects() {
                     {topProjects.map((project, idx) => (
                         <ScrollReveal key={project.id} delay={0.2 + idx * 0.1} className="h-full">
                             <div 
-                                className="card w-full h-full base-200 shadow-lg border border-base-content/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden bg-base-200/50 backdrop-blur-sm"
+                                className="card w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
+                                style={{ borderRadius: '24px' }}
                             >
-                            {/* Thumbnail Area */}
-                            <figure className="relative h-56 w-full overflow-hidden bg-base-300">
-                                <Image
-                                    src={project.thumbnail} 
-                                    alt={project.title} 
-                                    fill
-                                    unoptimized
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute top-4 right-4 z-10">
-                                    <span className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none font-bold">
-                                        {project.category}
-                                    </span>
-                                </div>
-                            </figure>
-
-                            {/* Content Area */}
-                            <div className="card-body p-6 flex flex-col gap-4">
-                                <div className="flex justify-between items-start">
-                                    <h3 className="card-title text-2xl font-bold text-base-content">
-                                        {project.title}
-                                    </h3>
-                                </div>
-                                
-                                <p className="text-base-content/75 leading-relaxed grow text-sm md:text-base">
-                                    {project.description}
-                                </p>
-
-                                {/* Technologies */}
-                                <div className="flex flex-wrap gap-2 mt-auto">
-                                    {project.technologies.map((tech, index) => (
-                                        <span 
-                                            key={index} 
-                                            className="badge badge-outline border-base-content/20 text-base-content/80 text-xs font-bold py-3 px-3"
-                                        >
-                                            {tech}
+                                {/* Thumbnail Area */}
+                                <figure className="relative h-56 w-full overflow-hidden bg-base-300">
+                                    <Image
+                                        src={project.thumbnail} 
+                                        alt={project.title} 
+                                        fill
+                                        unoptimized
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                    <div className="absolute top-4 right-4 z-10">
+                                        <span className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none font-bold">
+                                            {project.category}
                                         </span>
-                                    ))}
-                                </div>
+                                    </div>
+                                </figure>
 
-                                {/* Actions */}
-                                <div className="card-actions justify-end mt-4 border-t border-base-content/10 pt-4 flex gap-4">
-                                    <a 
-                                        href={project.github} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="hover:scale-[1.05] transition-transform"
-                                        aria-label="View Source on GitHub"
-                                    >
-                                        <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
-                                            <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
-                                                <Github size={20} className="text-base-content shrink-0" />
-                                                <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">GitHub</span>
+                                {/* Content Area */}
+                                <div className="card-body p-6 flex flex-col gap-4">
+                                    <div className="flex justify-between items-start">
+                                        <h3 className="card-title text-2xl font-bold text-base-content">
+                                            {project.title}
+                                        </h3>
+                                    </div>
+                                    
+                                    <p className="text-base-content/75 leading-relaxed grow text-sm md:text-base">
+                                        {project.description}
+                                    </p>
+
+                                    {/* Technologies */}
+                                    <div className="flex flex-wrap gap-2 mt-auto">
+                                        {project.technologies.map((tech, index) => (
+                                            <span 
+                                                key={index} 
+                                                className="badge badge-outline border-base-content/20 text-base-content/80 text-xs font-bold py-3 px-3"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="card-actions justify-end mt-4 border-t border-base-content/10 pt-4 flex gap-4">
+                                        <a 
+                                            href={project.github} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="hover:scale-[1.05] transition-transform"
+                                            aria-label="View Source on GitHub"
+                                        >
+                                            <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
+                                                <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
+                                                    <Github size={20} className="text-base-content shrink-0" />
+                                                    <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">GitHub</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                    <a 
-                                        href={project.liveDemo} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="hover:scale-[1.05] transition-transform"
-                                    >
-                                        <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
-                                            <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
-                                                <ExternalLink size={18} className="text-primary shrink-0" />
-                                                <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">Live</span>
+                                        </a>
+                                        <a 
+                                            href={project.liveDemo} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="hover:scale-[1.05] transition-transform"
+                                        >
+                                            <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
+                                                <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
+                                                    <ExternalLink size={18} className="text-primary shrink-0" />
+                                                    <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">Live</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div></div>
+                            </div>
                         </ScrollReveal>
                     ))}
                 </div>
@@ -171,22 +173,14 @@ export default function TopProjects() {
                 {/* View All Projects Link */}
                 <ScrollReveal delay={0.4}>
                     <div className="flex justify-center w-full mt-8">
-                        <Link href="/projects" className="group">
-                        <GlassSurface
-                            width="fit-content"
-                            height="fit-content"
-                            borderRadius={9999}
-                            backgroundOpacity={0.05}
-                            borderWidth={0.5}
-                            className="cursor-pointer"
-                        >
-                            <InteractiveHoverButton
-                                className="bg-primary border-none text-primary-content text-lg px-10 py-6 duration-300 transition-all ease-in-out btn shadow-none"
-                            >
-                                <span style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
-                            </InteractiveHoverButton>
-                        </GlassSurface>
-                    </Link>
+                        <Link href="/projects" className="group w-full max-w-sm">
+                            <div className="glass-card h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
+                                <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
+                                    <span className="text-base-content font-extrabold text-base whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
+                                    <ArrowRight size={20} className="text-primary shrink-0" />
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </ScrollReveal>
             </div>

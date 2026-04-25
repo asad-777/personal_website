@@ -10,7 +10,7 @@ export function ScrollReveal({
   blur = "8px",
   duration = 0.45,
   delay = 0,
-  once = true,
+  once = false,
   amount = 0.05, // Trigger almost immediately when entering view
 }) {
   return (

@@ -191,6 +191,7 @@ export default function HeroBackground() {
             pxHeight: h * CELL_SIZE + (h - 1) * GAP,
             cellsData,
             colorIndices: { border: p[0], dots: p[1] },
+            isBrighter: Math.random() < 0.3,
             currentOpacity: Math.random() // Initialize randomly so they fade in organically
           })
         }
@@ -230,7 +231,17 @@ export default function HeroBackground() {
     }
 
     let rafId
-    const draw = () => {
+    let lastTime = 0
+    const fps = 30
+    const interval = 1000 / fps
+
+    const draw = (now) => {
+      rafId = requestAnimationFrame(draw)
+
+      const delta = now - lastTime
+      if (delta < interval) return
+      lastTime = now - (delta % interval)
+
       // Smoothly interpolate mouse position
       if (state.mouse.x === -9999) {
         state.mouse.x = state.targetMouse.x
@@ -284,9 +295,11 @@ export default function HeroBackground() {
         const borderC = palette[block.colorIndices.border]
         const dotsC = palette[block.colorIndices.dots]
 
+        const brightnessMultiplier = block.isBrighter ? 1.3 : 1.0;
+
         // Calculate dynamic hover opacity/thickness
-        const borderOp = (0.1 + 0.8 * hoverIntensity) * block.currentOpacity
-        const dotsOp = (0.2 + 0.8 * hoverIntensity) * block.currentOpacity
+        const borderOp = (0.1 + 0.8 * hoverIntensity) * block.currentOpacity * brightnessMultiplier
+        const dotsOp = (0.2 + 0.8 * hoverIntensity) * block.currentOpacity * brightnessMultiplier
         const dynamicLineWidth = 1.0 + (1.0 * hoverIntensity)
 
         // Render block with dynamic properties
@@ -311,10 +324,8 @@ export default function HeroBackground() {
           }
         }
       }
-
-      rafId = requestAnimationFrame(draw)
     }
-    draw()
+    rafId = requestAnimationFrame(draw)
 
     return () => {
       cancelAnimationFrame(rafId)

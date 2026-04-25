@@ -38,7 +38,10 @@ export default function ProjectsCard({ Projects }) {
     const demoLink = Projects["Live Link Url"] || "#";
 
     return (
-        <div className="card w-full shadow-lg border border-base-content/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden bg-base-200/50 backdrop-blur-sm">
+        <div 
+            className="card w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
+            style={{ borderRadius: '24px' }}
+        >
             {/* Thumbnail Area */}
             <figure className="relative h-56 w-full overflow-hidden bg-base-300">
                 <Image
