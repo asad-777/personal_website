@@ -10,6 +10,7 @@ import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 
 const navItems = [
   { label: "About", href: "/#about" },
@@ -34,6 +35,22 @@ export default function Navbar({ children }) {
 
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
+
+  const { scrollY: scrollYProgress } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const previous = scrollYProgress.getPrevious();
+    if (isOpen) {
+      setHidden(false);
+      return;
+    }
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   return (
     <>
@@ -96,7 +113,15 @@ export default function Navbar({ children }) {
       </div>
 
       {/* === CENTER NAVIGATION (MOBILE) === */}
-      <div className="fixed top-12 w-[90vw] max-w-sm sm:max-w-md left-1/2 -translate-x-1/2 z-50 flex items-center justify-center lg:hidden scale-90 md:scale-100 hide-dominoes">
+      <motion.div 
+        variants={{
+          visible: { y: 0, opacity: 1, pointerEvents: "auto" },
+          hidden: { y: -100, opacity: 0, pointerEvents: "none" },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed top-12 w-[90vw] max-w-sm sm:max-w-md left-1/2 -translate-x-1/2 z-[60] flex items-center justify-center lg:hidden scale-90 md:scale-100 hide-dominoes"
+      >
         <GlassSurface
           className="w-full"
           width="100%"
@@ -136,7 +161,7 @@ export default function Navbar({ children }) {
             </div>
           </div>
         </GlassSurface>
-      </div>
+      </motion.div>
 
       {/* === RIGHT SIDE NAVIGATION (DESKTOP) === */}
       <div className={`fixed top-12 right-6 md:right-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-right transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0 pointer-events-auto hide-dominoes' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>

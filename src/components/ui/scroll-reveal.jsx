@@ -8,8 +8,8 @@ export function ScrollReveal({
   children,
   className,
   yOffset = 30,
-  blur = "8px",
-  duration = 0.45,
+  blur = "4px",
+  duration = 0.33,
   delay = 0,
   once = false,
   amount = 0.05, // Trigger almost immediately when entering view

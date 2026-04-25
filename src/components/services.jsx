@@ -47,13 +47,13 @@ export default function Services() {
                         <ScrollReveal key={idx} delay={0.2 + idx * 0.1}>
                             <div 
                                 className="flex w-full flex-row flex-wrap items-center justify-between gap-3 sm:gap-4  pb-5 border-b border-base-content/10 last:border-b-0"
-                            >   <div className="flex gap-6 items-center">
+                            >   <div className="flex hide-dominoes gap-6 items-center">
                             <div className="w-2.5  h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] shrink-0" />
                             <h3 className="text-lg md:text-xl font-bold mr-2  text-base-content ">
                                 {service.title}
                             </h3>
                             </div>
-                            <div className="flex flex-row flex-wrap items-center  gap-2 sm:ml-4">
+                            <div className="flex flex-row flex-wrap items-center hide-dominoes gap-2 sm:ml-4">
                                 {service.tech.map((techItem, techIdx) => (
                                     <span 
                                         key={techIdx} 

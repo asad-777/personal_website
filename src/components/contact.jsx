@@ -84,22 +84,25 @@ export default function Contact() {
             {/* Ambient glow */}
 
 
-            <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
+            <div className="relative  z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-center">
 
                 {/* ── Left: heading + social links ───────────────────────── */}
                 <div className="flex flex-col gap-8 w-full lg:w-1/2">
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 justify-center items-center lg:items-start px-8">
                         <ScrollReveal delay={0.1}>
                             <h2
-                                className="text-4xl w-fit md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tight text-base-content"
+                                className="text-4xl w-fit md:text-5xl lg:text-5xl font-extrabold leading-none tracking-tight text-base-content"
                                 style={{ fontFamily: "var(--font-pro)" }}
                             >
                                 Let&apos;s Connect
                             </h2>
                         </ScrollReveal>
                         <ScrollReveal delay={0.2}>
+                            <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-4" />
+                        </ScrollReveal>
+                        <ScrollReveal delay={0.2}>
                             <p className="text-base-content hide-dominoes text-base leading-relaxed">
-                                Have a project in mind or just want to say hello? Drop a message or reach me on any of these.
+                                Have a project in mind ? Drop a message or reach me on any of these.
                             </p>
                         </ScrollReveal>
                     </div>

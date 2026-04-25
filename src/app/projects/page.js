@@ -10,8 +10,6 @@ export const metadata = {
 export default function ProjectsPage() {
     return (
         <div className="min-h-screen flex flex-col  selection:bg-primary/30">
-            <Navbar />
-            
             <main className="grow pt-32 pb-20 px-6 md:px-16 w-full relative">
                 <style dangerouslySetInnerHTML={{__html: `
                     .glass-card {
