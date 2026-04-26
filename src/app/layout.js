@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { cn } from "../lib/utils";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
 import GlobalBackground from "@/components/GlobalBackground";
@@ -46,6 +47,8 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
+              <Analytics />
+              <SpeedInsights />
         <MobileZoom />
         <GlobalBackground />
         
@@ -56,7 +59,6 @@ export default function RootLayout({
           <SmoothScrolling>
             <main>
               {children}
-              <Analytics />
             </main>
           </SmoothScrolling>
         </div>
