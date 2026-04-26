@@ -2,11 +2,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import { cn } from "../lib/utils";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
 import GlobalBackground from "@/components/GlobalBackground";
 import { MobileZoom } from "@/components/MobileZoom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
 
 export const metadata = {
   title: "Asad Amir",
@@ -51,7 +51,6 @@ export default function RootLayout({
         
         {/* Navbar and Cursor are OUTSIDE the zoom content so they stay at 100% scale and top layer */}
         <Navbar />
-        <SmoothCursor />
 
         <div className="relative z-10 zoom-content">
           <SmoothScrolling>
@@ -61,6 +60,7 @@ export default function RootLayout({
             </main>
           </SmoothScrolling>
         </div>
+        <Footer/>
       </body>
     </html>
   );

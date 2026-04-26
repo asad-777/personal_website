@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowUp } from "lucide-react";
-import FooterBackground from "./footer-background";
+
 import Link from "next/link"
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
@@ -11,16 +11,14 @@ export default function Footer() {
     };
     
     return (
-        <footer className="relative w-full pt-20 pb-12 overflow-hidden">
+        <footer className="relative w-full pt-20 pb-12 bg-base-100 border-t border-primary rounded-t-4xl overflow-hidden">
             {/* 3D Canvas Background */}
-            <FooterBackground />
 
             <div className="relative z-10 mx-auto px-6 md:px-16 flex flex-col gap-12">
                 {/* Main Content */}
                 <div className="flex lg:flex-cols gap-6 justify-between items-center px:6 lg:px-12">
                     {/* Left - Branding */}
                     <div className="flex flex-col gap-6">
-                        <ScrollReveal delay={0.1}>
                             <div>
                                 <h3 
                                     className="text-3xl font-bold text-base-content mb-3"
@@ -30,12 +28,10 @@ export default function Footer() {
                                 </h3>
                                 <div className="h-1 w-22 bg-linear-to-r from-primary to-accent rounded-full"></div>
                             </div>
-                        </ScrollReveal>
                     </div>
 
                     {/* Right - Navigation */}
                     <div className="flex flex-col gap-8">
-                        <ScrollReveal delay={0.2}>
                             <div className="flex flex-wrap  gap-3">
                                 <Link
                                     href="/"
@@ -50,9 +46,7 @@ export default function Footer() {
                                     Projects
                                 </a>
                             </div>
-                        </ScrollReveal>
                         
-                        <ScrollReveal delay={0.3}>
                             <button
                                 onClick={scrollToTop}
                                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 w-full group"
@@ -61,18 +55,15 @@ export default function Footer() {
                                 <span className="text-sm uppercase font-bold tracking-wider">Back to top</span>
                                 <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                             </button>
-                        </ScrollReveal>
                     </div>
                 </div>
 
                 {/* Bottom Divider & Copyright */}
-                <ScrollReveal delay={0.4}>
-                    <div className="pt-8 border-t border-base-content/10">
+                    <div className="pt-8 border-t border-primary/20">
                         <p className="text-sm font-bold text-base-content/50 text-center">
                             © {new Date().getFullYear()} Asad Amir. All rights reserved.
                         </p>
                     </div>
-                </ScrollReveal>
             </div>
         </footer>
     );

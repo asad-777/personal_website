@@ -23,21 +23,25 @@ export default function Navbar({ children }) {
   const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
+    if (!isHome) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 300);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
+
+  const effectiveIsScrolled = isHome ? isScrolled : true;
 
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   const { scrollY: scrollYProgress } = useScroll();
-  const [hidden, setHidden] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const previous = scrollYProgress.getPrevious();
@@ -120,7 +124,7 @@ export default function Navbar({ children }) {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-12 w-[90vw] max-w-sm sm:max-w-md left-1/2 -translate-x-1/2 z-[60] flex items-center justify-center lg:hidden scale-90 md:scale-100 hide-dominoes"
+        className="fixed top-12 w-[90vw] max-w-sm sm:max-w-md left-1/2 -translate-x-1/2 z-60 flex items-center justify-center lg:hidden scale-90 md:scale-100 hide-dominoes"
       >
         <GlassSurface
           className="w-full"
@@ -164,7 +168,7 @@ export default function Navbar({ children }) {
       </motion.div>
 
       {/* === RIGHT SIDE NAVIGATION (DESKTOP) === */}
-      <div className={`fixed top-12 right-6 md:right-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-right transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0 pointer-events-auto hide-dominoes' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+      <div className={`fixed top-12 right-6 md:right-8 z-50 flex items-center gap-4 scale-90 md:scale-100 origin-top-right transition-all duration-500 ${effectiveIsScrolled ? 'opacity-100 translate-y-0 pointer-events-auto hide-dominoes' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
         
         {/* Social Pill — Combined GitHub, LinkedIn, Instagram */}
         <div className="hidden lg:block hover:scale-105 transition-transform cursor-pointer">
@@ -220,11 +224,14 @@ export default function Navbar({ children }) {
       />
 
       {/* Bottom sheet panel — translucent glass */}
+      
+      
       <div
-        className={`fixed bottom-0 left-0 right-0 z-[100] h-[65vh] bg-base-100/60 backdrop-blur-2xl rounded-t-[3rem] flex flex-col border-t border-base-content/15 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-in-out lg:hidden hide-dominoes ${
-          isOpen ? "translate-y-0" : "translate-y-full"
-        }`}
-      >
+        className={`fixed bottom-0 left-0 right-0 z-100 h-[65vh] bg-base-100/60 backdrop-blur-2xl rounded-t-[3rem] flex flex-col border-t border-base-content/15 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-in-out lg:hidden hide-dominoes 
+          ${isOpen ? "translate-y-0" : "translate-y-full"}`}>
+
+
+        
         {/* Close button */}
         <button
           onClick={closeMenu}

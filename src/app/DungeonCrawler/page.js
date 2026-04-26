@@ -1,8 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/footer";
 
 export default function GamePage() {
   const iframeRef = useRef(null);
@@ -76,11 +74,10 @@ export default function GamePage() {
 
   return (
     <>
-      <div className="min-h-screen bg-base-100 p-4 flex flex-col gap-12 items-center justify-center overflow-hidden">
-    <Navbar />
+      <div className="min-h-screen pt-24 bg-base-100 p-4 flex flex-col gap-12 items-center justify-center overflow-hidden">
 
         {/* Game iframe */}
-        <div className="w-full lg:mt-16 mx-auto max-w-200 lg:max-w-250 aspect-3/2 shadow-2xl rounded-xl overflow-hidden">
+        <div className="w-full lg:mt-24 mx-auto max-w-200 lg:max-w-250 aspect-3/2 shadow-2xl rounded-xl overflow-hidden">
           <iframe
             ref={iframeRef}
             src="/DungeonCrawler/index.html"
@@ -151,7 +148,7 @@ export default function GamePage() {
 
       </div>
       <div className="py-12"></div>
-      <Footer/>
+   
     </>
   );
 }

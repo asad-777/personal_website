@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/footer";
 import ProjectList from "@/components/projects/ProjectList";
 
 export const metadata = {
@@ -66,7 +64,6 @@ export default function ProjectsPage() {
                 </div>
             </main>
 
-            <Footer />
         </div>
     );
 }
