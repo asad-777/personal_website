@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
-Sitemap: https://asadamir2.vercel.app/sitemap.xml
+# Host
+Host: https://asadamir.vip
+
+# Sitemaps
+Sitemap: https://asadamir.vip/sitemap.xml
