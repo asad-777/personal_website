@@ -107,7 +107,7 @@ export default function Contact() {
                         </ScrollReveal>
                     </div>
 
-                    <div className="flex hide-dominoes rounded-full p-6 flex-col gap-3">
+                    <div className="flex hide-dominoes rounded-full flex-col gap-3">
                         {socials.map(({ icon: Icon, label, href }, idx) => (
                             <ScrollReveal key={label} delay={0.2 + idx * 0.1}>
                                 <a
@@ -116,7 +116,7 @@ export default function Contact() {
                                 rel="noopener noreferrer"
                                 className="hover:scale-[1.02] transition-transform w-full"
                             >
-                                <div className="glass-card  w-full h-14" style={{ borderRadius: '14px' }}>
+                                <div className="glass-card w-full btn  h-14" style={{ borderRadius: '14px' }}>
                                     <div className="flex items-center justify-center w-full h-full relative z-10">
                                         <div className="flex items-center gap-4 w-32">
                                             <Icon className="w-5 h-5 text-primary shrink-0" />
@@ -136,9 +136,9 @@ export default function Contact() {
                 </div>
 
                 {/* ── Right: form ─────────────────────────────────────────── */}
-                <div className="w-full lg:w-1/2">
+                <div className="w-full lg:w-1/2 glass-card rounded-4xl">
                     <ScrollReveal delay={0.4}>
-                        <div className="glass-card hide-dominoes w-full rounded-3xl p-6 md:p-8">
+                        <div className="hide-dominoes w-full rounded-3xl p-6  md:p-8">
                             <form
                             onSubmit={handleSubmit}
                             className="flex flex-col gap-3 w-full"
@@ -224,7 +224,7 @@ export default function Contact() {
                                     type="submit"
                                     icon={Send}
                                     disabled={status === "sending"}
-                                    className="w-full  btn-solid btn text-base-content text-base font-extrabold border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
+                                    className="w-full bg-base-100/50 btn-glass btn text-base-content text-base font-extrabold border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
                                 >
                                     {status === "sending" ? "Sending…" : "Send Message"}
                                 </InteractiveHoverButton>

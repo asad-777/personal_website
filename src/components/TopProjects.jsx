@@ -85,12 +85,25 @@ export default function TopProjects() {
                     </ScrollReveal>
                 </div>
 
+                {/* View All Projects Link */}
+                <ScrollReveal delay={0.4}>
+                    <div className="flex justify-center w-full mt-8">
+                        <Link href="/projects" className="group glass bg-base-200/80 btn btn-wide py-8 hover:bg-primary/80 hover:text-primary-content btn-primary rounded-2xl w-full max-w-sm">
+                            <div className="h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
+                                <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
+                                    <span className="text-base-content font-extrabold text-xl whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
+                                    <ArrowRight size={20} className="text-primary shrink-0" />
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                </ScrollReveal>
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     {topProjects.map((project, idx) => (
                         <ScrollReveal key={project.id} delay={0.2 + idx * 0.1} className="h-full">
                             <div 
-                                className="card hide-dominoes w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
+                                className="glass-card hide-dominoes w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
                                 style={{ borderRadius: '24px' }}
                             >
                                 {/* Thumbnail Area */}
@@ -169,19 +182,6 @@ export default function TopProjects() {
                     ))}
                 </div>
 
-                {/* View All Projects Link */}
-                <ScrollReveal delay={0.4}>
-                    <div className="flex justify-center w-full mt-8">
-                        <Link href="/projects" className="group hide-dominoes w-full max-w-sm">
-                            <div className="glass-card  h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
-                                <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
-                                    <span className="text-base-content font-extrabold text-base whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
-                                    <ArrowRight size={20} className="text-primary shrink-0" />
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                </ScrollReveal>
             </div>
         </section>
     );

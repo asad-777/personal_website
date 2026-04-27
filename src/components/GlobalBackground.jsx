@@ -42,9 +42,12 @@ const DOTS = {
 }
 
 /* ── component ────────────────────────────────────── */
+import { useScroll } from "motion/react";
+
 export default function GlobalBackground() {
   const containerRef = useRef(null)
   const canvasRef = useRef(null)
+  const { scrollY } = useScroll()
 
   useEffect(() => {
     // ── shared mutable state ──────────
@@ -82,13 +85,11 @@ export default function GlobalBackground() {
     const getExclusionZones = () => {
       const canvasEl = canvasRef.current
       if (!canvasEl) return
-      const canvasRect = canvasEl.getBoundingClientRect()
       
       const elements = document.querySelectorAll('.hide-dominoes')
       const zones = []
       elements.forEach(el => {
         const rect = el.getBoundingClientRect()
-        // For fixed canvas, we use screen-relative coordinates
         zones.push({
           left: rect.left,
           right: rect.right,
@@ -97,7 +98,6 @@ export default function GlobalBackground() {
         })
       })
       state.exclusionZones = zones
-      state.scrollOffset = window.scrollY
     }
     window.addEventListener('resize', getExclusionZones)
     window.addEventListener('scroll', getExclusionZones)
@@ -106,7 +106,6 @@ export default function GlobalBackground() {
     const generateGrid = () => {
       const stride = CELL_SIZE + GAP
       const cols = Math.ceil((window.innerWidth) / stride)
-      // Generate enough rows for a very long page (e.g. 10000px)
       const rows = Math.ceil(10000 / stride)
       
       const grid = Array(cols).fill(0).map(() => Array(rows).fill(false))
@@ -198,7 +197,6 @@ export default function GlobalBackground() {
       state.targetMouse.y = e.clientY
     }
     window.addEventListener('mousemove', onMouseMove)
-    // Init mouse to center
     state.targetMouse.x = window.innerWidth / 2
     state.targetMouse.y = window.innerHeight / 2
 
@@ -217,19 +215,12 @@ export default function GlobalBackground() {
     }
 
     let rafId
-    let lastTime = 0
-    const fps = 30
-    const interval = 1000 / fps
 
-    const draw = (now) => {
+    const draw = () => {
       rafId = requestAnimationFrame(draw)
 
-      const delta = now - lastTime
-      if (delta < interval) return
-      lastTime = now - (delta % interval)
-
-      // Always poll scroll for smoothness
-      state.scrollOffset = window.scrollY
+      // Use the raw scroll value (it's already smooth because of Lenis)
+      state.scrollOffset = scrollY.get()
 
       if (state.mouse.x === -9999) {
         state.mouse.x = state.targetMouse.x
@@ -244,7 +235,7 @@ export default function GlobalBackground() {
       const { x: mx, y: my } = state.mouse
       const { primary, secondary, accent } = state.colors
       const palette = [primary, secondary, accent]
-      const scrollY = state.scrollOffset
+      const currentScroll = state.scrollOffset
       const PARALLAX_SPEED = 0.4
       const isDesktop = window.innerWidth >= 1024
 
@@ -252,10 +243,8 @@ export default function GlobalBackground() {
       const vBottom = (canvas.height / dpr) + 200
 
       for (const block of state.blocks) {
-        // Apply parallax offset
-        const drawY = block.y - (scrollY * PARALLAX_SPEED)
+        const drawY = block.y - (currentScroll * PARALLAX_SPEED)
         
-        // Culling: Skip if block is not in viewport
         if (drawY + block.pxHeight < vTop || drawY > vBottom) continue
 
         let targetOpacity = 1
