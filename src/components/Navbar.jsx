@@ -10,7 +10,7 @@ import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 
 const navItems = [
   { label: "About", href: "/#about" },
@@ -215,118 +215,121 @@ export default function Navbar({ children }) {
       {children}
 
       {/* === MOBILE BOTTOM SHEET === */}
-      {/* Backdrop */}
-      <div
-        className={`fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={closeMenu}
-      />
-
-      {/* Bottom sheet panel — translucent glass */}
-      
-      
-      <div
-        className={`fixed bottom-0 left-0 right-0 z-100 h-[65vh] bg-base-100/60 backdrop-blur-2xl rounded-t-[3rem] flex flex-col border-t border-base-content/15 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-in-out lg:hidden hide-dominoes 
-          ${isOpen ? "translate-y-0" : "translate-y-full"}`}>
-
-
-        
-        {/* Close button */}
-        <button
-          onClick={closeMenu}
-          className="absolute top-5 right-7 cursor-pointer z-10 hover:scale-110 transition-transform"
-          aria-label="Close menu"
-        >
-          <GlassSurface
-            width={44}
-            height={44}
-            borderRadius={9999}
-            backgroundOpacity={0.05}
-            borderWidth={0.5}
-          >
-            <X className="w-5 h-5 text-base-content" />
-          </GlassSurface>
-        </button>
-
-        {/* Nav links */}
-        <ul className="flex-1 flex flex-col justify-center px-8 pt-8">
-          {!isHome && (
-            <li className="w-full border-b border-base-content/10">
-              <Link
-                href="/"
+      <motion.div initial={false}>
+        <AnimatePresence>
+          {isOpen && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 z-[90] bg-black/30 backdrop-blur-[2px] lg:hidden"
                 onClick={closeMenu}
-                className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-all duration-300 flex items-center gap-4"
+              />
+
+              {/* Bottom sheet panel */}
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed bottom-0 left-0 right-0 z-100 h-[65vh] bg-base-100/80 backdrop-blur-xl rounded-t-[3rem] flex flex-col border-t border-primary/40 shadow-[0_-15px_40px_rgba(0,0,0,0.2)] lg:hidden hide-dominoes will-change-transform transform-gpu"
               >
-                <House className="w-7 h-7 shrink-0" />
-                Home
-              </Link>
-            </li>
+                {/* Close button */}
+                <button
+                  onClick={closeMenu}
+                  className="absolute top-5 right-7 cursor-pointer z-10 hover:scale-110 transition-transform active:scale-95"
+                  aria-label="Close menu"
+                >
+                  <div className="w-11 h-11 rounded-full bg-base-content/10 backdrop-blur-md border border-base-content/15 flex items-center justify-center">
+                    <X className="w-5 h-5 text-base-content" />
+                  </div>
+                </button>
+
+                {/* Nav links */}
+                <ul className="flex-1 flex flex-col justify-center px-8 pt-8">
+                  {!isHome && (
+                    <li className="w-full border-b border-base-content/10">
+                      <Link
+                        href="/"
+                        onClick={closeMenu}
+                        className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 flex items-center gap-4"
+                      >
+                        <House className="w-7 h-7 shrink-0" />
+                        Home
+                      </Link>
+                    </li>
+                  )}
+                  {navItems.map((item) => (
+                    <li key={item.label} className="w-full border-b border-base-content/10">
+                      <Link
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Social + CTA buttons */}
+                <div className="px-8 pb-10 flex flex-col gap-3 pt-4">
+                  {/* Social row */}
+                  <div className="flex gap-3">
+                    <a
+                      href="https://github.com/yourusername"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline border-2 btn-primary flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
+                      onClick={closeMenu}
+                    >
+                      <FaGithub className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/yourusername"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
+                      onClick={closeMenu}
+                    >
+                      <FaLinkedin className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="mailto:your@email.com"
+                      className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
+                      onClick={closeMenu}
+                    >
+                      <SiGmail className="w-5 h-5" />
+                    </a>
+                  </div>
+
+                  {/* CTA buttons */}
+                  <div className="flex gap-3">
+                    <Link
+                      href="/#contactme"
+                      className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl"
+                      onClick={closeMenu}
+                    >
+                      Let&apos;s Connect
+                    </Link>
+                    <a
+                      href="/cv.pdf"
+                      download
+                      className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl"
+                      onClick={closeMenu}
+                    >
+                      Download CV
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </>
           )}
-          {navItems.map((item) => (
-            <li key={item.label} className="w-full border-b border-base-content/10">
-              <Link
-                href={item.href}
-                onClick={closeMenu}
-                className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-all duration-300 block w-full"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Social + CTA buttons */}
-        <div className="px-8 pb-10 flex flex-col gap-3 pt-4">
-          {/* Social row */}
-          <div className="flex gap-3">
-            <a
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline border-2 btn-primary flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
-              onClick={closeMenu}
-            >
-              <FaGithub className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
-              onClick={closeMenu}
-            >
-              <FaLinkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:your@email.com"
-              className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
-              onClick={closeMenu}
-            >
-              <SiGmail className="w-5 h-5" />
-            </a>
-          </div>
-
-          {/* CTA buttons */}
-          <div className="flex gap-3">
-            <Link
-              href="/#contactme"
-              className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl"
-              onClick={closeMenu}
-            >
-              Let&apos;s Connect
-            </Link>
-            <a
-              href="/cv.pdf"
-              download
-              className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl"
-              onClick={closeMenu}
-            >
-              Download CV
-            </a>
-          </div>
-        </div>
-      </div>
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 }

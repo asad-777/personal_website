@@ -143,17 +143,17 @@ export default function Hero() {
               
               {/* Social Links */}
               <div className="flex gap-10 w-full  justify-center lg:justify-center  px-2">
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm">
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm">
                   <FaGithub className="w-5 h-5" />
                   <span>GitHub</span>
                 </a>
 
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm">
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm">
                   <FaLinkedin className="w-5 h-5" />
                   <span>LinkedIn</span>
                 </a>
 
-                <a href="mailto:your@email.com" className="group btn btn-ghost hover:text-primary btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm ">
+                <a href="mailto:your@email.com" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm ">
                   <SiGmail className="w-5 h-5" />
                   <span>Gmail</span>
                 </a>
