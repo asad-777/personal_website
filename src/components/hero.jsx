@@ -1,153 +1,208 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
 import { MapPin } from 'lucide-react'
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { SiGmail } from "react-icons/si"
+import { motion } from "motion/react"
 import GlassSurface from "@/components/GlassSurface";
-
-
-
 export default function Hero() {
   return (
-    
     <section
       id="hero"
       className="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-transparent lg:pt-36 pt-48"
     >
-      {/* 2. Content */}
-      <div className="relative  w-full justify-between gap-24 flex z-30  mx-auto px-24   items-center">
+      {/* Content */}
+      <div className="relative w-full justify-between gap-24 flex z-30 mx-auto px-24 items-center">
         
         {/* Left Side: Content */}
-        <div className="relative flex  flex-col items-center lg:items-start justify-center text-center lg:text-left gap-6 lg:pr-8 lg:-mt-12 py-10 min-h-[60vh] lg:min-h-0">
+        <div className="relative flex flex-col items-center lg:items-start justify-center text-center lg:text-left gap-6 lg:pr-8 lg:-mt-12 py-10 min-h-[60vh] lg:min-h-0">
           
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-base-200/80 backdrop-blur-md border border-base-300 shadow-sm">
+            <MapPin size={16} className="text-primary" />
+            <span className="text-sm font-bold tracking-wide text-base-content">Available Worldwide</span>
+          </div>
 
-          
-            <div className="flex items-center gap-2 px-4 py-2 hide-dominoes rounded-full bg-base-200/80 backdrop-blur-md border border-base-300 shadow-sm">
-              <MapPin size={16} className="text-primary" />
-              <span className="text-sm font-bold tracking-wide">Available Worldwide</span>
-            </div>
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content leading-tight">
+            I&apos;m <span className="bg-linear-to-r from-primary to-secondary text-clip text-transparent bg-clip-text">Asad Amir</span>
+          </h1>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight hide-dominoes text-base-content leading-tight">
-              Hi, I&apos;m <span className="bg-linear-to-r from-primary to-secondary text-clip text-transparent bg-clip-text">Asad</span>
-            </h1>
+          <div className="text-2xl md:text-3xl min-w-full font-bold text-base-content/90 h-10">
+            <TypeAnimation
+              sequence={[
+                'I make Full-Stack Apps',
+                1500,
+                'I make AI Integrations',
+                1500,
+                'I make Dynamic UIs',
+                1500,
+                'I make Scalable Backends',
+                1500,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="text-primary"
+            />
+          </div>
 
-            <div className="text-2xl md:text-3xl hide-dominoes  min-w-full font-bold text-base-content/90 h-10">
-              <TypeAnimation
-                sequence={[
-                  'I make Full-Stack Apps',
-                  1500,
-                  'I make AI Integrations',
-                  1500,
-                  'I make Dynamic UIs',
-                  1500,
-                  'I make Scalable Backends',
-                  1500,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                className="text-primary"
-              />
-            </div>
-
-            <p className="text-lg text-base-content/70 hide-dominoes max-w-xl leading-relaxed font-extrabold">
-              I am a student web app developer building clean, functional applications.
-            </p>
+          <p className="text-lg text-base-content/70 max-w-xl leading-relaxed font-extrabold">
+            I am a student web app developer building clean, functional applications.
+          </p>
 
           {/* Mobile-only Stats */}
-            <div className="flex lg:hidden hide-dominoes items-center gap-6 md:gap-10">
-              <div className="flex flex-col items-center">
-                <span className="text-3xl md:text-4xl font-extrabold text-base-content">5+</span>
-                <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Projects</span>
-              </div>
-              <div className="h-10 w-px bg-base-content/10"></div>
-              <div className="flex flex-col items-center">
-                <span className="text-3xl md:text-4xl font-extrabold text-base-content">3+</span>
-                <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Hackathons</span>
-              </div>
-              <div className="h-10 w-px bg-base-content/10"></div>
-              <div className="flex flex-col items-center">
-                <span className="text-3xl md:text-4xl font-extrabold text-base-content">AI & UI</span>
-                <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Specialty</span>
-              </div>
+          <div className="flex lg:hidden items-center gap-6 md:gap-10">
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-extrabold text-base-content">5+</span>
+              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Projects</span>
             </div>
+            <div className="h-10 w-px bg-base-content/10"></div>
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-extrabold text-base-content">3+</span>
+              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Hackathons</span>
+            </div>
+            <div className="h-10 w-px bg-base-content/10"></div>
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-extrabold text-base-content">AI & UI</span>
+              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Specialty</span>
+            </div>
+          </div>
 
         </div>
 
         {/* Right Side: Stats & CTAs */}
-        <div className="relative w-fit  h-full flex flex-col items-start lg:items-end justify-center mt-8 lg:mt-0 gap-10">
+        <div className="relative w-fit h-full flex flex-col items-start lg:items-end justify-center mt-8 lg:mt-0 gap-10">
           
-          
-
           {/* Desktop-only Stats Section */}
-            <div className="hidden lg:flex items-center  justify-between w-full">
-              <div className="flex flex-col hide-dominoes">
-                <span className="text-3xl md:text-4xl font-extrabold text-base-content">5+</span>
-                <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Projects</span>
-              </div>
-              <div className="h-10 w-px bg-base-content/10"></div>
-              <div className="flex flex-col hide-dominoes">
-                <span className="text-3xl md:text-4xl font-extrabold text-base-content">3+</span>
-                <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Hackathons</span>
-              </div>
-              <div className="h-10 w-px bg-base-content/10"></div>
-              <div className="flex flex-col hide-dominoes">
-                <span className="text-3xl md:text-4xl font-extrabold text-base-content">AI & UI</span>
-                <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Specialty</span>
-              </div>
+          <div className="hidden lg:flex items-center justify-between w-full">
+            <div className="flex flex-col">
+              <span className="text-3xl md:text-4xl font-extrabold text-base-content">5+</span>
+              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Projects</span>
             </div>
-
-          {/* Buttons and Socials — Hidden on mobile, shown on desktop */}
-            <div className="hidden lg:flex flex-col gap-8 w-full">
-              {/* Primary Actions */}
-              <div className="flex gap-4 w-full ">
-                <GlassSurface width="100%" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform w-full group">
-                  <a
-                    href="#contactme"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full  font-extrabold text-lg  transition-colors"
-                  >
-                    Let&apos;s Connect
-                  </a>
-                </GlassSurface>
-
-                <GlassSurface width="100%" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform w-full group">
-                  <a
-                    href="/cv.pdf"
-                    target="_blank"
-                    className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full  font-extrabold text-lg  transition-colors"
-                  >
-                    Download CV
-                  </a>
-                </GlassSurface>
-              </div>
-              
-              {/* Social Links */}
-              <div className="flex gap-10 w-full bg-base-100/70 rounded-xl  px-6 py-2 justify-center lg:justify-center  px-2">
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost  hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm">
-                  <FaGithub className="w-5 h-5" />
-                  <span>GitHub</span>
-                </a>
-
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm">
-                  <FaLinkedin className="w-5 h-5" />
-                  <span>LinkedIn</span>
-                </a>
-
-                <a href="mailto:your@email.com" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60  transition-colors font-bold text-sm ">
-                  <SiGmail className="w-5 h-5" />
-                  <span>Gmail</span>
-                </a>
-              </div>
+            <div className="h-10 w-px bg-base-content/10"></div>
+            <div className="flex flex-col">
+              <span className="text-3xl md:text-4xl font-extrabold text-base-content">3+</span>
+              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Hackathons</span>
             </div>
+            <div className="h-10 w-px bg-base-content/10"></div>
+            <div className="flex flex-col">
+              <span className="text-3xl md:text-4xl font-extrabold text-base-content">AI & UI</span>
+              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Specialty</span>
+            </div>
+          </div>
+
+          {/* Buttons and Socials */}
+          <div className="hidden lg:flex flex-col gap-8 w-full">
+            <div className="flex gap-4 w-full ">
+              <GlassSurface width="100%" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform w-full group">
+                <a
+                  href="#contactme"
+                  onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full font-extrabold text-lg transition-colors"
+                >
+                  Let&apos;s Connect
+                </a>
+              </GlassSurface>
+
+              <GlassSurface width="100%" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform w-full group">
+                <a
+                  href="/cv.pdf"
+                  target="_blank"
+                  className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full font-extrabold text-lg transition-colors"
+                >
+                  Download CV
+                </a>
+              </GlassSurface>
+            </div>
+            
+            {/* Social Links */}
+            <div className="flex gap-10 w-full bg-base-100/70 rounded-xl px-6 py-2 justify-center lg:justify-center px-2">
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors font-bold text-sm">
+                <FaGithub className="w-5 h-5" />
+                <span>GitHub</span>
+              </a>
+
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors font-bold text-sm">
+                <FaLinkedin className="w-5 h-5" />
+                <span>LinkedIn</span>
+              </a>
+
+              <a href="mailto:your@email.com" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors font-bold text-sm ">
+                <SiGmail className="w-5 h-5" />
+                <span>Gmail</span>
+              </a>
+            </div>
+          </div>
         </div >
         
       </div>
+
+      {/* Scroll Indicator - Desktop Only */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="w-6 h-10 border-2 border-base-content/20 rounded-full flex justify-center p-1"
+        >
+          <motion.div
+            animate={{
+              y: [0, 12, 0],
+              opacity: [1, 0, 1]
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="w-1.5 h-1.5 bg-primary rounded-full"
+          />
+        </motion.div>
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-content/40">Scroll</span>
+      </div>
+      <HeroWaves />
     </section>
+  )
+}
+
+const HeroWaves = () => {
+  return (
+    <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20">
+      <svg
+        viewBox="0 0 1440 200"
+        className="relative w-full h-[80px] md:h-[120px]"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Deep Wave Layer */}
+        <motion.path
+          animate={{
+            d: [
+              "M0,160 C320,100 420,200 720,160 C1020,120 1120,200 1440,160 V200 H0 Z",
+              "M0,140 C320,180 420,100 720,140 C1020,180 1120,100 1440,140 V200 H0 Z",
+              "M0,160 C320,100 420,200 720,160 C1020,120 1120,200 1440,160 V200 H0 Z"
+            ]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="fill-base-100/40 backdrop-blur-[2px]"
+        />
+        {/* Main Wave Layer (Solid Cut) */}
+        <motion.path
+          animate={{
+            d: [
+              "M0,180 C320,150 420,220 720,180 C1020,140 1120,220 1440,180 V200 H0 Z",
+              "M0,160 C320,200 420,140 720,160 C1020,180 1120,140 1440,160 V200 H0 Z",
+              "M0,180 C320,150 420,220 720,180 C1020,140 1120,220 1440,180 V200 H0 Z"
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="fill-base-100"
+        />
+      </svg>
+    </div>
   )
 }

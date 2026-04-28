@@ -3,8 +3,10 @@
 import { useState } from "react";
 
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { Send } from "lucide-react";
+import { Send, Download, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import GlassSurface from "@/components/GlassSurface";
 
 // Brand-colored SVG icons
 const GitHubIcon = () => (
@@ -44,14 +46,34 @@ const EmailIcon = () => (
     </svg>
 );
 
-export default function Contact() {
-    const [status, setStatus] = useState("idle"); // idle | sending | success | error
+// Twitter/X icon
+const TwitterIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+);
 
-    const socials = [
-        { icon: GitHubIcon,    label: "GitHub",    href: "https://github.com/yourusername" },
-        { icon: LinkedInIcon,  label: "LinkedIn",  href: "https://linkedin.com/in/yourusername" },
-        { icon: EmailIcon,     label: "Gmail",     href: "mailto:you@email.com" },
-    ];
+// Fiverr icon
+const FiverrIcon = () => (
+    <span className="text-sm font-black text-[#1DBF73] shrink-0">F</span>
+);
+
+// Upwork icon
+const UpworkIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="#6FDA44">
+        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z" />
+    </svg>
+);
+
+// Slack icon
+const SlackIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="currentColor">
+        <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" />
+    </svg>
+);
+
+export default function Contact() {
+    const [status, setStatus] = useState("idle");
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -74,165 +96,172 @@ export default function Contact() {
         }
     }
 
+    const freelancePlatforms = [
+        { icon: FiverrIcon, label: "Fiverr", href: "#" },
+        { icon: UpworkIcon, label: "Upwork", href: "#" },
+        { icon: SlackIcon, label: "Slack", href: "#" },
+    ];
+
+    const socialLinks = [
+        { icon: GitHubIcon, label: "GitHub", href: "https://github.com/yourusername" },
+        { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
+        { icon: EmailIcon, label: "Email", href: "mailto:you@email.com" },
+        { icon: TwitterIcon, label: "Twitter", href: "#" },
+    ];
+
     return (
         <section
             id="contactme"
-            className="relative w-full min-h-[80vh] bg-transparent flex items-center justify-center py-28 pt-40 px-6 md:px-16 overflow-hidden"
+            className="relative w-full py-24 px-6 pt-36 md:px-16 bg-transparent overflow-hidden"
         >
-         
 
-            {/* Ambient glow */}
-
-
-            <div className="relative  z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-20 items-center">
-
-                {/* ── Left: heading + social links ───────────────────────── */}
-                <div className="flex flex-col gap-8 w-full lg:w-1/2">
-                    <div className="flex flex-col gap-3 justify-center items-center lg:items-start px-8">
-                        <ScrollReveal delay={0.1}>
-                            <h2
-                                className="text-4xl w-fit md:text-5xl lg:text-5xl font-extrabold leading-none tracking-tight text-base-content"
-                                style={{ fontFamily: "var(--font-pro)" }}
-                            >
-                                Let&apos;s Connect
-                            </h2>
-                        </ScrollReveal>
-                        <ScrollReveal delay={0.2}>
-                            <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-4" />
-                        </ScrollReveal>
-                        <ScrollReveal delay={0.2}>
-                            <p className="text-base-content hide-dominoes text-base leading-relaxed">
-                                Have a project in mind ? Drop a message or reach me on any of these.
-                            </p>
-                        </ScrollReveal>
-                    </div>
-
-                    <div className="flex hide-dominoes rounded-full flex-col gap-3">
-                        {socials.map(({ icon: Icon, label, href }, idx) => (
-                            <ScrollReveal key={label} delay={0.2 + idx * 0.1}>
-                                <a
-                                href={href}
-                                target={href.startsWith("http") ? "_blank" : undefined}
-                                rel="noopener noreferrer"
-                                className="hover:scale-[1.02] transition-transform w-full"
-                            >
-                                <div className="glass-card w-full btn  h-14" style={{ borderRadius: '14px' }}>
-                                    <div className="flex items-center justify-center w-full h-full relative z-10">
-                                        <div className="flex items-center gap-4 w-32">
-                                            <Icon className="w-5 h-5 text-primary shrink-0" />
-                                            <span
-                                                className="text-base-content font-extrabold text-base text-left"
-                                                style={{ fontFamily: "var(--font-seco)" }}
-                                            >
-                                                {label}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            </ScrollReveal>
-                        ))}
-                    </div>
-                </div>
-
-                {/* ── Right: form ─────────────────────────────────────────── */}
-                <div className="w-full lg:w-1/2 glass-card rounded-4xl">
-                    <ScrollReveal delay={0.4}>
-                        <div className="hide-dominoes w-full rounded-3xl p-6  md:p-8">
-                            <form
-                            onSubmit={handleSubmit}
-                            className="flex flex-col gap-3 w-full"
+            {/* Standard Section Heading */}
+                <div className=" items-center justify-center grid text-center md:items-start gap-4">
+                    <ScrollReveal delay={0.1}>
+                        <h2
+                            className="text-5xl min-w-full md:text-7xl font-extrabold tracking-tight text-base-content uppercase"
+                            style={{ fontFamily: 'var(--font-pro)' }}
                         >
-                            <h3
-                                className="text-2xl md:text-3xl font-extrabold text-base-content mb-1"
-                                style={{ fontFamily: "var(--font-pro)" }}
-                            >
-                                Send a Message
-                            </h3>
-
-                            {/* Name */}
-                            <div className="form-control w-full">
-                                <label className="label pb-1">
-                                    <span className="label-text text-base-content/80 font-medium">Your Name</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="John Doe"
-                                    required
-                                    className="input w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none"
-                                />
-                            </div>
-
-                            {/* Email */}
-                            <div className="form-control w-full">
-                                <label className="label pb-1">
-                                    <span className="label-text text-base-content/80 font-medium">Your Email</span>
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="you@email.com"
-                                    required
-                                    className="input w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none"
-                                />
-                            </div>
-
-                            {/* Subject */}
-                            <div className="form-control w-full">
-                                <label className="label pb-1">
-                                    <span className="label-text text-base-content/80 font-medium">Subject</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    placeholder="Project idea, collaboration, etc."
-                                    required
-                                    className="input w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none"
-                                />
-                            </div>
-
-                            {/* Message */}
-                            <div className="form-control w-full">
-                                <label className="label pb-1">
-                                    <span className="label-text text-base-content/80 font-medium">Message</span>
-                                </label>
-                                <textarea
-                                    name="message"
-                                    placeholder="Tell me more about what you have in mind..."
-                                    rows={3}
-                                    required
-                                    className="textarea w-full bg-base-100 border border-base-content/50 focus:border-primary focus:outline-none resize-none"
-                                />
-                            </div>
-
-                            {/* Feedback */}
-                            {status === "success" && (
-                                <p className="text-success text-sm font-medium">
-                                    ✓ Message sent! I&apos;ll get back to you soon.
-                                </p>
-                            )}
-                            {status === "error" && (
-                                <p className="text-error text-sm font-medium">
-                                    ✗ Something went wrong. Please try again.
-                                </p>
-                            )}
-
-                            {/* Submit */}
-                            <div className="pt-2">
-                                <InteractiveHoverButton
-                                    type="submit"
-                                    icon={Send}
-                                    disabled={status === "sending"}
-                                    className="w-full bg-base-100/50 btn-glass btn text-base-content text-base font-extrabold border-base-content/50 hover:btn-primary hover:border-none hover:text-primary-content shadow-none rounded-xl disabled:opacity-60"
-                                >
-                                    {status === "sending" ? "Sending…" : "Send Message"}
-                                </InteractiveHoverButton>
-                            </div>
-                        </form>
-                        </div>
+                            Contacts &<span className="text-primary"> Freelance</span>
+                        </h2>
+                    </ScrollReveal>
+                    <ScrollReveal delay={0.2}>
+                        <div className="h-1.5 w-48 bg-linear-to-r from-primary mx-auto via-accent to-secondary rounded-full shadow-[0_0_15px_rgba(var(--color-primary),0.4)]" />
                     </ScrollReveal>
                 </div>
+
+
+            <div className="relative z-10  w-full max-w-6xl mx-auto flex flex-col gap-24">
+
+                {/* ─── FREELANCE + SOCIALS SIDE BY SIDE ─── */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-16">
+                    
+                    {/* Freelance */}
+                    <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
+                        <ScrollReveal delay={0.2}>
+                            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Freelance</h3>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={0.25}>
+                            <p className="text-lg md:text-xl font-bold text-base-content/70 max-w-md leading-relaxed">
+                                I take on freelance work across web development, UI engineering, and full-stack builds.
+                            </p>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={0.3}>
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                                <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
+                                    <a href="/portfolio.pdf" download className="bg-primary border-none text-primary-content text-base font-bold px-8 py-3 flex items-center gap-3 rounded-full">
+                                        <Download className="w-4 h-4" /> Freelance Portfolio
+                                    </a>
+                                </GlassSurface>
+                                <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
+                                    <Link href="/projects" className="bg-primary border-none text-primary-content text-base font-bold px-8 py-3 flex items-center gap-3 rounded-full">
+                                        <ExternalLink className="w-4 h-4" /> See Work
+                                    </Link>
+                                </GlassSurface>
+                            </div>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={0.35}>
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                                {freelancePlatforms.map(({ icon: Icon, label, href }) => (
+                                    <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+                                        <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
+                                            <div className="flex items-center gap-3">
+                                                <Icon />
+                                                <span className="text-base font-bold text-base-content">{label}</span>
+                                            </div>
+                                        </GlassSurface>
+                                    </a>
+                                ))}
+                            </div>
+                        </ScrollReveal>
+                    </div>
+
+                    {/* Socials */}
+                    <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
+                        <ScrollReveal delay={0.25}>
+                            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Socials</h3>
+                        </ScrollReveal>
+                        <ScrollReveal delay={0.3}>
+                            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                                {socialLinks.map(({ icon: Icon, label, href }) => (
+                                    <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+                                        <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
+                                            <div className="flex items-center gap-3">
+                                                <Icon />
+                                                <span className="text-base font-bold text-base-content">{label}</span>
+                                            </div>
+                                        </GlassSurface>
+                                    </a>
+                                ))}
+                            </div>
+                        </ScrollReveal>
+                    </div>
+                </div>
+
+                {/* ─── FORM ZONE ─── */}
+                <div className="flex flex-col gap-10 pt-16 items-center lg:items-start text-center lg:text-left">
+                    <ScrollReveal delay={0.3}>
+                        <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Let&apos;s Talk</h3>
+                    </ScrollReveal>
+                    <ScrollReveal delay={0.3}>
+                        <p className="text-lg md:text-xl font-bold text-base-content/70 max-w-2xl leading-relaxed">
+                            Have a project in mind, or just want to say hello? Drop me a message and I&apos;ll get back to you.
+                        </p>
+                    </ScrollReveal>
+
+                    <ScrollReveal delay={0.35}>
+                        <form onSubmit={handleSubmit} className="w-full space-y-10">
+                            {/* Hidden metadata fields */}
+                            <input type="hidden" name="_timestamp" value={new Date().toISOString()} />
+                            <input type="hidden" name="_screen" value={typeof window !== 'undefined' ? `${window.innerWidth}x${window.innerHeight}` : 'unknown'} />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+                                <div className="space-y-3">
+                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Full Name <span className="text-primary">*</span></label>
+                                    <input type="text" name="name" required placeholder="John Doe"
+                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Email <span className="text-primary">*</span></label>
+                                    <input type="email" name="email" required placeholder="john@example.com"
+                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Phone <span className="text-base-content/20 text-[10px] normal-case tracking-normal">optional</span></label>
+                                    <input type="tel" name="contact" placeholder="+1 234 567 890"
+                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Subject <span className="text-primary">*</span></label>
+                                    <input type="text" name="subject" required placeholder="Project Inquiry"
+                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Description <span className="text-primary">*</span></label>
+                                <textarea name="message" required rows={4} placeholder="Tell me about your project, timeline, budget..."
+                                    className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 resize-none" />
+                            </div>
+
+                            <div className="flex items-center justify-center lg:justify-start gap-6 pt-2">
+                                <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
+                                    <button type="submit" disabled={status === "sending"}
+                                        className="bg-primary border-none text-primary-content font-black uppercase tracking-widest rounded-full px-10 py-3 disabled:opacity-50">
+                                        {status === "sending" ? "Sending..." : "Send Message"}
+                                    </button>
+                                </GlassSurface>
+                                {status === "success" && (
+                                    <p className="text-primary text-xs font-black uppercase tracking-widest">✓ Sent</p>
+                                )}
+                            </div>
+                        </form>
+                    </ScrollReveal>
+                </div>
+
             </div>
         </section>
     );

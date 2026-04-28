@@ -5,7 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { cn } from "../lib/utils";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
 import GlobalBackground from "@/components/GlobalBackground";
-import { MobileZoom } from "@/components/MobileZoom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
@@ -49,7 +48,6 @@ export default function RootLayout({
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
               <Analytics />
               <SpeedInsights />
-        <MobileZoom />
         <GlobalBackground />
         
         {/* Navbar and Cursor are OUTSIDE the zoom content so they stay at 100% scale and top layer */}
