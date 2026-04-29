@@ -85,14 +85,14 @@ export default function Navbar({ children }) {
                 {item.href.startsWith("/#") ? (
                   <button
                     onClick={() => { window.location.href = item.href; }}
-                    className="text-base-content font-bold nav-link text-lg whitespace-nowrap cursor-pointer"
+                    className="text-base-content nav-link text-lg whitespace-nowrap cursor-pointer"
                   >
                     {item.label}
                   </button>
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-base-content font-bold nav-link text-lg whitespace-nowrap"
+                    className="text-base-content nav-link text-lg whitespace-nowrap"
                   >
                     {item.label}
                   </Link>
@@ -245,7 +245,7 @@ export default function Navbar({ children }) {
                     <li className="w-full border-b border-base-content/10">
                       <button
                         onClick={() => { closeMenu(); window.location.href = "/"; }}
-                        className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 flex items-center gap-4 w-full cursor-pointer"
+                        className="text-base-content text-2xl py-5 hover:text-primary transition-colors duration-300 flex items-center gap-4 w-full cursor-pointer"
                       >
                         <House className="w-7 h-7 shrink-0" />
                         Home
@@ -257,7 +257,7 @@ export default function Navbar({ children }) {
                       {item.href.startsWith("/#") ? (
                         <button
                           onClick={() => { closeMenu(); window.location.href = item.href; }}
-                          className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full text-left cursor-pointer"
+                          className="text-base-content text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full text-left cursor-pointer"
                         >
                           {item.label}
                         </button>
@@ -265,7 +265,7 @@ export default function Navbar({ children }) {
                         <Link
                           href={item.href}
                           onClick={closeMenu}
-                          className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full"
+                          className="text-base-content text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full"
                         >
                           {item.label}
                         </Link>
@@ -282,7 +282,7 @@ export default function Navbar({ children }) {
                       href="https://github.com/yourusername"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-outline border-2 btn-primary flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
+                      className="btn btn-outline border-2 btn-primary flex-1 gap-2 h-12 text-base rounded-xl"
                       onClick={closeMenu}
                     >
                       <FaGithub className="w-5 h-5" />
@@ -291,14 +291,14 @@ export default function Navbar({ children }) {
                       href="https://linkedin.com/in/yourusername"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
+                      className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base rounded-xl"
                       onClick={closeMenu}
                     >
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                     <a
                       href="mailto:your@email.com"
-                      className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base font-extrabold rounded-xl"
+                      className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base rounded-xl"
                       onClick={closeMenu}
                     >
                       <SiGmail className="w-5 h-5" />
@@ -309,14 +309,14 @@ export default function Navbar({ children }) {
                   <div className="flex gap-3">
                     <button
                       onClick={() => { closeMenu(); window.location.href = "/#contactme"; }}
-                      className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl cursor-pointer"
+                      className="btn btn-primary h-14 flex-1 text-lg rounded-xl shadow-xl cursor-pointer"
                     >
                       Let&apos;s Connect
                     </button>
                     <a
                       href="/cv.pdf"
                       download
-                      className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl"
+                      className="btn btn-primary h-14 flex-1 text-lg rounded-xl shadow-xl"
                       onClick={closeMenu}
                     >
                       Download CV

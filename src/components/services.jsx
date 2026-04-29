@@ -33,8 +33,7 @@ export default function Services() {
                 <div className=" items-center justify-center grid text-center md:items-start gap-4">
                     <ScrollReveal delay={0.1}>
                         <h2
-                            className="text-5xl min-w-full md:text-7xl font-extrabold tracking-tight text-base-content uppercase"
-                            style={{ fontFamily: 'var(--font-pro)' }}
+                            className="min-w-full text-base-content"
                         >
                             Services & <span className="text-primary">Stack</span>
                         </h2>
@@ -51,7 +50,7 @@ export default function Services() {
                             <div className="flex flex-col gap-8">
                                 {/* Service Header */}
                                 <div className="flex items-center  justify-center gap-6">
-                                    <h3 className="text-2xl md:text-4xl border-b border-base-300/90 pb-2 px-4 rounded-xl font-black text-base-content uppercase tracking-tight">
+                                    <h3 className="border-b border-base-300/90 pb-2 px-4 rounded-xl text-base-content">
                                         {service.title}
                                     </h3>
                                 </div>
@@ -60,7 +59,7 @@ export default function Services() {
                                 <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 md:pl-8">
                                     {service.tech.map((techItem, techIdx) => (
                                         <div key={techIdx} className="flex items-center  gap-3">
-                                            <span className="text-lg md:text-xl badge bg-base-300/70 p-4 font-bold text-base-content/90">
+                                            <span className=" badge bg-base-300/70 p-4 text-base-content/90">
                                                 {techItem}
                                             </span>
                                         </div>

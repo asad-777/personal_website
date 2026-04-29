@@ -21,14 +21,14 @@ export default function Hero() {
           
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-base-200/80 backdrop-blur-md border border-base-300 shadow-sm">
             <MapPin size={16} className="text-primary" />
-            <span className="text-sm font-bold tracking-wide text-base-content">Available Worldwide</span>
+            <span className="text-sm tracking-wide text-base-content">Available Worldwide</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content leading-tight">
+          <h1 className="text-base-content leading-tight">
             I&apos;m <span className="bg-linear-to-r from-primary to-secondary text-clip text-transparent bg-clip-text">Asad Amir</span>
           </h1>
 
-          <div className="text-2xl md:text-3xl min-w-full font-bold text-base-content/90 h-10">
+          <div className="text-2xl md:text-3xl min-w-full text-base-content/90 h-10">
             <TypeAnimation
               sequence={[
                 'I make Full-Stack Apps',
@@ -47,25 +47,25 @@ export default function Hero() {
             />
           </div>
 
-          <p className="text-lg text-base-content/70 max-w-xl leading-relaxed font-extrabold">
+          <p className="text-lg text-base-content/70 max-w-xl leading-relaxed">
             I am a student web app developer building clean, functional applications.
           </p>
 
           {/* Mobile-only Stats */}
           <div className="flex lg:hidden items-center gap-6 md:gap-10">
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-extrabold text-base-content">5+</span>
-              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Projects</span>
+              <span className="text-3xl md:text-4xl text-base-content">5+</span>
+              <span className="text-[10px] text-base-content/60 uppercase tracking-wider mt-1">Projects</span>
             </div>
             <div className="h-10 w-px bg-base-content/10"></div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-extrabold text-base-content">3+</span>
-              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Hackathons</span>
+              <span className="text-3xl md:text-4xl text-base-content">3+</span>
+              <span className="text-[10px] text-base-content/60 uppercase tracking-wider mt-1">Hackathons</span>
             </div>
             <div className="h-10 w-px bg-base-content/10"></div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-extrabold text-base-content">AI & UI</span>
-              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Specialty</span>
+              <span className="text-3xl md:text-4xl text-base-content">AI & UI</span>
+              <span className="text-[10px] text-base-content/60 uppercase tracking-wider mt-1">Specialty</span>
             </div>
           </div>
 
@@ -77,18 +77,18 @@ export default function Hero() {
           {/* Desktop-only Stats Section */}
           <div className="hidden lg:flex items-center justify-between w-full">
             <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl font-extrabold text-base-content">5+</span>
-              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Projects</span>
+              <span className="text-3xl md:text-4xl text-base-content">5+</span>
+              <span className="text-[13px] text-base-content/60 uppercase tracking-wider mt-1">Projects</span>
             </div>
             <div className="h-10 w-px bg-base-content/10"></div>
             <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl font-extrabold text-base-content">3+</span>
-              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Hackathons</span>
+              <span className="text-3xl md:text-4xl text-base-content">3+</span>
+              <span className="text-[13px] text-base-content/60 uppercase tracking-wider mt-1">Hackathons</span>
             </div>
             <div className="h-10 w-px bg-base-content/10"></div>
             <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl font-extrabold text-base-content">AI & UI</span>
-              <span className="text-[10px] text-base-content/60 font-extrabold uppercase tracking-wider mt-1">Specialty</span>
+              <span className="text-3xl md:text-4xl text-base-content">AI & UI</span>
+              <span className="text-[13px] text-base-content/60 uppercase tracking-wider mt-1">Specialty</span>
             </div>
           </div>
 
@@ -102,7 +102,7 @@ export default function Hero() {
                       e.preventDefault();
                       document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full font-extrabold text-lg transition-colors"
+                  className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full text-lg transition-colors"
                 >
                   Let&apos;s Connect
                 </a>
@@ -112,7 +112,7 @@ export default function Hero() {
                 <a
                   href="/cv.pdf"
                   target="_blank"
-                  className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full font-extrabold text-lg transition-colors"
+                  className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full text-lg transition-colors"
                 >
                   Download CV
                 </a>
@@ -121,17 +121,17 @@ export default function Hero() {
             
             {/* Social Links */}
             <div className="flex gap-10 w-full bg-base-100/70 rounded-xl px-6 py-2 justify-center lg:justify-center px-2">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors font-bold text-sm">
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
                 <FaGithub className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
 
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors font-bold text-sm">
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
                 <FaLinkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>
 
-              <a href="mailto:your@email.com" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors font-bold text-sm ">
+              <a href="mailto:your@email.com" className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm ">
                 <SiGmail className="w-5 h-5" />
                 <span>Gmail</span>
               </a>
@@ -162,7 +162,7 @@ export default function Hero() {
             className="w-1.5 h-2 bg-primary rounded-full"
           />
         </motion.div>
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-content/60">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-base-content/60">Scroll</span>
       </div>
     </section>
   )

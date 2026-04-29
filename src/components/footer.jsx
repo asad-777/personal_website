@@ -21,7 +21,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-6">
                             <div>
                                 <h3 
-                                    className="text-3xl font-bold text-base-content mb-3"
+                                    className="text-base-content mb-3"
                                     style={{ fontFamily: "var(--font-pro)" }}
                                 >
                                     Asad Amir
@@ -49,10 +49,10 @@ export default function Footer() {
                         
                             <button
                                 onClick={scrollToTop}
-                                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 w-full group"
+                                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-content hover:shadow-lg hover:scale-105 transition-all duration-300 w-full group"
                                 title="Back to top"
                             >
-                                <span className="text-sm uppercase font-bold tracking-wider">Back to top</span>
+                                <span className="text-sm uppercase tracking-wider">Back to top</span>
                                 <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                             </button>
                     </div>
@@ -60,7 +60,7 @@ export default function Footer() {
 
                 {/* Bottom Divider & Copyright */}
                     <div className="pt-8 border-t border-primary/20">
-                        <p className="text-sm font-bold text-base-content/50 text-center">
+                        <p className="text-sm text-base-content/50 text-center">
                             © {new Date().getFullYear()} Asad Amir. All rights reserved.
                         </p>
                     </div>

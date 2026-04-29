@@ -62,7 +62,7 @@ export default function ProjectsCard({ Projects }) {
                         {categories.map((cat, idx) => (
                             <span 
                                 key={idx} 
-                                className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none font-bold text-xs px-3 py-3"
+                                className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none text-xs px-3 py-3"
                             >
                                 {cat}
                             </span>
@@ -71,12 +71,12 @@ export default function ProjectsCard({ Projects }) {
                 )}
 
                 <div className="flex justify-between items-start">
-                    <h3 className="card-title text-2xl font-bold text-base-content">
+                    <h4 className="card-title text-base-content">
                         {title}
-                    </h3>
+                    </h4>
                 </div>
                 
-                <p className="text-base-content/75 leading-relaxed grow text-sm md:text-base">
+                <p className="text-base-content/75 leading-relaxed grow ">
                     {description}
                 </p>
 
@@ -85,7 +85,7 @@ export default function ProjectsCard({ Projects }) {
                     {techs.length > 0 ? techs.map((tech, index) => (
                         <span 
                             key={index} 
-                            className="badge badge-outline border-base-content/20 text-base-content/80 text-xs font-bold py-3 px-3"
+                            className="badge badge-outline border-base-content/20 text-base-content/80 text-xs py-3 px-3"
                         >
                             {tech}
                         </span>
@@ -107,7 +107,7 @@ export default function ProjectsCard({ Projects }) {
                             <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                     <Github size={20} className="text-base-content shrink-0" />
-                                    <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">GitHub</span>
+                                    <span className="text-base-content text-sm md:text-base whitespace-nowrap">GitHub</span>
                                 </div>
                             </div>
                         </a>
@@ -122,7 +122,7 @@ export default function ProjectsCard({ Projects }) {
                             <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                     <ExternalLink size={18} className="text-primary shrink-0" />
-                                    <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">Live</span>
+                                    <span className="text-base-content text-sm md:text-base whitespace-nowrap">Live</span>
                                 </div>
                             </div>
                         </a>

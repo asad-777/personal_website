@@ -55,7 +55,7 @@ const TwitterIcon = () => (
 
 // Fiverr icon
 const FiverrIcon = () => (
-    <span className="text-sm font-black text-[#1DBF73] shrink-0">F</span>
+    <span className="text-sm text-[#1DBF73] shrink-0">F</span>
 );
 
 // Upwork icon
@@ -183,8 +183,7 @@ export default function Contact() {
                 <div className=" items-center justify-center grid text-center md:items-start gap-4">
                     <ScrollReveal delay={0.1}>
                         <h2
-                            className="text-5xl min-w-full md:text-7xl font-extrabold tracking-tight text-base-content uppercase"
-                            style={{ fontFamily: 'var(--font-pro)' }}
+                            className="min-w-full text-base-content"
                         >
                             Contacts &<span className="text-primary"> Freelance</span>
                         </h2>
@@ -203,11 +202,11 @@ export default function Contact() {
                     {/* Freelance */}
                     <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
                         <ScrollReveal delay={0.2}>
-                            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Freelance</h3>
+                            <h3 className="text-base-content uppercase">Freelance</h3>
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.25}>
-                            <p className="text-lg md:text-xl font-bold text-base-content/70 max-w-md leading-relaxed">
+                            <p className=" text-base-content/70 max-w-md leading-relaxed">
                                 I take on freelance work across web development, UI engineering, and full-stack builds.
                             </p>
                         </ScrollReveal>
@@ -215,12 +214,12 @@ export default function Contact() {
                         <ScrollReveal delay={0.3}>
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
                                 <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
-                                    <a href="/portfolio.pdf" download className="bg-primary border-none text-primary-content text-base font-bold px-8 py-3 flex items-center gap-3 rounded-full">
+                                    <a href="/portfolio.pdf" download className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
                                         <Download className="w-4 h-4" /> Freelance Portfolio
                                     </a>
                                 </GlassSurface>
                                 <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
-                                    <Link href="/projects" className="bg-primary border-none text-primary-content text-base font-bold px-8 py-3 flex items-center gap-3 rounded-full">
+                                    <Link href="/projects" className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
                                         <ExternalLink className="w-4 h-4" /> See Work
                                     </Link>
                                 </GlassSurface>
@@ -234,7 +233,7 @@ export default function Contact() {
                                         <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
                                             <div className="flex items-center gap-3">
                                                 <Icon />
-                                                <span className="text-base font-bold text-base-content">{label}</span>
+                                                <span className="text-base text-base-content">{label}</span>
                                             </div>
                                         </GlassSurface>
                                     </a>
@@ -246,7 +245,7 @@ export default function Contact() {
                     {/* Socials */}
                     <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
                         <ScrollReveal delay={0.25}>
-                            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Socials</h3>
+                            <h3 className="text-base-content uppercase">Socials</h3>
                         </ScrollReveal>
                         <ScrollReveal delay={0.3}>
                             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -255,7 +254,7 @@ export default function Contact() {
                                         <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
                                             <div className="flex items-center gap-3">
                                                 <Icon />
-                                                <span className="text-base font-bold text-base-content">{label}</span>
+                                                <span className="text-base text-base-content">{label}</span>
                                             </div>
                                         </GlassSurface>
                                     </a>
@@ -266,13 +265,13 @@ export default function Contact() {
                 </div>
 
                 {/* ─── FORM ZONE ─── */}
-                <div className="flex flex-col lg:flex-row gap-10 pt-16 items-center  lg:items-center text-center lg:text-left">
-                    <div className="flex flex-col items-start gap-6 justify-start  mb-auto" >
+                <div className="flex flex-col lg:flex-row gap-10 pt-16 items-center    lg:text-left">
+                    <div className="flex flex-col lg:items-start gap-6 lg:justify-start items-center  mb-auto" >
                     <ScrollReveal delay={0.3}>
-                        <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Let&apos;s Talk</h3>
+                        <h3 className="text-base-content uppercase">Let&apos;s Talk</h3>
                     </ScrollReveal>
                     <ScrollReveal delay={0.3}>
-                        <p className="text-lg md:text-xl font-bold text-base-content/70 max-w-2xl leading-relaxed">
+                        <p className="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
                             Have a project in mind, or just want to say hello? Drop me a message and I&apos;ll get back to you.
                         </p>
                     </ScrollReveal>
@@ -286,53 +285,53 @@ export default function Contact() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
                                 <div className="space-y-3">
-                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Full Name </label>
+                                    <label className="text-base-content/60">Full Name </label>
                                     <input type="text" name="name" placeholder="John Doe"
                                         onChange={handleFieldChange} onBlur={handleFieldBlur}
-                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("name")}`} />
-                                    {touched.name && errors.name && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.name}</p>}
+                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("name")}`} />
+                                    {touched.name && errors.name && <p className="text-red-500 text-xs mt-1 tracking-wide">{errors.name}</p>}
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Email </label>
+                                    <label className="text-base-content/60">Email </label>
                                     <input type="email" name="email" placeholder="john@example.com"
                                         onChange={handleFieldChange} onBlur={handleFieldBlur}
-                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("email")}`} />
-                                    {touched.email && errors.email && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.email}</p>}
+                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("email")}`} />
+                                    {touched.email && errors.email && <p className="text-red-500 text-xs mt-1 tracking-wide">{errors.email}</p>}
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Phone </label>
+                                    <label className="text-base-content/60">Phone </label>
                                     <input type="tel" name="contact" placeholder="+1 234 567 890"
-                                        className="w-full bg-transparent border-b border-base-content/15 py-1 px-2 focus:px-6  focus:rounded-3xl outline-hidden duration-300 focus:rounded-3xl transition-rounded focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                        className="w-full bg-transparent border-b border-base-content/15 py-1 px-2 focus:px-6  focus:rounded-3xl outline-hidden duration-300 focus:rounded-3xl transition-rounded focus:border-primary transition-colors text-lg text-base-content placeholder:text-base-content/15" />
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Subject </label>
+                                    <label className="text-base-content/60">Subject </label>
                                     <input type="text" name="subject" placeholder="Project Inquiry"
                                         onChange={handleFieldChange} onBlur={handleFieldBlur}
-                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("subject")}`} />
-                                    {touched.subject && errors.subject && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.subject}</p>}
+                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("subject")}`} />
+                                    {touched.subject && errors.subject && <p className="text-red-500 text-xs mt-1 tracking-wide">{errors.subject}</p>}
                                 </div>
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Description </label>
+                                <label className="text-base-content/60">Description </label>
                                 <textarea name="message" rows={4} placeholder="Tell me about your project, timeline, budget..."
                                     onChange={handleFieldChange} onBlur={handleFieldBlur}
-                                    className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 resize-none ${fieldErrorClasses("message")}`} />
-                                {touched.message && errors.message && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.message}</p>}
+                                    className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors text-lg text-base-content placeholder:text-base-content/15 resize-none ${fieldErrorClasses("message")}`} />
+                                {touched.message && errors.message && <p className="text-red-500 text-xs mt-1 tracking-wide">{errors.message}</p>}
                             </div>
 
                             <div className="flex items-center justify-center  gap-6 pt-2">
                                 <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
                                     <button type="submit" disabled={status === "sending"}
-                                        className="bg-primary border-none text-primary-content font-black uppercase tracking-widest rounded-full px-10 py-3 disabled:opacity-50">
+                                        className="bg-primary border-none text-primary-content uppercase tracking-widest rounded-full px-10 py-3 disabled:opacity-50">
                                         {status === "sending" ? "Sending..." : "Send Message"}
                                     </button>
                                 </GlassSurface>
                                 {status === "success" && (
-                                    <p className="text-primary text-xs font-black uppercase tracking-widest">✓ Sent successfully</p>
+                                    <p className="text-primary text-xs uppercase tracking-widest">✓ Sent successfully</p>
                                 )}
                                 {status === "error" && (
-                                    <p className="text-red-500 text-xs font-black uppercase tracking-widest">✗ Failed to send — please try again</p>
+                                    <p className="text-red-500 text-xs uppercase tracking-widest">✗ Failed to send — please try again</p>
                                 )}
                             </div>
                         </form>

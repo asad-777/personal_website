@@ -74,8 +74,7 @@ export default function TopProjects() {
                 <div className="flex flex-col items-center text-center gap-4">
                     <ScrollReveal delay={0.1}>
                         <h2 
-                            className="text-4xl hide-dominoes md:text-5xl font-extrabold  tracking-tight text-base-content"
-                            style={{ fontFamily: 'var(--font-pro)' }}
+                            className="hide-dominoes text-base-content"
                         >
                             Top Projects
                         </h2>
@@ -91,7 +90,7 @@ export default function TopProjects() {
                         <Link href="/projects" className="group glass bg-base-200/80 btn btn-wide py-8 hover:bg-primary/80 hover:text-primary-content btn-primary rounded-2xl w-full max-w-sm">
                             <div className="h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
-                                    <span className="text-base-content font-extrabold text-xl whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
+                                    <span className="text-base-content text-xl whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
                                     <ArrowRight size={20} className="text-primary shrink-0" />
                                 </div>
                             </div>
@@ -116,7 +115,7 @@ export default function TopProjects() {
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                     <div className="absolute top-4 right-4 z-10">
-                                        <span className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none font-bold">
+                                        <span className="badge badge-primary backdrop-blur-md bg-opacity-90 border-none">
                                             {project.category}
                                         </span>
                                     </div>
@@ -125,12 +124,12 @@ export default function TopProjects() {
                                 {/* Content Area */}
                                 <div className="card-body p-6 flex flex-col gap-4">
                                     <div className="flex justify-between items-start">
-                                        <h3 className="card-title text-2xl font-bold text-base-content">
+                                        <h3 className="card-title text-base-content">
                                             {project.title}
                                         </h3>
                                     </div>
                                     
-                                    <p className="text-base-content/75 leading-relaxed grow text-sm md:text-base">
+                                    <p className="text-base-content/75 leading-relaxed grow  ">
                                         {project.description}
                                     </p>
 
@@ -139,7 +138,7 @@ export default function TopProjects() {
                                         {project.technologies.map((tech, index) => (
                                             <span 
                                                 key={index} 
-                                                className="badge badge-outline border-base-content/20 text-base-content/80 text-xs font-bold py-3 px-3"
+                                                className="badge badge-outline border-base-content/20 text-base-content/80 text-xs py-3 px-3"
                                             >
                                                 {tech}
                                             </span>
@@ -158,7 +157,7 @@ export default function TopProjects() {
                                             <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                                     <Github size={20} className="text-base-content shrink-0" />
-                                                    <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">GitHub</span>
+                                                    <span className="text-base-content text-sm md:text-base whitespace-nowrap">GitHub</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -171,7 +170,7 @@ export default function TopProjects() {
                                             <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                                     <ExternalLink size={18} className="text-primary shrink-0" />
-                                                    <span className="text-base-content font-bold text-sm md:text-base whitespace-nowrap">Live</span>
+                                                    <span className="text-base-content text-sm md:text-base whitespace-nowrap">Live</span>
                                                 </div>
                                             </div>
                                         </a>

@@ -46,12 +46,11 @@ export default function ProjectsPage() {
                     {/* Header section */}
                     <div className="flex flex-col mt-16 items-center w-fit mx-auto text-center gap-4 hide-dominoes">
                         <h1 
-                            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-base-content"
-                            style={{ fontFamily: 'var(--font-pro)' }}
+                            className="text-transparent text-4xl! lg:text-6xl! tracking-tighter! font-extrabold!"
                         >
-                            All Projects
+                            <span className="text-base-content">All</span> <span className="bg-linear-to-r from-primary to-secondary bg-clip-text!">Projects</span>
                         </h1>
-                        <p className="text-base-content/80 text-lg md:text-xl max-w-2xl">
+                        <p className="text-base-content/80  max-w-2xl">
                             A comprehensive collection of my recent work, side projects, and experiments.
                         </p>
                         <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-6 mt-4" />
