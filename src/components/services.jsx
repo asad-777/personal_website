@@ -9,7 +9,7 @@ export default function Services() {
             tech: ["React", "Next.js", "Tailwind CSS"],
         },
         {
-            title: "Backend & Database",
+            title: "Backend & DB",
             tech: ["Django", "Fast API", "Docker"],
         },
         {

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function GlobalBackground() {
   const canvasRef = useRef(null)
-  const mouseRef = useRef({ x: -1000, y: -1000 })
   const starsRef = useRef([])
   const shootingStarsRef = useRef([])
   const [isDark, setIsDark] = useState(true)
@@ -29,15 +28,15 @@ export default function GlobalBackground() {
     const init = () => {
       w = canvas.width = window.innerWidth
       h = canvas.height = window.innerHeight
-      const count = isMobile ? 50 : 200
+      const count = isMobile ? 70 : 250
       starsRef.current = Array.from({ length: count }).map(() => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.1,
-        vy: (Math.random() - 0.5) * 0.1,
-        size: Math.random() * 1.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.7,
         opacity: Math.random() * 0.5 + 0.2,
-        blink: Math.random() * 0.05
+        blink: Math.random() * 0.008 
       }))
     }
 

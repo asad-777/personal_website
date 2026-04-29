@@ -74,13 +74,68 @@ const SlackIcon = () => (
 
 export default function Contact() {
     const [status, setStatus] = useState("idle");
+    const [errors, setErrors] = useState({});
+    const [touched, setTouched] = useState({});
+
+    function validateField(name, value) {
+        switch (name) {
+            case "name":
+                if (!value.trim()) return "Full name is required";
+                if (value.trim().length < 2) return "Name must be at least 2 characters";
+                return "";
+            case "email":
+                if (!value.trim()) return "Email address is required";
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return "Please enter a valid email";
+                return "";
+            case "subject":
+                if (!value.trim()) return "Subject is required";
+                return "";
+            case "message":
+                if (!value.trim()) return "Message is required";
+                if (value.trim().length < 10) return "Please write at least 10 characters";
+                return "";
+            default:
+                return "";
+        }
+    }
+
+    function validateAll(form) {
+        const fields = ["name", "email", "subject", "message"];
+        const newErrors = {};
+        let valid = true;
+        fields.forEach((f) => {
+            const val = form.elements[f]?.value || "";
+            const err = validateField(f, val);
+            if (err) {
+                newErrors[f] = err;
+                valid = false;
+            }
+        });
+        setErrors(newErrors);
+        setTouched({ name: true, email: true, subject: true, message: true });
+        return valid;
+    }
+
+    function handleFieldChange(e) {
+        const { name, value } = e.target;
+        if (touched[name]) {
+            setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
+        }
+    }
+
+    function handleFieldBlur(e) {
+        const { name, value } = e.target;
+        setTouched((prev) => ({ ...prev, [name]: true }));
+        setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setStatus("sending");
         const form = e.target;
+        if (!validateAll(form)) return;
+        setStatus("sending");
         try {
-            const res = await fetch("https://formspree.io/f/mkgrwrbn", {
+            const res = await fetch("https://formspree.io/f/mkgrwrb", {
                 method: "POST",
                 headers: { Accept: "application/json" },
                 body: new FormData(form),
@@ -88,13 +143,22 @@ export default function Contact() {
             if (res.ok) {
                 setStatus("success");
                 form.reset();
+                setErrors({});
+                setTouched({});
             } else {
                 setStatus("error");
+                form.reset()
             }
         } catch {
             setStatus("error");
         }
     }
+
+    const fieldErrorClasses = (name) =>
+        touched[name] && errors[name]
+            ? "border-red-500  focus:border-red-500 animate-[shake_0.3s_ease-in-out]"
+            : "border-base-content/15 "
+             "focus:border-primary";
 
     const freelancePlatforms = [
         { icon: FiverrIcon, label: "Fiverr", href: "#" },
@@ -202,7 +266,8 @@ export default function Contact() {
                 </div>
 
                 {/* ─── FORM ZONE ─── */}
-                <div className="flex flex-col gap-10 pt-16 items-center lg:items-start text-center lg:text-left">
+                <div className="flex flex-col lg:flex-row gap-10 pt-16 items-center  lg:items-center text-center lg:text-left">
+                    <div className="flex flex-col items-start gap-6 justify-start  mb-auto" >
                     <ScrollReveal delay={0.3}>
                         <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-base-content uppercase" style={{ fontFamily: 'var(--font-pro)' }}>Let&apos;s Talk</h3>
                     </ScrollReveal>
@@ -211,6 +276,7 @@ export default function Contact() {
                             Have a project in mind, or just want to say hello? Drop me a message and I&apos;ll get back to you.
                         </p>
                     </ScrollReveal>
+                    </div>
 
                     <ScrollReveal delay={0.35}>
                         <form onSubmit={handleSubmit} className="w-full space-y-10">
@@ -220,34 +286,42 @@ export default function Contact() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
                                 <div className="space-y-3">
-                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Full Name <span className="text-primary">*</span></label>
-                                    <input type="text" name="name" required placeholder="John Doe"
-                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Full Name </label>
+                                    <input type="text" name="name" placeholder="John Doe"
+                                        onChange={handleFieldChange} onBlur={handleFieldBlur}
+                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("name")}`} />
+                                    {touched.name && errors.name && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.name}</p>}
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Email <span className="text-primary">*</span></label>
-                                    <input type="email" name="email" required placeholder="john@example.com"
-                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Email </label>
+                                    <input type="email" name="email" placeholder="john@example.com"
+                                        onChange={handleFieldChange} onBlur={handleFieldBlur}
+                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("email")}`} />
+                                    {touched.email && errors.email && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.email}</p>}
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Phone <span className="text-base-content/20 text-[10px] normal-case tracking-normal">optional</span></label>
+                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Phone </label>
                                     <input type="tel" name="contact" placeholder="+1 234 567 890"
-                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                        className="w-full bg-transparent border-b border-base-content/15 py-1 px-2 focus:px-6  focus:rounded-3xl outline-hidden duration-300 focus:rounded-3xl transition-rounded focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Subject <span className="text-primary">*</span></label>
-                                    <input type="text" name="subject" required placeholder="Project Inquiry"
-                                        className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15" />
+                                    <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Subject </label>
+                                    <input type="text" name="subject" placeholder="Project Inquiry"
+                                        onChange={handleFieldChange} onBlur={handleFieldBlur}
+                                        className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("subject")}`} />
+                                    {touched.subject && errors.subject && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.subject}</p>}
                                 </div>
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-xs font-black uppercase tracking-[0.2em] text-base-content/40">Description <span className="text-primary">*</span></label>
-                                <textarea name="message" required rows={4} placeholder="Tell me about your project, timeline, budget..."
-                                    className="w-full bg-transparent border-b border-base-content/15 pb-3 outline-hidden focus:border-primary transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 resize-none" />
+                                <label className="text-sm font-black uppercase tracking-[0.2em] text-base-content/60">Description </label>
+                                <textarea name="message" rows={4} placeholder="Tell me about your project, timeline, budget..."
+                                    onChange={handleFieldChange} onBlur={handleFieldBlur}
+                                    className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors font-bold text-lg text-base-content placeholder:text-base-content/15 resize-none ${fieldErrorClasses("message")}`} />
+                                {touched.message && errors.message && <p className="text-red-500 text-xs font-bold mt-1 tracking-wide">{errors.message}</p>}
                             </div>
 
-                            <div className="flex items-center justify-center lg:justify-start gap-6 pt-2">
+                            <div className="flex items-center justify-center  gap-6 pt-2">
                                 <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
                                     <button type="submit" disabled={status === "sending"}
                                         className="bg-primary border-none text-primary-content font-black uppercase tracking-widest rounded-full px-10 py-3 disabled:opacity-50">
@@ -255,7 +329,10 @@ export default function Contact() {
                                     </button>
                                 </GlassSurface>
                                 {status === "success" && (
-                                    <p className="text-primary text-xs font-black uppercase tracking-widest">✓ Sent</p>
+                                    <p className="text-primary text-xs font-black uppercase tracking-widest">✓ Sent successfully</p>
+                                )}
+                                {status === "error" && (
+                                    <p className="text-red-500 text-xs font-black uppercase tracking-widest">✗ Failed to send — please try again</p>
                                 )}
                             </div>
                         </form>

@@ -14,10 +14,10 @@ export default function Hero() {
       className="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-transparent lg:pt-36 pt-48"
     >
       {/* Content */}
-      <div className="relative w-full justify-between gap-24 flex z-30 mx-auto px-24 items-center">
+      <div className="relative w-full  lg:justify-between  lg:gap-24 flex z-30  lg:px-24 items-center">
         
         {/* Left Side: Content */}
-        <div className="relative flex flex-col items-center lg:items-start justify-center text-center lg:text-left gap-6 lg:pr-8 lg:-mt-12 py-10 min-h-[60vh] lg:min-h-0">
+        <div className="relative flex  flex-col items-center lg:items-start justify-center text-center lg:text-left gap-6 lg:pr-8 lg:-mt-12  py-10 min-h-[60vh] lg:min-h-0">
           
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-base-200/80 backdrop-blur-md border border-base-300 shadow-sm">
             <MapPin size={16} className="text-primary" />
@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side: Stats & CTAs */}
-        <div className="relative w-fit h-full flex flex-col items-start lg:items-end justify-center mt-8 lg:mt-0 gap-10">
+        <div className="relative w-fit  h-full flex flex-col items-start lg:items-end justify-center mt-8 lg:mt-0 gap-10">
           
           {/* Desktop-only Stats Section */}
           <div className="hidden lg:flex items-center justify-between w-full">
@@ -147,62 +147,23 @@ export default function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 1 }}
-          className="w-6 h-10 border-2 border-base-content/20 rounded-full flex justify-center p-1"
+          className="w-6 h-13 border-2 border-base-content/20 rounded-full flex justify-center p-1"
         >
           <motion.div
             animate={{
-              y: [0, 12, 0],
-              opacity: [1, 0, 1]
+              y: [0, 22, 0],
+              opacity: [1, 0.3, 1]
             }}
             transition={{
               duration: 1.5,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="w-1.5 h-1.5 bg-primary rounded-full"
+            className="w-1.5 h-2 bg-primary rounded-full"
           />
         </motion.div>
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-content/40">Scroll</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-content/60">Scroll</span>
       </div>
-      <HeroWaves />
     </section>
-  )
-}
-
-const HeroWaves = () => {
-  return (
-    <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20">
-      <svg
-        viewBox="0 0 1440 200"
-        className="relative w-full h-[80px] md:h-[120px]"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Deep Wave Layer */}
-        <motion.path
-          animate={{
-            d: [
-              "M0,160 C320,100 420,200 720,160 C1020,120 1120,200 1440,160 V200 H0 Z",
-              "M0,140 C320,180 420,100 720,140 C1020,180 1120,100 1440,140 V200 H0 Z",
-              "M0,160 C320,100 420,200 720,160 C1020,120 1120,200 1440,160 V200 H0 Z"
-            ]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="fill-base-100/40 backdrop-blur-[2px]"
-        />
-        {/* Main Wave Layer (Solid Cut) */}
-        <motion.path
-          animate={{
-            d: [
-              "M0,180 C320,150 420,220 720,180 C1020,140 1120,220 1440,180 V200 H0 Z",
-              "M0,160 C320,200 420,140 720,160 C1020,180 1120,140 1440,160 V200 H0 Z",
-              "M0,180 C320,150 420,220 720,180 C1020,140 1120,220 1440,180 V200 H0 Z"
-            ]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="fill-base-100"
-        />
-      </svg>
-    </div>
   )
 }
