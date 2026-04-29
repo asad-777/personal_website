@@ -70,30 +70,33 @@ export default function Navbar({ children }) {
           borderWidth={0.5}
         >
           <div className="flex items-center gap-8 h-full relative">
-            <Link
-              href={isHome ? "#hero" : "/#hero"}
-              onClick={(e) => {
-                if (isHome) {
-                  e.preventDefault();
-                  document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="hover:scale-110 transition-transform flex items-center justify-center shrink-0"
+            <button
+              onClick={() => { window.location.href = "/#hero"; }}
+              className="hover:scale-110 transition-transform flex items-center justify-center shrink-0 cursor-pointer"
               aria-label="Home"
             >
               <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain" />
-            </Link>
+            </button>
             
             <span className="text-base-content text-xl select-none">•</span>
 
             {navItems.map((item, index, array) => (
               <div key={item.label} className="flex items-center gap-8">
-                <Link
-                  href={item.href}
-                  className="text-base-content font-bold nav-link text-lg whitespace-nowrap"
-                >
-                  {item.label}
-                </Link>
+                {item.href.startsWith("/#") ? (
+                  <button
+                    onClick={() => { window.location.href = item.href; }}
+                    className="text-base-content font-bold nav-link text-lg whitespace-nowrap cursor-pointer"
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-base-content font-bold nav-link text-lg whitespace-nowrap"
+                  >
+                    {item.label}
+                  </Link>
+                )}
                 {index < array.length - 1 && (
                   <span className="text-base-content text-xl select-none">•</span>
                 )}
@@ -145,19 +148,13 @@ export default function Navbar({ children }) {
             </button>
 
             {/* Logo */}
-            <Link
-              href={isHome ? "#hero" : "/#hero"}
-              onClick={(e) => {
-                if (isHome) {
-                  e.preventDefault();
-                  document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="hover:scale-110 transition-transform flex items-center justify-center shrink-0"
+            <button
+              onClick={() => { window.location.href = "/#hero"; }}
+              className="hover:scale-110 transition-transform flex items-center justify-center shrink-0 cursor-pointer"
               aria-label="Home"
             >
               <Image src="/logo.png" alt="Logo" width={40} height={40} className="w-10 h-10 object-contain" />
-            </Link>
+            </button>
 
             {/* Theme Toggle */}
             <div className="hover:scale-110 transition-transform cursor-pointer flex items-center justify-center w-8 h-8">
@@ -198,13 +195,7 @@ export default function Navbar({ children }) {
         >
           <InteractiveHoverButton
             className="bg-primary border-none text-primary-content text-lg btn-wide hover:px-12 duration-300 transition-all ease-in-out btn shadow-none"
-            onClick={() => {
-              if (pathname === "/") {
-                document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" });
-              } else {
-                window.location.href = "/#contactme";
-              }
-            }}
+            onClick={() => { window.location.href = "/#contactme"; }}
           >
             Let&apos;s Connect
           </InteractiveHoverButton>
@@ -252,25 +243,33 @@ export default function Navbar({ children }) {
                 <ul className="flex-1 flex flex-col justify-center px-8 pt-8">
                   {!isHome && (
                     <li className="w-full border-b border-base-content/10">
-                      <Link
-                        href="/"
-                        onClick={closeMenu}
-                        className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 flex items-center gap-4"
+                      <button
+                        onClick={() => { closeMenu(); window.location.href = "/"; }}
+                        className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 flex items-center gap-4 w-full cursor-pointer"
                       >
                         <House className="w-7 h-7 shrink-0" />
                         Home
-                      </Link>
+                      </button>
                     </li>
                   )}
                   {navItems.map((item) => (
                     <li key={item.label} className="w-full border-b border-base-content/10">
-                      <Link
-                        href={item.href}
-                        onClick={closeMenu}
-                        className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full"
-                      >
-                        {item.label}
-                      </Link>
+                      {item.href.startsWith("/#") ? (
+                        <button
+                          onClick={() => { closeMenu(); window.location.href = item.href; }}
+                          className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full text-left cursor-pointer"
+                        >
+                          {item.label}
+                        </button>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={closeMenu}
+                          className="text-base-content font-bold text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full"
+                        >
+                          {item.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -308,13 +307,12 @@ export default function Navbar({ children }) {
 
                   {/* CTA buttons */}
                   <div className="flex gap-3">
-                    <Link
-                      href="/#contactme"
-                      className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl"
-                      onClick={closeMenu}
+                    <button
+                      onClick={() => { closeMenu(); window.location.href = "/#contactme"; }}
+                      className="btn btn-primary h-14 flex-1 text-lg font-bold rounded-xl shadow-xl cursor-pointer"
                     >
                       Let&apos;s Connect
-                    </Link>
+                    </button>
                     <a
                       href="/cv.pdf"
                       download

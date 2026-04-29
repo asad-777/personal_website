@@ -74,7 +74,7 @@ export default function GamePage() {
 
   return (
     <>
-      <div className="min-h-screen pt-24 bg-base-100 p-4 flex flex-col gap-12 items-center justify-center overflow-hidden">
+      <div className="min-h-screen pt-24  p-4 flex flex-col gap-12 items-center justify-center overflow-hidden">
 
         {/* Game iframe */}
         <div className="w-full lg:mt-24 mx-auto max-w-200 lg:max-w-250 aspect-3/2 shadow-2xl rounded-xl overflow-hidden">
