@@ -1,12 +1,12 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script";
 import { cn } from "../lib/utils";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
 import GlobalBackground from "@/components/GlobalBackground";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
+import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 
 export const metadata = {
   title: "Asad Amir",
@@ -38,6 +38,19 @@ export default function RootLayout({
     <html lang="en" data-theme="Portfolio-dark" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="P2-zTB2CZK9jhHpma5PWMzgzXNuN5YSbdQ6cyfQB8MU" />
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         {/* Inline script: apply saved theme before first paint to avoid flash */}
         <script
           dangerouslySetInnerHTML={{
@@ -46,8 +59,6 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(goodTimes.variable, paradroid.variable, paradroidMain.variable)}>
-              <Analytics />
-              <SpeedInsights />
         <GlobalBackground />
         
         {/* Navbar and Cursor are OUTSIDE the zoom content so they stay at 100% scale and top layer */}

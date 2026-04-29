@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { track } from "@vercel/analytics";
+import { gtagEvent } from "@/lib/gtag";
 
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Send, Download, ExternalLink } from "lucide-react";
@@ -215,12 +215,12 @@ export default function Contact() {
                         <ScrollReveal delay={0.3}>
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
                                 <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
-                                    <a href="/portfolio.pdf" download onClick={() => track("download_cv_click", { location: "freelance" })} className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
+                                    <a href="/portfolio.pdf" download onClick={() => gtagEvent("download_cv_click", { location: "freelance" })} className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
                                         <Download className="w-4 h-4" /> Freelance Portfolio
                                     </a>
                                 </GlassSurface>
                                 <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
-                                    <Link href="/projects" onClick={() => track("see_work_click", { location: "freelance" })} className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
+                                    <Link href="/projects" onClick={() => gtagEvent("see_work_click", { location: "freelance" })} className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
                                         <ExternalLink className="w-4 h-4" /> See Work
                                     </Link>
                                 </GlassSurface>
@@ -230,7 +230,7 @@ export default function Contact() {
                         <ScrollReveal delay={0.35}>
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
                                 {freelancePlatforms.map(({ icon: Icon, label, href }) => (
-                                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" onClick={() => track("social_click", { platform: label, location: "freelance" })}>
+                                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("social_click", { platform: label, location: "freelance" })}>
                                         <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
                                             <div className="flex items-center gap-3">
                                                 <Icon />
@@ -251,7 +251,7 @@ export default function Contact() {
                         <ScrollReveal delay={0.3}>
                             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                                 {socialLinks.map(({ icon: Icon, label, href }) => (
-                                    <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" onClick={() => track("social_click", { platform: label, location: "socials" })}>
+                                    <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" onClick={() => gtagEvent("social_click", { platform: label, location: "socials" })}>
                                         <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
                                             <div className="flex items-center gap-3">
                                                 <Icon />

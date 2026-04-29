@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react";
-import { track } from "@vercel/analytics";
+import { gtagEvent } from "@/lib/gtag";
 import { ArrowUp } from "lucide-react";
 
 import Link from "next/link"
@@ -18,7 +18,7 @@ export default function Footer() {
             ([entry]) => {
                 if (entry.isIntersecting && !hasFired.current) {
                     hasFired.current = true;
-                    track("footer_reached");
+                    gtagEvent("footer_reached");
                 }
             },
             { threshold: 0.3 }
