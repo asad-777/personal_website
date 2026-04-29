@@ -285,7 +285,7 @@ export default function Contact() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
                                 <div className="space-y-3">
-                                    <label className="text-base-content/60">Full Name </label>
+                                    <label className="text-base-content/60">Name </label>
                                     <input type="text" name="name" placeholder="John Doe"
                                         onChange={handleFieldChange} onBlur={handleFieldBlur}
                                         className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors text-lg text-base-content placeholder:text-base-content/15 ${fieldErrorClasses("name")}`} />
@@ -299,7 +299,7 @@ export default function Contact() {
                                     {touched.email && errors.email && <p className="text-red-500 text-xs mt-1 tracking-wide">{errors.email}</p>}
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-base-content/60">Phone </label>
+                                    <label className="text-base-content/60">Phone </label><span className="text-xs text-base-content/50">(Optional)</span>
                                     <input type="tel" name="contact" placeholder="+1 234 567 890"
                                         className="w-full bg-transparent border-b border-base-content/15 py-1 px-2 focus:px-6  focus:rounded-3xl outline-hidden duration-300 focus:rounded-3xl transition-rounded focus:border-primary transition-colors text-lg text-base-content placeholder:text-base-content/15" />
                                 </div>
@@ -314,7 +314,7 @@ export default function Contact() {
 
                             <div className="space-y-3">
                                 <label className="text-base-content/60">Description </label>
-                                <textarea name="message" rows={4} placeholder="Tell me about your project, timeline, budget..."
+                                <textarea name="message" rows={4} placeholder="Tell me what do you have in mind..."
                                     onChange={handleFieldChange} onBlur={handleFieldBlur}
                                     className={`w-full bg-transparent border-b py-1 px-2 focus:px-6 duration-300 transition-rounded focus:rounded-3xl focus:border-primary outline-hidden transition-colors text-lg text-base-content placeholder:text-base-content/15 resize-none ${fieldErrorClasses("message")}`} />
                                 {touched.message && errors.message && <p className="text-red-500 text-xs mt-1 tracking-wide">{errors.message}</p>}

@@ -47,7 +47,7 @@ export default function Hero() {
             />
           </div>
 
-          <p className="text-lg text-base-content/70 max-w-xl leading-relaxed">
+          <p className="text-lg text-base-content/70  px-6 lg:px-0 max-w-xl leading-relaxed">
             I am a student web app developer building clean, functional applications.
           </p>
 
