@@ -18,7 +18,7 @@ export default function Footer() {
             ([entry]) => {
                 if (entry.isIntersecting && !hasFired.current) {
                     hasFired.current = true;
-                    gtagEvent("footer_reached");
+                    gtagEvent("FooterReached");
                 }
             },
             { threshold: 0.3 }

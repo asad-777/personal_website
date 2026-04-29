@@ -85,7 +85,7 @@ export default function Navbar({ children }) {
               <div key={item.label} className="flex items-center gap-8">
                 {item.href.startsWith("/#") ? (
                   <button
-                    onClick={() => { gtagEvent("nav_link_click", { label: item.label, device: "desktop" }); window.location.href = item.href; }}
+                    onClick={() => { gtagEvent(`${item.label}NavDesktopClick`); window.location.href = item.href; }}
                     className="text-base-content nav-link text-lg whitespace-nowrap cursor-pointer"
                   >
                     {item.label}
@@ -93,7 +93,7 @@ export default function Navbar({ children }) {
                 ) : (
                   <Link
                     href={item.href}
-                    onClick={() => gtagEvent("nav_link_click", { label: item.label, device: "desktop" })}
+                    onClick={() => gtagEvent(`${item.label}NavDesktopClick`)}
                     className="text-base-content nav-link text-lg whitespace-nowrap"
                   >
                     {item.label}
@@ -173,13 +173,13 @@ export default function Navbar({ children }) {
         <div className="hidden lg:block hover:scale-105 transition-transform cursor-pointer">
           <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="px-6">
             <div className="flex items-center gap-6 h-full">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("social_click", { platform: "GitHub", location: "navbar" })}>
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("GithubNavDesktopClick")}>
                 <FaGithub className="w-6 h-6 text-base-content/60" />
               </a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("social_click", { platform: "LinkedIn", location: "navbar" })}>
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("LinkedinNavDesktopClick")}>
                 <FaLinkedin className="w-6 h-6 text-base-content/60" />
               </a>
-              <a href="mailto:your@email.com" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("social_click", { platform: "Gmail", location: "navbar" })}>
+              <a href="mailto:your@email.com" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("GmailNavDesktopClick")}>
                 <SiGmail className="w-6 h-6 text-base-content/60" />
               </a>
             </div>
@@ -197,7 +197,7 @@ export default function Navbar({ children }) {
         >
           <InteractiveHoverButton
             className="bg-primary border-none text-primary-content text-lg btn-wide hover:px-12 duration-300 transition-all ease-in-out btn shadow-none"
-            onClick={() => { gtagEvent("lets_connect_click", { location: "navbar" }); window.location.href = "/#contactme"; }}
+            onClick={() => { gtagEvent("LetsConnectNavDesktopClick"); window.location.href = "/#contactme"; }}
           >
             Let&apos;s Connect
           </InteractiveHoverButton>
@@ -246,7 +246,7 @@ export default function Navbar({ children }) {
                   {!isHome && (
                     <li className="w-full border-b border-base-content/10">
                       <button
-                        onClick={() => { gtagEvent("nav_link_click", { label: "Home", device: "mobile" }); closeMenu(); window.location.href = "/"; }}
+                        onClick={() => { gtagEvent("HomeNavMobileClick"); closeMenu(); window.location.href = "/"; }}
                         className="text-base-content text-2xl py-5 hover:text-primary transition-colors duration-300 flex items-center gap-4 w-full cursor-pointer"
                       >
                         <House className="w-7 h-7 shrink-0" />
@@ -258,7 +258,7 @@ export default function Navbar({ children }) {
                     <li key={item.label} className="w-full border-b border-base-content/10">
                       {item.href.startsWith("/#") ? (
                         <button
-                          onClick={() => { gtagEvent("nav_link_click", { label: item.label, device: "mobile" }); closeMenu(); window.location.href = item.href; }}
+                          onClick={() => { gtagEvent(`${item.label}NavMobileClick`); closeMenu(); window.location.href = item.href; }}
                           className="text-base-content text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full text-left cursor-pointer"
                         >
                           {item.label}
@@ -266,7 +266,7 @@ export default function Navbar({ children }) {
                       ) : (
                         <Link
                           href={item.href}
-                          onClick={() => { gtagEvent("nav_link_click", { label: item.label, device: "mobile" }); closeMenu(); }}
+                          onClick={() => { gtagEvent(`${item.label}NavMobileClick`); closeMenu(); }}
                           className="text-base-content text-2xl py-5 hover:text-primary transition-colors duration-300 block w-full"
                         >
                           {item.label}
@@ -285,7 +285,7 @@ export default function Navbar({ children }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-outline border-2 btn-primary flex-1 gap-2 h-12 text-base rounded-xl"
-                      onClick={() => { gtagEvent("social_click", { platform: "GitHub", location: "navbar_mobile" }); closeMenu(); }}
+                      onClick={() => { gtagEvent("GithubNavMobileClick"); closeMenu(); }}
                     >
                       <FaGithub className="w-5 h-5" />
                     </a>
@@ -294,14 +294,14 @@ export default function Navbar({ children }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base rounded-xl"
-                      onClick={() => { gtagEvent("social_click", { platform: "LinkedIn", location: "navbar_mobile" }); closeMenu(); }}
+                      onClick={() => { gtagEvent("LinkedinNavMobileClick"); closeMenu(); }}
                     >
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                     <a
                       href="mailto:your@email.com"
                       className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base rounded-xl"
-                      onClick={() => { gtagEvent("social_click", { platform: "Gmail", location: "navbar_mobile" }); closeMenu(); }}
+                      onClick={() => { gtagEvent("GmailNavMobileClick"); closeMenu(); }}
                     >
                       <SiGmail className="w-5 h-5" />
                     </a>
@@ -310,7 +310,7 @@ export default function Navbar({ children }) {
                   {/* CTA buttons */}
                   <div className="flex gap-3">
                     <button
-                      onClick={() => { gtagEvent("lets_connect_click", { location: "navbar_mobile" }); closeMenu(); window.location.href = "/#contactme"; }}
+                      onClick={() => { gtagEvent("LetsConnectNavMobileClick"); closeMenu(); window.location.href = "/#contactme"; }}
                       className="btn btn-primary h-14 flex-1 text-lg rounded-xl shadow-xl cursor-pointer"
                     >
                       Let&apos;s Connect
@@ -319,7 +319,7 @@ export default function Navbar({ children }) {
                       href="/cv.pdf"
                       download
                       className="btn btn-primary h-14 flex-1 text-lg rounded-xl shadow-xl"
-                      onClick={() => { gtagEvent("download_cv_click", { location: "navbar_mobile" }); closeMenu(); }}
+                      onClick={() => { gtagEvent("DownloadCVNavMobileClick"); closeMenu(); }}
                     >
                       Download CV
                     </a>

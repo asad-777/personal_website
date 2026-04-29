@@ -101,7 +101,7 @@ export default function Hero() {
                   href="#contactme"
                   onClick={(e) => {
                       e.preventDefault();
-                      gtagEvent("lets_connect_click", { location: "hero" });
+                      gtagEvent("LetsConnectHeroClick");
                       document.getElementById("contactme")?.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full text-lg transition-colors"
@@ -114,7 +114,7 @@ export default function Hero() {
                 <a
                   href="/cv.pdf"
                   target="_blank"
-                  onClick={() => gtagEvent("download_cv_click", { location: "hero" })}
+                  onClick={() => gtagEvent("DownloadCVHeroClick")}
                   className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full text-lg transition-colors"
                 >
                   Download CV
@@ -124,17 +124,17 @@ export default function Hero() {
             
             {/* Social Links */}
             <div className="flex gap-10 w-full bg-base-100/70 rounded-xl px-6 py-2 justify-center lg:justify-center px-2">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("social_click", { platform: "GitHub", location: "hero" })} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("GithubHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
                 <FaGithub className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
 
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("social_click", { platform: "LinkedIn", location: "hero" })} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("LinkedinHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
                 <FaLinkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>
 
-              <a href="mailto:your@email.com" onClick={() => gtagEvent("social_click", { platform: "Gmail", location: "hero" })} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm ">
+              <a href="mailto:your@email.com" onClick={() => gtagEvent("GmailHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm ">
                 <SiGmail className="w-5 h-5" />
                 <span>Gmail</span>
               </a>

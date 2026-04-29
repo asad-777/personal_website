@@ -88,7 +88,7 @@ export default function TopProjects() {
                 {/* View All Projects Link */}
                 <ScrollReveal delay={0.4}>
                     <div className="flex justify-center w-full mt-8">
-                        <Link href="/projects" onClick={() => gtagEvent("view_all_projects_click")} className="group glass bg-base-200/80 btn btn-wide py-8 hover:bg-primary/80 hover:text-primary-content btn-primary rounded-2xl w-full max-w-sm">
+                        <Link href="/projects" onClick={() => gtagEvent("ViewAllProjectsClick")} className="group glass bg-base-200/80 btn btn-wide py-8 hover:bg-primary/80 hover:text-primary-content btn-primary rounded-2xl w-full max-w-sm">
                             <div className="h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
                                     <span className="text-base-content text-xl whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
@@ -154,7 +154,7 @@ export default function TopProjects() {
                                             rel="noopener noreferrer"
                                             className="hover:scale-[1.05] transition-transform"
                                             aria-label="View Source on GitHub"
-                                            onClick={() => gtagEvent("project_github_click", { project: project.title })}
+                                            onClick={() => gtagEvent(`${project.title.replace(/\s+/g, '')}GithubClick`)}
                                         >
                                             <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
@@ -168,7 +168,7 @@ export default function TopProjects() {
                                             target="_blank" 
                                             rel="noopener noreferrer"
                                             className="hover:scale-[1.05] transition-transform"
-                                            onClick={() => gtagEvent("project_live_demo_click", { project: project.title })}
+                                            onClick={() => gtagEvent(`${project.title.replace(/\s+/g, '')}LiveClick`)}
                                         >
                                             <div className="glass-card h-12 px-6 flex items-center justify-center cursor-pointer" style={{ borderRadius: '9999px' }}>
                                                 <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
