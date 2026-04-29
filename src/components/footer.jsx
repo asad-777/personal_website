@@ -1,17 +1,38 @@
 "use client"
 
+import { useEffect, useRef } from "react";
+import { track } from "@vercel/analytics";
 import { ArrowUp } from "lucide-react";
 
 import Link from "next/link"
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export default function Footer() {
+    const footerRef = useRef(null);
+    const hasFired = useRef(false);
+
+    useEffect(() => {
+        const el = footerRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasFired.current) {
+                    hasFired.current = true;
+                    track("footer_reached");
+                }
+            },
+            { threshold: 0.3 }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
     
     return (
-        <footer className="relative w-full pt-20 pb-12 bg-base-100 border-t border-primary rounded-t-4xl overflow-hidden">
+        <footer ref={footerRef} className="relative w-full pt-20 pb-12 bg-base-100 border-t border-primary rounded-t-4xl overflow-hidden">
             {/* 3D Canvas Background */}
 
             <div className="relative z-10 mx-auto px-6 md:px-16 flex flex-col gap-12">
