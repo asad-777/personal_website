@@ -54,25 +54,6 @@ const TwitterIcon = () => (
     </svg>
 );
 
-// Fiverr icon
-const FiverrIcon = () => (
-    <span className="text-sm text-[#1DBF73] shrink-0">F</span>
-);
-
-// Upwork icon
-const UpworkIcon = () => (
-    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="#6FDA44">
-        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z" />
-    </svg>
-);
-
-// Slack icon
-const SlackIcon = () => (
-    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="currentColor">
-        <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" />
-    </svg>
-);
-
 export default function Contact() {
     const [status, setStatus] = useState("idle");
     const [errors, setErrors] = useState({});
@@ -161,12 +142,6 @@ export default function Contact() {
             : "border-base-content/15 "
              "focus:border-primary";
 
-    const freelancePlatforms = [
-        { icon: FiverrIcon, label: "Fiverr", href: "#" },
-        { icon: UpworkIcon, label: "Upwork", href: "#" },
-        { icon: SlackIcon, label: "Slack", href: "#" },
-    ];
-
     const socialLinks = [
         { icon: GitHubIcon, label: "GitHub", href: "https://github.com/yourusername" },
         { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
@@ -177,73 +152,36 @@ export default function Contact() {
     return (
         <section
             id="contactme"
-            className="relative w-full py-24 px-6 pt-36 md:px-16 bg-transparent overflow-hidden"
+            className="relative w-full py-24 px-1  pt-36 md:px-12 bg-transparent overflow-hidden"
         >
 
             {/* Standard Section Heading */}
-                <div className=" items-center justify-center grid text-center md:items-start gap-4">
+                <div className=" items-center  justify-center grid text-center md:items-start gap-4">
                     <ScrollReveal delay={0.1}>
                         <h2
                             className="min-w-full text-base-content"
                         >
-                            Contacts &<span className="text-primary"> Freelance</span>
+                            Let&apos;s <span className="text-primary">Connect</span>
                         </h2>
                     </ScrollReveal>
                     <ScrollReveal delay={0.2}>
                         <div className="h-1.5 w-48 bg-linear-to-r from-primary mx-auto via-accent to-secondary rounded-full shadow-[0_0_15px_rgba(var(--color-primary),0.4)]" />
                     </ScrollReveal>
                 </div>
+            <div className="relative z-10 w-full max-w-8xl mx-auto flex flex-col gap-24">
 
-
-            <div className="relative z-10  w-full max-w-6xl mx-auto flex flex-col gap-24">
-
-                {/* ─── FREELANCE + SOCIALS SIDE BY SIDE ─── */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-16">
-                    
-                    {/* Freelance */}
-                    <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
-                        <ScrollReveal delay={0.2}>
-                            <h3 className="text-base-content uppercase">Freelance</h3>
-                        </ScrollReveal>
-
-                        <ScrollReveal delay={0.25}>
-                            <p className=" text-base-content/70 max-w-md leading-relaxed">
-                                I take on freelance work across web development, UI engineering, and full-stack builds.
-                            </p>
-                        </ScrollReveal>
-
-                        <ScrollReveal delay={0.3}>
-                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-                                <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
-                                    <a href="/portfolio.pdf" download onClick={() => gtagEvent("DownloadFreelancePortfolioClick")} className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
-                                        <Download className="w-4 h-4" /> Freelance Portfolio
-                                    </a>
-                                </GlassSurface>
-                                <GlassSurface width="fit-content" height="fit-content" borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform">
-                                    <Link href="/projects" onClick={() => gtagEvent("SeeWorkFreelanceClick")} className="bg-primary border-none text-primary-content text-base px-8 py-3 flex items-center gap-3 rounded-full">
-                                        <ExternalLink className="w-4 h-4" /> See Work
-                                    </Link>
-                                </GlassSurface>
-                            </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal delay={0.35}>
-                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-                                {freelancePlatforms.map(({ icon: Icon, label, href }) => (
-                                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent(`${label}FreelanceClick`)}>
-                                        <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="cursor-pointer hover:scale-[1.02] transition-transform px-6">
-                                            <div className="flex items-center gap-3">
-                                                <Icon />
-                                                <span className="text-base text-base-content">{label}</span>
-                                            </div>
-                                        </GlassSurface>
-                                    </a>
-                                ))}
-                            </div>
-                        </ScrollReveal>
-                    </div>
-
-                    {/* Socials */}
+                {/* ─── FORM ZONE ─── */}
+                <div className="flex  px-6 flex-col lg:flex-row gap-10 pt-16 items-center min-w-full lg:text-left">
+                    <div className="flex flex-col  lg:items-start gap-6 lg:justify-start items-center mb-auto" >
+                    <ScrollReveal delay={0.3}>
+                        <h3 className="text-base-content uppercase">Let&apos;s Talk</h3>
+                    </ScrollReveal>
+                    <ScrollReveal delay={0.3}>
+                        <p className="text-lg md:text-xl text-base-content/70 max-w-xl leading-relaxed">
+                            Have a project in mind, or just want to say hello? Drop me a message and I&apos;ll get back to you.
+                        </p>
+                    </ScrollReveal>
+                                        {/* Socials */}
                     <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
                         <ScrollReveal delay={0.25}>
                             <h3 className="text-base-content uppercase">Socials</h3>
@@ -263,19 +201,6 @@ export default function Contact() {
                             </div>
                         </ScrollReveal>
                     </div>
-                </div>
-
-                {/* ─── FORM ZONE ─── */}
-                <div className="flex flex-col lg:flex-row gap-10 pt-16 items-center    lg:text-left">
-                    <div className="flex flex-col lg:items-start gap-6 lg:justify-start items-center  mb-auto" >
-                    <ScrollReveal delay={0.3}>
-                        <h3 className="text-base-content uppercase">Let&apos;s Talk</h3>
-                    </ScrollReveal>
-                    <ScrollReveal delay={0.3}>
-                        <p className="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
-                            Have a project in mind, or just want to say hello? Drop me a message and I&apos;ll get back to you.
-                        </p>
-                    </ScrollReveal>
                     </div>
 
                     <ScrollReveal delay={0.35}>
@@ -302,7 +227,7 @@ export default function Contact() {
                                 <div className="space-y-3">
                                     <label className="text-base-content/60">Phone </label><span className="text-xs text-base-content/50">(Optional)</span>
                                     <input type="tel" name="contact" placeholder="+1 234 567 890"
-                                        className="w-full bg-transparent border-b border-base-content/15 py-1 px-2 focus:px-6  focus:rounded-3xl outline-hidden duration-300 focus:rounded-3xl transition-rounded focus:border-primary transition-colors text-lg text-base-content placeholder:text-base-content/15" />
+                                        className="w-full bg-transparent border-b border-base-content/15 py-1 px-2 focus:px-6 outline-hidden duration-300 focus:rounded-3xl transition-rounded focus:border-primary transition-colors text-lg text-base-content placeholder:text-base-content/15" />
                                 </div>
                                 <div className="space-y-3">
                                     <label className="text-base-content/60">Subject </label>

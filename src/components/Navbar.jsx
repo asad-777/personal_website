@@ -16,7 +16,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/
 const navItems = [
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },
-  { label: "Services", href: "/#services" },
+  { label: "Freelance", href: "/freelance" },
 ];
 
 export default function Navbar({ children }) {
@@ -199,7 +199,7 @@ export default function Navbar({ children }) {
             className="bg-primary border-none text-primary-content text-lg btn-wide hover:px-12 duration-300 transition-all ease-in-out btn shadow-none"
             onClick={() => { gtagEvent("LetsConnectNavDesktopClick"); window.location.href = "/#contactme"; }}
           >
-            Let&apos;s Connect
+            Get in Touch
           </InteractiveHoverButton>
         </GlassSurface>
       </div>
@@ -313,7 +313,7 @@ export default function Navbar({ children }) {
                       onClick={() => { gtagEvent("LetsConnectNavMobileClick"); closeMenu(); window.location.href = "/#contactme"; }}
                       className="btn btn-primary h-14 flex-1 text-lg rounded-xl shadow-xl cursor-pointer"
                     >
-                      Let&apos;s Connect
+                      Get in Touch
                     </button>
                     <a
                       href="/cv.pdf"

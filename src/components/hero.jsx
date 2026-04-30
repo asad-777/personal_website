@@ -106,7 +106,7 @@ export default function Hero() {
                   }}
                   className="flex bg-primary text-primary-content rounded-full items-center justify-center w-full h-full text-lg transition-colors"
                 >
-                  Let&apos;s Connect
+                  Get in Touch
                 </a>
               </GlassSurface>
 

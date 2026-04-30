@@ -25,7 +25,7 @@ export default function Services() {
     return (
         <section
             id="services"
-            className="relative w-full py-24 px-6 md:px-16 pt-48 bg-transparent overflow-hidden"
+            className="relative w-full py-24 px-6 md:px-16  bg-transparent overflow-hidden"
         >
             <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col gap-20">
                 
