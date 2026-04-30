@@ -17,6 +17,7 @@ const navItems = [
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },
   { label: "Freelance", href: "/freelance" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar({ children }) {

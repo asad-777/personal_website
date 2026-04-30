@@ -33,7 +33,9 @@ const topProjects = [
 
 ];
 
-export default function TopProjects() {
+export default function TopProjects({ limit, hideHeader = false }) {
+    const displayedProjects = limit ? topProjects.slice(0, limit) : topProjects;
+
     return (
         <section
             id="projects"
@@ -71,36 +73,38 @@ export default function TopProjects() {
                 }
             `}} />
             <div className="max-w-6xl mx-auto flex flex-col gap-12">
-                {/* Header section */}
-                <div className="flex flex-col items-center text-center gap-4">
-                    <ScrollReveal delay={0.1}>
-                        <h2 
-                            className="hide-dominoes text-base-content"
-                        >
-                            Top Projects
-                        </h2>
-                    </ScrollReveal>
-                    <ScrollReveal delay={0.2}>
-                        <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-6" />
-                    </ScrollReveal>
-                </div>
+                {!hideHeader && (
+                    <>
+                        <div className="flex flex-col items-center text-center gap-4">
+                            <ScrollReveal delay={0.1}>
+                                <h2 
+                                    className="hide-dominoes text-base-content"
+                                >
+                                    Top Projects
+                                </h2>
+                            </ScrollReveal>
+                            <ScrollReveal delay={0.2}>
+                                <div className="h-1 w-36 bg-linear-to-r from-primary to-accent rounded-full mb-6" />
+                            </ScrollReveal>
+                        </div>
 
-                {/* View All Projects Link */}
-                <ScrollReveal delay={0.4}>
-                    <div className="flex justify-center w-full mt-8">
-                        <Link href="/projects" onClick={() => gtagEvent("ViewAllProjectsClick")} className="group glass bg-base-200/80 btn btn-wide py-8 hover:bg-primary/80 hover:text-primary-content btn-primary rounded-2xl w-full max-w-sm">
-                            <div className="h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
-                                <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
-                                    <span className="text-base-content text-xl whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
-                                    <ArrowRight size={20} className="text-primary shrink-0" />
-                                </div>
+                        <ScrollReveal delay={0.4}>
+                            <div className="flex justify-center w-full mt-8">
+                                <Link href="/projects" onClick={() => gtagEvent("ViewAllProjectsClick")} className="group glass bg-base-200/80 btn btn-wide py-8 hover:bg-primary/80 hover:text-primary-content btn-primary rounded-2xl w-full max-w-sm">
+                                    <div className="h-14 px-8 flex items-center justify-center cursor-pointer hover:scale-[1.02] transition-transform w-full" style={{ borderRadius: '14px' }}>
+                                        <div className="relative z-10 flex items-center justify-center gap-2 w-full h-full">
+                                            <span className="text-base-content text-xl whitespace-nowrap" style={{ fontFamily: 'var(--font-seco)' }}>View All Projects</span>
+                                            <ArrowRight size={20} className="text-primary shrink-0" />
+                                        </div>
+                                    </div>
+                                </Link>
                             </div>
-                        </Link>
-                    </div>
-                </ScrollReveal>
+                        </ScrollReveal>
+                    </>
+                )}
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    {topProjects.map((project, idx) => (
+                    {displayedProjects.map((project, idx) => (
                         <ScrollReveal key={project.id} delay={0.2 + idx * 0.1} className="h-full">
                             <div 
                                 className="glass-card hide-dominoes w-full h-full shadow-lg border border-base-content/10 overflow-hidden bg-base-200/50 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300"
