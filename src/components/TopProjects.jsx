@@ -1,77 +1,21 @@
 "use client"
 
 import { gtagEvent } from "@/lib/gtag";
+import { TOP_PROJECTS } from "@/lib/constants";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
-// OOP based project data structure
-// You can easily add, remove, or update projects here.
-const topProjects = [
-    {
-        id: 1,
-        title: "Demo Project",
-        description: "A full-stack application that leverages generative AI models to help creators design, edit, and export visual assets rapidly.",
-        technologies: ["Next.js", "Tailwind CSS", "OpenAI API", "PostgreSQL"],
-        category: "Web App",
-        thumbnail: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
-        github: "https://github.com/",
-        liveDemo: "https://example.com/"
-    },
-    {
-        id: 2,
-        title: "Demo Project",
-        description: "A comprehensive developer analytics dashboard that tracks workflow efficiency, Git commit history, and CI/CD pipeline statistics.",
-        technologies: ["React", "DaisyUI", "Chart.js", "Firebase"],
-        category: "Analytics",
-        thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-        github: "https://github.com/",
-        liveDemo: "https://example.com/"
-    },
-
-];
-
 export default function TopProjects({ limit, hideHeader = false }) {
-    const displayedProjects = limit ? topProjects.slice(0, limit) : topProjects;
+    const displayedProjects = limit ? TOP_PROJECTS.slice(0, limit) : TOP_PROJECTS;
 
     return (
         <section
             id="projects"
             className="relative pt-12 w-full min-h-[70vh] bg-transparent py-20 px-6 md:px-16"
         >
-            <style dangerouslySetInnerHTML={{__html: `
-                .glass-card {
-                    position: relative;
-                    background: rgba(255, 255, 255, 0.05);
-                    backdrop-filter: blur(12px) saturate(120%);
-                    -webkit-backdrop-filter: blur(12px) saturate(120%);
-                    border: 1px solid rgba(100, 100, 100, 0.1);
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                    overflow: hidden;
-                }
-
-                .glass-card::before {
-                    content: '';
-                    position: absolute;
-                    inset: 0;
-                    pointer-events: none;
-                    border-radius: inherit;
-                    background: linear-gradient(to left top, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%);
-                    z-index: 1;
-                }
-
-                .glass-card::after {
-                    content: '';
-                    position: absolute;
-                    inset: 0;
-                    pointer-events: none;
-                    border-radius: inherit;
-                    background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-                    z-index: 1;
-                }
-            `}} />
             <div className="max-w-6xl mx-auto flex flex-col gap-12">
                 {!hideHeader && (
                     <>

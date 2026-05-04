@@ -36,7 +36,7 @@ export default function About() {
                         <ScrollReveal delay={0.4}>
                             <p className="  ">
                                 Specializing in <span className="text-primary">Full-Stack Web Apps </span> & <span className="text-secondary">AI Integrations</span>, 
-                                with a side of <span className="text-primary">Seo</span> & Social Media.
+                                with a side of <span className="text-primary">SEO</span> & Social Media.
                             </p>
                         </ScrollReveal>
                     </div>

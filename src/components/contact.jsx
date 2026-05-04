@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { gtagEvent } from "@/lib/gtag";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Send, Download, ExternalLink } from "lucide-react";
@@ -124,6 +125,7 @@ export default function Contact() {
             });
             if (res.ok) {
                 setStatus("success");
+                gtagEvent("ContactFormSubmit");
                 form.reset();
                 setErrors({});
                 setTouched({});
@@ -143,10 +145,10 @@ export default function Contact() {
              "focus:border-primary";
 
     const socialLinks = [
-        { icon: GitHubIcon, label: "GitHub", href: "https://github.com/yourusername" },
-        { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
-        { icon: EmailIcon, label: "Email", href: "mailto:you@email.com" },
-        { icon: TwitterIcon, label: "Twitter", href: "#" },
+        { icon: GitHubIcon, label: "GitHub", href: SOCIAL_LINKS.github },
+        { icon: LinkedInIcon, label: "LinkedIn", href: SOCIAL_LINKS.linkedin },
+        { icon: EmailIcon, label: "Email", href: SOCIAL_LINKS.email },
+        { icon: InstagramIcon, label: "Instagram", href: SOCIAL_LINKS.instagram },
     ];
 
     return (
@@ -207,7 +209,7 @@ export default function Contact() {
                         <form onSubmit={handleSubmit} className="w-full space-y-10">
                             {/* Hidden metadata fields */}
                             <input type="hidden" name="_timestamp" value={new Date().toISOString()} />
-                            <input type="hidden" name="_screen" value={typeof window !== 'undefined' ? `${window.innerWidth}x${window.innerHeight}` : 'unknown'} />
+                            <input type="hidden" name="_screen" value="" ref={(el) => { if (el && typeof window !== 'undefined') el.value = `${window.innerWidth}x${window.innerHeight}`; }} />
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
                                 <div className="space-y-3">

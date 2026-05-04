@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { gtagEvent } from '@/lib/gtag'
+import { SOCIAL_LINKS } from '@/lib/constants'
 import { TypeAnimation } from 'react-type-animation'
 import { MapPin } from 'lucide-react'
 import { FaGithub, FaLinkedin } from "react-icons/fa"
@@ -124,17 +125,17 @@ export default function Hero() {
             
             {/* Social Links */}
             <div className="flex gap-10 w-full bg-base-100/70 rounded-xl px-6 py-2 justify-center lg:justify-center px-2">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("GithubHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
+              <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("GithubHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
                 <FaGithub className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
 
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("LinkedinHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
+              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => gtagEvent("LinkedinHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm">
                 <FaLinkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>
 
-              <a href="mailto:your@email.com" onClick={() => gtagEvent("GmailHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm ">
+              <a href={SOCIAL_LINKS.email} onClick={() => gtagEvent("GmailHeroClick")} className="group btn btn-ghost hover:text-primary lg:btn-lg flex items-center gap-2 text-base-content/60 transition-colors text-sm ">
                 <SiGmail className="w-5 h-5" />
                 <span>Gmail</span>
               </a>

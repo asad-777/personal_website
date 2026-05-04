@@ -7,10 +7,37 @@ import GlobalBackground from "@/components/GlobalBackground";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata = {
-  title: "Asad Amir",
-  description: "A showcase of my work and skills. My personal portfolio page",
+  title: SITE_CONFIG.title,
+  description: SITE_CONFIG.description,
+  metadataBase: new URL(SITE_CONFIG.url),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: SITE_CONFIG.ogImage,
+        width: 1200,
+        height: 630,
+        alt: SITE_CONFIG.name,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    images: [SITE_CONFIG.ogImage],
+  },
   icons: {
     icon: "/logo.png",
   },

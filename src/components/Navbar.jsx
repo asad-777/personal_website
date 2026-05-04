@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { gtagEvent } from "@/lib/gtag";
+import { SOCIAL_LINKS } from "@/lib/constants";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Menu, X, House } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -174,13 +175,13 @@ export default function Navbar({ children }) {
         <div className="hidden lg:block hover:scale-105 transition-transform cursor-pointer">
           <GlassSurface width="fit-content" height={56} borderRadius={9999} backgroundOpacity={0.05} borderWidth={0.5} className="px-6">
             <div className="flex items-center gap-6 h-full">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("GithubNavDesktopClick")}>
+              <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("GithubNavDesktopClick")}>
                 <FaGithub className="w-6 h-6 text-base-content/60" />
               </a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("LinkedinNavDesktopClick")}>
+              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("LinkedinNavDesktopClick")}>
                 <FaLinkedin className="w-6 h-6 text-base-content/60" />
               </a>
-              <a href="mailto:your@email.com" className="hover:scale-110 transition-transform" onClick={() => gtagEvent("GmailNavDesktopClick")}>
+              <a href={SOCIAL_LINKS.email} className="hover:scale-110 transition-transform" onClick={() => gtagEvent("GmailNavDesktopClick")}>
                 <SiGmail className="w-6 h-6 text-base-content/60" />
               </a>
             </div>
@@ -282,7 +283,7 @@ export default function Navbar({ children }) {
                   {/* Social row */}
                   <div className="flex gap-3">
                     <a
-                      href="https://github.com/yourusername"
+                      href={SOCIAL_LINKS.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-outline border-2 btn-primary flex-1 gap-2 h-12 text-base rounded-xl"
@@ -291,7 +292,7 @@ export default function Navbar({ children }) {
                       <FaGithub className="w-5 h-5" />
                     </a>
                     <a
-                      href="https://linkedin.com/in/yourusername"
+                      href={SOCIAL_LINKS.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base rounded-xl"
@@ -300,7 +301,7 @@ export default function Navbar({ children }) {
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                     <a
-                      href="mailto:your@email.com"
+                      href={SOCIAL_LINKS.email}
                       className="btn btn-outline btn-primary border-2 flex-1 gap-2 h-12 text-base rounded-xl"
                       onClick={() => { gtagEvent("GmailNavMobileClick"); closeMenu(); }}
                     >

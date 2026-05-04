@@ -38,7 +38,7 @@ export default function FreelanceRedirect() {
                 <div className="space-y-8 mt-4">
                     <ScrollReveal delay={0.3}>
                         <p className="max-w-4xl mx-auto text-base-content">
-                            Making customer ready <span className="text-primary">WEB APPS</span> & <span className="text-secondary">AI SYSTEMS</span> for startups, buisnesses & individuals. See details, process, and get started with your project today.
+                            Making customer ready <span className="text-primary">WEB APPS</span> & <span className="text-secondary">AI SYSTEMS</span> for startups, businesses & individuals. See details, process, and get started with your project today.
                         </p>
                     </ScrollReveal>
                 </div>
@@ -52,7 +52,7 @@ export default function FreelanceRedirect() {
                         <span className="text-secondary">•</span>
                         <span>UI & UX</span>
                         <span className="text-secondary">•</span>
-                        <span>Seo & Social Media</span>
+                        <span>SEO & Social Media</span>
                     </div>
                 </ScrollReveal>
               
